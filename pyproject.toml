@@ -1,0 +1,34 @@
+[project]
+name = "ftc-pipeline"
+version = "0.1.0"
+description = "FTC FULL TIME CHRISTIAN — AI-powered luxury streetwear design pipeline"
+requires-python = ">=3.12"
+dependencies = [
+    "python-dotenv>=1.1.0",
+    "httpx>=0.28.0",
+    "beautifulsoup4>=4.13.0",
+    "pydantic>=2.11.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "ruff>=0.11.0",
+]
+
+[project.scripts]
+ftc-pipeline = "ftc.cli:main"
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

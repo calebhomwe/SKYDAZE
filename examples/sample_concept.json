@@ -1,0 +1,14 @@
+{
+  "id": "FTC-001",
+  "title": "Cornerstone",
+  "theological_core": "Christ as the rejected stone that became the foundation — strength born from what the world overlooked",
+  "aesthetic_direction": "Muted earth tones layered over raw concrete textures, architectural negative space, heavyweight drape",
+  "typography_layout": "Distressed slab-serif at center chest in charcoal, tonal secondary text along hem interior",
+  "color_palette": ["#2C2C2C", "#A89F91", "#F5F0EB"],
+  "print_technique": "Tonal embroidery front + discharge print back panel",
+  "fal_ai_visual_prompt": "Luxury heavyweight 300gsm cotton tee, muted earth palette, abstract stone and mortar texture, architectural draping, editorial studio lighting, garment-washed finish, 4:5 AR",
+  "novita_video_prompt": "5s slow orbit around hanging garment, fabric physics on heavyweight cotton, warm diffused directional light, shallow depth of field",
+  "nano_banana_mockup_prompt": "Apply to relaxed-fit drop-shoulder heavyweight tee template, front chest placement, garment-washed charcoal base",
+  "reference_source_tags": ["stampd", "pinterest_abstract", "kittl_typography", "fog_minimal"],
+  "promo_hook": "Instagram Reels — ambient minimal piano — 'Built different. Built on rock.'"
+}
