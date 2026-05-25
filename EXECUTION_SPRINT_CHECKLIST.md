@@ -17,6 +17,7 @@ Goal: get the pipeline near test-ready with clear ownership and no idle gaps.
    - Fix prompt/schema/forbidden causes, then rerun Phase 2.
 5. **If Phase 2 is PASS**
    - Unlock and run full generation next sprint.
+   - Command: `python3 full_generate.py`
 
 Optional fast-lane simulation for orchestration checks:
 - `FTC_DRY_RUN_PASS_ALL=1 make sprint`

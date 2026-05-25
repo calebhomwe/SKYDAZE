@@ -17,6 +17,9 @@ test:
 test-real:
 	FTC_RUN_MODE=real $(PYTHON) run_test.py
 
+full:
+	$(PYTHON) full_generate.py
+
 status:
 	$(PYTHON) pipeline_status.py
 

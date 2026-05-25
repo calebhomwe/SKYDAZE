@@ -10,6 +10,8 @@ FTC pipeline workspace for luxury Christian streetwear generation.
    - `python3 run_test.py`
 3. Check status:
    - `python3 pipeline_status.py`
+4. Run full generation when unlocked:
+   - `python3 full_generate.py`
 
 Or run all three in sequence:
 
@@ -26,5 +28,6 @@ Or run all three in sequence:
 
 - `make scrape`
 - `make test`
+- `make full`
 - `make status`
 - `make status-json`
