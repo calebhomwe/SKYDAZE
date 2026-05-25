@@ -1,7 +1,11 @@
-.PHONY: install scrape test full clean lint spawn-plan spawn-dry spawn-launch
+.PHONY: install scrape scrape-real test test-real collection package render render-dry \
+        caveman-install caveman-uninstall caveman-update \
+        spawn-plan spawn-dry spawn-launch \
+        clean lint
 
 install:
 	pip install -r requirements.txt
+	git submodule update --init --recursive
 
 scrape:
 	python scraper.py
@@ -15,12 +19,37 @@ test:
 test-real:
 	FTC_RUN_MODE=real python run_test.py
 
-clean:
-	rm -rf artifacts/scrapes/raw artifacts/concepts artifacts/qa __pycache__ ftc/__pycache__
+collection:
+	python generate_collection.py
 
-lint:
-	ruff check ftc scraper.py run_test.py ops/spawn/launch_swarm.py
+package:
+	python package_catalog.py
 
+render-dry:
+	python workers/render_worker.py --dry-run
+
+render:
+	FTC_RUN_MODE=real python workers/render_worker.py
+
+# --- caveman (token-compression skill) --------------------------------------
+caveman-install:
+	@if [ ! -f tools/caveman/install.sh ]; then \
+	  echo "Submodule missing; running git submodule update --init --recursive"; \
+	  git submodule update --init --recursive; \
+	fi
+	bash tools/caveman/install.sh
+
+caveman-update:
+	git submodule update --remote tools/caveman
+
+caveman-uninstall:
+	@if [ -f tools/caveman/install.sh ]; then \
+	  bash tools/caveman/install.sh --uninstall; \
+	else \
+	  echo "tools/caveman/install.sh not present; nothing to uninstall"; \
+	fi
+
+# --- spawn swarm ------------------------------------------------------------
 spawn-plan:
 	python3 ops/spawn/launch_swarm.py --mode plan-only
 
@@ -29,3 +58,9 @@ spawn-dry:
 
 spawn-launch:
 	python3 ops/spawn/launch_swarm.py --mode execute
+
+clean:
+	rm -rf artifacts/scrapes/raw artifacts/concepts artifacts/qa __pycache__ ftc/__pycache__
+
+lint:
+	ruff check ftc scraper.py run_test.py generate_collection.py package_catalog.py workers ops/spawn/launch_swarm.py

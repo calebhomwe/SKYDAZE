@@ -16,6 +16,7 @@ import json
 import os
 from dataclasses import dataclass
 
+from .caveman import apply as caveman_apply
 from .config import RUN_MODE, require
 
 
@@ -73,7 +74,7 @@ def score_concept(concept: dict) -> Score:
     msg = client.messages.create(
         model="claude-opus-4-7",
         max_tokens=512,
-        system=_JUDGE_PROMPT,
+        system=caveman_apply(_JUDGE_PROMPT),
         messages=[{"role": "user", "content": json.dumps(concept, indent=2)}],
     )
     text = "".join(block.text for block in msg.content if hasattr(block, "text")).strip()
