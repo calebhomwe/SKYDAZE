@@ -1,0 +1,37 @@
+# FTC scrape targets — Reference Synthesis (Section 2)
+# Source taxonomy maps to tier-6 scrapers in agents/REGISTRY.yaml
+# Add or remove URLs freely; the scraper respects robots.txt and rate-limits per host.
+
+pinterest:
+  # Public board URLs only. Auth-walled pins are skipped.
+  - https://www.pinterest.com/search/pins/?q=luxury%20streetwear%20editorial
+  - https://www.pinterest.com/search/pins/?q=fear%20of%20god%20lookbook
+  - https://www.pinterest.com/search/pins/?q=lemaire%20editorial
+  - https://www.pinterest.com/search/pins/?q=monastic%20fashion%20editorial
+  - https://www.pinterest.com/search/pins/?q=tonal%20embroidery%20detail
+
+kittl:
+  - https://www.kittl.com/templates/streetwear
+  - https://www.kittl.com/templates/typography
+
+stampd:
+  - https://www.stampd.com/collections/all
+
+ssense:
+  - https://www.ssense.com/en-us/editorial
+  - https://www.ssense.com/en-us/men/designers/fear-of-god-essentials
+
+dover_street_market:
+  - https://shop.doverstreetmarket.com/
+
+# Optional luxury benchmarks
+luxury_benchmarks:
+  - https://www.lemaire.fr/
+  - https://www.fearofgod.com/
+
+# Limits applied across all targets
+limits:
+  max_pages_per_host: 10
+  rate_limit_rps: 0.5
+  user_agent: "FTC-ReferenceBot/0.1 (+contact: ops@ftc.local)"
+  respect_robots_txt: true

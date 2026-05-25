@@ -93,11 +93,17 @@ All concept generation MUST return this exact structure:
 ## 7. PIPELINE STATUS TRACKER
 | Phase | Status | Notes |
 | :--- | :--- | :--- |
-| Reference Scraping | ⏳ Pending | Run `scraper.py` first |
-| Test Batch (5 concepts) | ⏳ Pending | Validate with `run_test.py` |
-| Full Generation (100) | 🔒 Locked | Unlocks after test batch passes |
+| Reference Scraping | 🟡 Scaffold ready | `scraper.py` runs in dry-run; awaits `FIRECRAWL_API_KEY` for real mode |
+| Test Batch (5 concepts) | 🟡 Scaffold ready | `run_test.py` runs in dry-run; awaits `OPENROUTER_API_KEY` + `ANTHROPIC_API_KEY` |
+| Full Generation (100) | 🔒 Locked | Unlocks when Test Batch returns 5/5 PASS in real mode |
 | Shopify Integration | 🔒 Locked | Post-generation phase |
 | Social Scheduler | 🔒 Locked | Post-promo phase |
+
+**How to advance:**
+1. `cp .env.example .env` and fill the keys you have.
+2. `make scrape-real` → produces `artifacts/scrapes/reference_synthesis.json`.
+3. `make test-real` → 5 concepts validated against Sections 1, 4, 5.
+4. If 5/5 PASS, unlock Phase 3 (full generation of 100 pieces).
 
 ---
 
