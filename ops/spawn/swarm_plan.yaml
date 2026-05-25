@@ -5,6 +5,7 @@ defaults:
   output: json
   mode: plan-only
   max_parallel: 4
+  timeout_seconds: 420
   prompt_file: ops/spawn/prompts/general_execution_contract.md
 
 # Total workers declared: 54

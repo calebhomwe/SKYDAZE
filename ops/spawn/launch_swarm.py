@@ -9,7 +9,9 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
+import signal
 import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
@@ -33,6 +35,7 @@ class LaunchSpec:
     model: str | None
     prompt_file: str | None
     purpose: str
+    timeout_seconds: int
 
 
 def _timestamp() -> str:
@@ -52,6 +55,7 @@ def _expand_specs(plan: dict[str, Any]) -> list[LaunchSpec]:
     defaults = plan.get("defaults", {})
     cloud_default = str(defaults.get("cloud", "local"))
     prompt_default = defaults.get("prompt_file")
+    timeout_default = int(defaults.get("timeout_seconds", 420))
     specs: list[LaunchSpec] = []
 
     for worker in plan["workers"]:
@@ -65,6 +69,7 @@ def _expand_specs(plan: dict[str, Any]) -> list[LaunchSpec]:
         model = worker.get("model")
         prompt_file = worker.get("prompt_file", prompt_default)
         purpose = str(worker.get("purpose", "unspecified"))
+        timeout_seconds = int(worker.get("timeout_seconds", timeout_default))
 
         for i in range(1, replicas + 1):
             instance_name = f"{worker_name}-{i:02d}"
@@ -77,6 +82,7 @@ def _expand_specs(plan: dict[str, Any]) -> list[LaunchSpec]:
                     model=str(model) if model else None,
                     prompt_file=str(prompt_file) if prompt_file else None,
                     purpose=purpose,
+                    timeout_seconds=timeout_seconds,
                 )
             )
     return specs
@@ -132,6 +138,27 @@ def _parse_json_line(output: str) -> dict[str, Any] | None:
     return None
 
 
+def _strip_ansi(text: str) -> str:
+    ansi_escape = re.compile(r"\x1b\[[0-9;?]*[ -/]*[@-~]")
+    return ansi_escape.sub("", text)
+
+
+def _terminate_process_group(pid: int) -> None:
+    try:
+        os.killpg(pid, signal.SIGTERM)
+    except ProcessLookupError:
+        return
+    except PermissionError:
+        return
+
+    try:
+        os.killpg(pid, signal.SIGKILL)
+    except ProcessLookupError:
+        return
+    except PermissionError:
+        return
+
+
 def _run_one(
     *,
     spawn_bin: str,
@@ -141,21 +168,39 @@ def _run_one(
 ) -> dict[str, Any]:
     cmd = _build_command(spawn_bin, spec, mode)
     started = datetime.now(UTC)
-    proc = subprocess.run(
+    proc = subprocess.Popen(
         cmd,
         cwd=REPO_ROOT,
-        capture_output=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
         text=True,
-        timeout=1200,
+        errors="replace",
+        start_new_session=True,
         env={**os.environ, "PATH": f"{Path.home() / '.bun' / 'bin'}:{os.environ.get('PATH', '')}"},
     )
+    timed_out = False
+    stdout = ""
+    stderr = ""
+    return_code = 0
+    try:
+        stdout, stderr = proc.communicate(timeout=spec.timeout_seconds)
+        return_code = proc.returncode
+    except subprocess.TimeoutExpired:
+        timed_out = True
+        _terminate_process_group(proc.pid)
+        stdout, stderr = proc.communicate(timeout=10)
+        return_code = 124
+
     ended = datetime.now(UTC)
     elapsed_s = (ended - started).total_seconds()
-    combined = (proc.stdout or "") + ("\n" + proc.stderr if proc.stderr else "")
+    combined = (stdout or "") + ("\n" + stderr if stderr else "")
+    cleaned = _strip_ansi(combined)
     payload = _parse_json_line(combined)
 
     log_file = logs_dir / f"{spec.instance_name}.log"
     log_file.write_text(combined)
+    clean_log_file = logs_dir / f"{spec.instance_name}.clean.log"
+    clean_log_file.write_text(cleaned)
 
     return {
         "instance_name": spec.instance_name,
@@ -164,18 +209,59 @@ def _run_one(
         "cloud": spec.cloud,
         "purpose": spec.purpose,
         "model": spec.model,
+        "timeout_seconds": spec.timeout_seconds,
         "command": cmd,
-        "returncode": proc.returncode,
-        "success": proc.returncode == 0,
+        "returncode": return_code,
+        "success": return_code == 0,
+        "timed_out": timed_out,
         "elapsed_seconds": elapsed_s,
         "json_payload": payload,
         "log_file": str(log_file),
+        "clean_log_file": str(clean_log_file),
     }
 
 
 def _write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2))
+
+
+def _preflight(artifact_dir: Path) -> dict[str, Any]:
+    def exists(binary: str) -> bool:
+        return bool(shutil.which(binary))
+
+    spawn_ok = True
+    try:
+        _resolve_spawn_binary()
+    except RuntimeError:
+        spawn_ok = False
+
+    docker_compose_ok = False
+    docker_message = "docker not found"
+    if exists("docker"):
+        try:
+            proc = subprocess.run(
+                ["docker", "compose", "version"],
+                capture_output=True,
+                text=True,
+                timeout=10,
+            )
+            docker_compose_ok = proc.returncode == 0
+            docker_message = (proc.stdout or proc.stderr or "").strip() or "unknown"
+        except Exception as exc:
+            docker_message = str(exc)
+
+    payload = {
+        "checked_at": _timestamp(),
+        "spawn": spawn_ok,
+        "bun": exists("bun") or (Path.home() / ".bun" / "bin" / "bun").exists(),
+        "python3": exists("python3"),
+        "docker_compose": docker_compose_ok,
+        "docker_compose_message": docker_message,
+        "unreal_editor": exists("UnrealEditor"),
+    }
+    _write_json(artifact_dir / "preflight.json", payload)
+    return payload
 
 
 def _launch(
@@ -198,7 +284,24 @@ def _launch(
             for spec in specs
         ]
         for future in as_completed(futures):
-            results.append(future.result())
+            try:
+                results.append(future.result())
+            except Exception as exc:
+                results.append(
+                    {
+                        "instance_name": "unknown",
+                        "worker_name": "unknown",
+                        "agent": "unknown",
+                        "cloud": "unknown",
+                        "purpose": "unknown",
+                        "model": None,
+                        "returncode": 1,
+                        "success": False,
+                        "timed_out": False,
+                        "elapsed_seconds": 0,
+                        "error": str(exc),
+                    }
+                )
 
     results.sort(key=lambda item: item["instance_name"])
     success_count = sum(1 for item in results if item["success"])
@@ -240,6 +343,11 @@ def main() -> int:
         default=str(DEFAULT_ARTIFACT_DIR),
         help="Where run plans and summaries are written.",
     )
+    parser.add_argument(
+        "--preflight-only",
+        action="store_true",
+        help="Only run dependency checks and write preflight.json.",
+    )
     args = parser.parse_args()
 
     plan_path = Path(args.plan_file)
@@ -261,6 +369,18 @@ def main() -> int:
     if not artifact_dir.is_absolute():
         artifact_dir = REPO_ROOT / artifact_dir
     artifact_dir.mkdir(parents=True, exist_ok=True)
+    preflight = _preflight(artifact_dir)
+    print(
+        "Preflight:",
+        f"spawn={preflight['spawn']}",
+        f"bun={preflight['bun']}",
+        f"python3={preflight['python3']}",
+        f"docker_compose={preflight['docker_compose']}",
+        f"unreal_editor={preflight['unreal_editor']}",
+    )
+    if args.preflight_only:
+        print(f"Preflight report written: {artifact_dir / 'preflight.json'}")
+        return 0
 
     plan_payload = {
         "created_at": _timestamp(),

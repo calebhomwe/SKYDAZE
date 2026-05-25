@@ -28,13 +28,19 @@ export OPENROUTER_API_KEY=sk-or-v1-...
 python3 ops/spawn/launch_swarm.py --mode plan-only
 ```
 
-4) Smoke test one worker:
+4) Run preflight checks:
+
+```bash
+python3 ops/spawn/launch_swarm.py --preflight-only
+```
+
+5) Smoke test one worker:
 
 ```bash
 python3 ops/spawn/launch_swarm.py --mode dry-run --max-launches 1
 ```
 
-5) Launch the full declared swarm:
+6) Launch the full declared swarm:
 
 ```bash
 python3 ops/spawn/launch_swarm.py --mode execute
@@ -52,5 +58,6 @@ All run data is written under `artifacts/spawn/`:
 ## Notes
 
 - Default `mode` in `swarm_plan.yaml` is `plan-only` to avoid accidental spend.
+- Workers honor `timeout_seconds` from plan defaults or per-worker overrides.
 - Model override entries in `swarm_plan.yaml` should be validated with dry-runs first.
 - Existing `ops/n8n` workflows can call this launcher as a command step.

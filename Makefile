@@ -1,4 +1,4 @@
-.PHONY: install scrape test full clean lint spawn-plan spawn-dry spawn-launch
+.PHONY: install scrape test full clean lint spawn-plan spawn-preflight spawn-dry spawn-launch
 
 install:
 	pip install -r requirements.txt
@@ -23,6 +23,9 @@ lint:
 
 spawn-plan:
 	python3 ops/spawn/launch_swarm.py --mode plan-only
+
+spawn-preflight:
+	python3 ops/spawn/launch_swarm.py --preflight-only
 
 spawn-dry:
 	python3 ops/spawn/launch_swarm.py --mode dry-run --max-launches 1
