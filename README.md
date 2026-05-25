@@ -13,8 +13,10 @@ Run:
 ```bash
 pip install -r requirements.txt
 python3 scraper.py
+python3 generate_fire_tests.py
 python3 generate_collection.py
 python3 verify_collection.py
 ```
 
 Outputs are written to `artifacts/collection_v1/`.
+The two proof prompts are written to `artifacts/fire_tests/`.

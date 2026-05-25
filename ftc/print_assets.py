@@ -69,6 +69,23 @@ def _metadata(fid: str, title: str) -> str:
     )
 
 
+def _texture_defs() -> str:
+    return """
+  <defs>
+    <filter id="rough-edge" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="19" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="9"/>
+    </filter>
+    <pattern id="scanlines" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="2" fill="#C5FF00" opacity="0.22"/>
+    </pattern>
+    <pattern id="halftone" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="8" cy="8" r="3" fill="#0E0D0C" opacity="0.28"/>
+      <circle cx="24" cy="24" r="2" fill="#0E0D0C" opacity="0.18"/>
+    </pattern>
+  </defs>"""
+
+
 def _seal(fid: str, title: str, palette: Palette) -> str:
     fg = _ink(palette)
     ac = _accent(palette)
@@ -167,6 +184,43 @@ def _label(fid: str, title: str, palette: Palette) -> str:
   <text x="1024" y="1512" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="36" letter-spacing="10" fill="{fg}" opacity="0.72">{fid}</text>"""
 
 
+def _glitch_cross(fid: str, title: str, palette: Palette) -> str:
+    fg = _ink(palette)
+    ac = "#C5FF00"
+    red = "#FF003C"
+    blue = "#00B7FF"
+    return f"""
+  <g transform="translate(112,-38) rotate(-4 1024 1024)">
+    <rect x="812" y="326" width="354" height="1114" fill="{red}" opacity="0.55" transform="translate(-42,14)"/>
+    <rect x="812" y="326" width="354" height="1114" fill="{blue}" opacity="0.52" transform="translate(46,-10)"/>
+    <rect x="812" y="326" width="354" height="1114" fill="{fg}" filter="url(#rough-edge)"/>
+    <rect x="548" y="762" width="884" height="290" fill="{red}" opacity="0.46" transform="translate(-34,-18)"/>
+    <rect x="548" y="762" width="884" height="290" fill="{blue}" opacity="0.50" transform="translate(42,20)"/>
+    <rect x="548" y="762" width="884" height="290" fill="{fg}" filter="url(#rough-edge)"/>
+    <rect x="482" y="496" width="1080" height="900" fill="url(#scanlines)" opacity="0.35"/>
+    <path d="M540 672 H840 M1132 552 H1498 M460 1138 H788 M1110 1284 H1516" stroke="{ac}" stroke-width="34" stroke-linecap="square"/>
+  </g>
+  <text x="1018" y="1608" text-anchor="middle" font-family="Courier New, monospace" font-size="58" font-weight="700" letter-spacing="5" fill="{ac}">ERROR 404: SIN NOT FOUND</text>
+  <text x="1018" y="1690" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" letter-spacing="11" fill="{fg}" opacity="0.72">{fid} / {html.escape(title.upper())}</text>"""
+
+
+def _torn_paper(fid: str, title: str, palette: Palette) -> str:
+    fg = _ink(palette)
+    paper = "#C8B692"
+    shadow = "#34291F"
+    tear = "#0B0B0B"
+    return f"""
+  <g transform="translate(-92,18) rotate(-3 1024 1024)">
+    <path d="M282 438 L1688 356 L1770 1478 L402 1608 Z" fill="{paper}" filter="url(#rough-edge)"/>
+    <path d="M430 520 L1640 440 L1686 1386 L510 1512 Z" fill="url(#halftone)" opacity="0.22"/>
+    <path d="M548 686 L744 622 L902 702 L1072 626 L1236 720 L1428 660 L1510 812 L1402 956 L1518 1132 L1308 1204 L1164 1136 L1004 1228 L858 1128 L704 1206 L586 1040 L662 898 Z" fill="{shadow}" opacity="0.24" transform="translate(30,38)"/>
+    <path d="M548 686 L744 622 L902 702 L1072 626 L1236 720 L1428 660 L1510 812 L1402 956 L1518 1132 L1308 1204 L1164 1136 L1004 1228 L858 1128 L704 1206 L586 1040 L662 898 Z" fill="{tear}" filter="url(#rough-edge)"/>
+    <text x="1024" y="1022" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="196" font-weight="900" letter-spacing="8" fill="#F1EEE5" transform="rotate(-5 1024 1022)">TRUTH</text>
+    <path d="M474 628 L632 696 M1544 666 L1426 756 M546 1252 L694 1160 M1496 1202 L1340 1126" stroke="{fg}" stroke-width="18" opacity="0.5"/>
+  </g>
+  <text x="1024" y="1754" text-anchor="middle" font-family="Courier New, monospace" font-size="34" letter-spacing="8" fill="{fg}" opacity="0.72">{fid} / {html.escape(title.upper())}</text>"""
+
+
 MOTIFS: tuple[Callable[[str, str, Palette], str], ...] = (
     _seal,
     _word_stack,
@@ -176,6 +230,8 @@ MOTIFS: tuple[Callable[[str, str, Palette], str], ...] = (
     _ledger,
     _field_marker,
     _label,
+    _glitch_cross,
+    _torn_paper,
 )
 
 
@@ -191,6 +247,52 @@ def render_print_svg(design: object) -> str:
   {_metadata(fid, title)}
   <title>{html.escape(fid)} {html.escape(title)}</title>
   <desc>Standalone vector graphic. Transparent background. No people or raster images.</desc>
+{_texture_defs()}
+{body}
+</svg>
+"""
+
+
+def render_fire_prompt_svg(kind: str) -> str:
+    """Render the two explicit fire prompt tests as raw square assets."""
+    if kind == "glitch-cross":
+        fid = "FTC-FIRE-001"
+        title = "Glitch Cross"
+        palette = Palette(
+            name="glitch-black-green",
+            family="fire-test",
+            hexes=("#050505", "#070707", "#C5FF00"),
+            weights=(0.70, 0.20, 0.10),
+            contrast_score=0.92,
+            rationale="Black cyberpunk base with neon error accent.",
+        )
+        background = '<rect width="2048" height="2048" fill="#050505"/>'
+        body = _glitch_cross(fid, title, palette)
+        desc = "Prompt test 1: glitch cross, RGB split distortion, neon green monospace error text."
+    elif kind == "torn-paper":
+        fid = "FTC-FIRE-002"
+        title = "Torn Paper Revelation"
+        palette = Palette(
+            name="paper-black-charcoal",
+            family="fire-test",
+            hexes=("#FAF8F0", "#0B0B0B", "#C8B692"),
+            weights=(0.62, 0.28, 0.10),
+            contrast_score=0.9,
+            rationale="White isolation, beige paper, black reveal layer.",
+        )
+        background = '<rect width="2048" height="2048" fill="#FAF8F0"/>'
+        body = _torn_paper(fid, title, palette)
+        desc = "Prompt test 2: torn beige paper reveal with rough charcoal TRUTH lettering."
+    else:
+        raise ValueError(f"Unknown fire prompt asset: {kind}")
+
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {CANVAS} {CANVAS}" width="{CANVAS}" height="{CANVAS}" role="img" aria-label="{html.escape(title)}">
+  {_metadata(fid, title)}
+  <title>{html.escape(title)}</title>
+  <desc>{desc}</desc>
+{_texture_defs()}
+{background}
 {body}
 </svg>
 """
@@ -216,6 +318,8 @@ def render_print_eps(design: object) -> str:
         5: "120 180 372 330 rectstroke 160 240 moveto 452 240 lineto stroke 160 330 moveto 452 330 lineto stroke 160 420 moveto 452 420 lineto stroke",
         6: "306 120 moveto 500 520 lineto 112 520 lineto closepath stroke 306 235 moveto 390 460 lineto 222 460 lineto closepath fill",
         7: "96 190 420 300 rectstroke 140 240 332 70 rectfill",
+        8: "270 92 92 428 rectfill 132 248 372 104 rectfill 90 210 moveto 210 210 lineto stroke 390 170 moveto 528 170 lineto stroke 70 420 moveto 190 420 lineto stroke",
+        9: "84 116 moveto 548 92 lineto 528 528 lineto 112 548 lineto closepath stroke 160 210 moveto 240 190 lineto 310 220 lineto 380 194 lineto 470 230 lineto 438 330 lineto 484 420 lineto 376 460 lineto 306 430 lineto 230 470 lineto 168 402 lineto 198 310 lineto closepath fill",
     }[motif_index]
     return f"""%!PS-Adobe-3.0 EPSF-3.0
 %%Title: {fid} {title}
