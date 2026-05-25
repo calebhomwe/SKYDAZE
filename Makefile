@@ -1,4 +1,4 @@
-.PHONY: install scrape test full clean lint
+.PHONY: install scrape test full clean lint spawn-plan spawn-dry spawn-launch
 
 install:
 	pip install -r requirements.txt
@@ -19,4 +19,13 @@ clean:
 	rm -rf artifacts/scrapes/raw artifacts/concepts artifacts/qa __pycache__ ftc/__pycache__
 
 lint:
-	ruff check ftc scraper.py run_test.py
+	ruff check ftc scraper.py run_test.py ops/spawn/launch_swarm.py
+
+spawn-plan:
+	python3 ops/spawn/launch_swarm.py --mode plan-only
+
+spawn-dry:
+	python3 ops/spawn/launch_swarm.py --mode dry-run --max-launches 1
+
+spawn-launch:
+	python3 ops/spawn/launch_swarm.py --mode execute
