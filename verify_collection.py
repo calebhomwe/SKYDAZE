@@ -9,7 +9,6 @@ primary SVGs are scalable vector artwork with no raster images.
 from __future__ import annotations
 
 import json
-import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 

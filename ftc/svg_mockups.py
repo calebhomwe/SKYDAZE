@@ -11,7 +11,7 @@ def _swatch_bar(palette: Palette, y: int = 700) -> str:
     out: list[str] = []
     x = 30
     total_w = 540
-    for hexc, weight in zip(palette.hexes, palette.weights):
+    for hexc, weight in zip(palette.hexes, palette.weights, strict=False):
         w = max(20, int(total_w * weight))
         out.append(
             f'<rect x="{x}" y="{y}" width="{w}" height="22" fill="{hexc}" stroke="#202020" stroke-width="0.5"/>'

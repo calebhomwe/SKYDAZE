@@ -12,9 +12,9 @@ Run:
 
 ```bash
 pip install -r requirements.txt
-python scraper.py
-python generate_collection.py
-python verify_collection.py
+python3 scraper.py
+python3 generate_collection.py
+python3 verify_collection.py
 ```
 
 Outputs are written to `artifacts/collection_v1/`.

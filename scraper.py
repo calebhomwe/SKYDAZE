@@ -1,9 +1,9 @@
 """FTC Pipeline — Phase 1: Reference Scraping.
 
 Usage:
-    python scraper.py                      # uses scrape_targets.yaml
-    FTC_RUN_MODE=real python scraper.py    # hits Firecrawl / network
-    FTC_RUN_MODE=dry-run python scraper.py # offline; synthesizes fixtures
+    python3 scraper.py                      # uses scrape_targets.yaml
+    FTC_RUN_MODE=real python3 scraper.py    # hits Firecrawl / network
+    FTC_RUN_MODE=dry-run python3 scraper.py # offline; synthesizes fixtures
 
 Output:
     artifacts/scrapes/raw/<host>/*.json    (firecrawl payloads)
@@ -97,9 +97,9 @@ def main() -> int:
     )
 
     console.rule("[bold green]Phase 1 complete — Reference Scraping[/bold green]")
-    console.print(f"Synthesis written to: artifacts/scrapes/reference_synthesis.json")
+    console.print("Synthesis written to: artifacts/scrapes/reference_synthesis.json")
     console.print(f"Summary written to:   {summary_path.relative_to(summary_path.parents[2])}")
-    console.print("\nNext: [bold]python run_test.py[/bold]  (Phase 2 — 5-concept test batch)")
+    console.print("\nNext: [bold]python3 run_test.py[/bold]  (Phase 2 - 5-concept test batch)")
     return 0
 
 

@@ -181,9 +181,9 @@ MOTIFS: tuple[Callable[[str, str, Palette], str], ...] = (
 
 def render_print_svg(design: object) -> str:
     """Return a transparent 2048x2048 print SVG for one design object."""
-    fid = str(getattr(design, "id"))
-    title = str(getattr(design, "title"))
-    palette = getattr(design, "palette")
+    fid = str(design.id)
+    title = str(design.title)
+    palette = design.palette
     motif = MOTIFS[_hash_int(fid) % len(MOTIFS)]
     body = motif(fid, title, palette)
     return f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -198,9 +198,9 @@ def render_print_svg(design: object) -> str:
 
 def render_print_eps(design: object) -> str:
     """Return a compact EPS companion for print shops that prefer EPS."""
-    fid = str(getattr(design, "id"))
-    title = str(getattr(design, "title")).upper().replace("(", "").replace(")", "")
-    palette = getattr(design, "palette")
+    fid = str(design.id)
+    title = str(design.title).upper().replace("(", "").replace(")", "")
+    palette = design.palette
     motif_index = _hash_int(fid) % len(MOTIFS)
     # EPS text stays editable. The SVG is the visual source of truth.
     fg = _ink(palette)

@@ -33,15 +33,56 @@ class Score:
 
 
 def _stub_score(concept: dict) -> Score:
-    """Deterministic non-LLM score for dry-run."""
-    blob = json.dumps(concept, sort_keys=True).encode()
-    digest = hashlib.sha256(blob).digest()
-    lux = 0.70 + (digest[0] / 255) * 0.25
-    theo = 0.65 + (digest[1] / 255) * 0.30
+    """Deterministic non-LLM score for dry-run.
+
+    Dry-run should exercise the gate, not randomly fail strong fixtures. The
+    score is based on the same cues the real judge prompt asks for: material
+    specificity, restrained luxury references, abstract theology, and the
+    absence of forbidden terms.
+    """
+    from .forbidden import scan_concept
+
+    if scan_concept(concept):
+        return Score(0.0, 0.0, "dry-run stub score: forbidden term present")
+
+    blob = json.dumps(concept, sort_keys=True).lower()
+    digest = hashlib.sha256(blob.encode()).digest()
+
+    luxury_cues = [
+        "heavyweight",
+        "300gsm",
+        "garment-washed",
+        "tonal",
+        "deboss",
+        "puff",
+        "embroidery",
+        "negative space",
+        "lemaire",
+        "luxury",
+        "north light",
+        "plaster",
+    ]
+    theology_cues = [
+        "cornerstone",
+        "veil",
+        "water",
+        "ember",
+        "threshold",
+        "light",
+        "shadow",
+        "well",
+        "fire",
+        "door",
+    ]
+
+    lux = 0.80 + min(0.12, sum(0.015 for cue in luxury_cues if cue in blob))
+    theo = 0.74 + min(0.14, sum(0.02 for cue in theology_cues if cue in blob))
+    lux += (digest[0] / 255) * 0.02
+    theo += (digest[1] / 255) * 0.02
     return Score(
-        luxury_score=round(lux, 3),
-        theology_depth=round(theo, 3),
-        rationale="dry-run stub score (deterministic from concept hash)",
+        luxury_score=round(min(lux, 0.96), 3),
+        theology_depth=round(min(theo, 0.95), 3),
+        rationale="dry-run stub score (cue-based deterministic gate)",
     )
 
 

@@ -11,7 +11,6 @@ from pathlib import Path
 
 from .design_engine import Design
 
-
 PAGE_HEAD = """<!doctype html>
 <html lang="en">
 <head>
@@ -198,7 +197,7 @@ def render_catalog(designs: list[Design], svg_rel_dir: str = "svg") -> str:
         + _controls_html(designs)
         + '</header>'
         + f'<div class="grid">{cards}</div>'
-        + '<div id="modal" class="modal"><div id="modal-close" class="close">CLOSE ×</div><div id="modal-inner" class="modal-inner"></div></div>'
+        + '<div id="modal" class="modal"><div id="modal-close" class="close">CLOSE X</div><div id="modal-inner" class="modal-inner"></div></div>'
         + f'<script>window.__FTC_DATA__ = {data};</script>'
         + SCRIPT
         + "</body></html>"

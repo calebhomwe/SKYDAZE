@@ -8,15 +8,14 @@ Generates 5 concept JSON objects, validates them against:
 Phase 3 (Full Generation, 100 pieces) unlocks ONLY if all 5 PASS.
 
 Usage:
-    python run_test.py
-    FTC_RUN_MODE=real python run_test.py     # hits OpenRouter + Anthropic
-    FTC_RUN_MODE=dry-run python run_test.py  # offline; uses stub concepts + stub scores
+    python3 run_test.py
+    FTC_RUN_MODE=real python3 run_test.py     # hits OpenRouter + Anthropic
+    FTC_RUN_MODE=dry-run python3 run_test.py  # offline; uses stub concepts + stub scores
 """
 
 from __future__ import annotations
 
 import json
-import sys
 from pathlib import Path
 
 from rich.console import Console

@@ -241,8 +241,8 @@ def _generate_one(section: str, idx: int, seed: str) -> Design:
         "youtube_print_design",
     ]
     promo_hook = (
-        f"Caption: museum-label cadence, <= 35 words. "
-        f"Reel with sub-bass drone or single field recording."
+        "Caption: museum-label cadence, <= 35 words. "
+        "Reel with sub-bass drone or single field recording."
     )
 
     return Design(

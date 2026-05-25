@@ -12,7 +12,7 @@ Produces:
     summary.json               <-- collection-level stats
 
 Run:
-    python generate_collection.py
+    python3 generate_collection.py
 """
 
 from __future__ import annotations
@@ -20,15 +20,19 @@ from __future__ import annotations
 import csv
 import json
 from collections import Counter
-from pathlib import Path
 
 from rich.console import Console
-from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
+from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
 
 from ftc.catalog import write_catalog
 from ftc.config import ARTIFACTS
 from ftc.design_engine import SECTION_PLAN, generate_collection
-from ftc.print_assets import mockup_qa_score, render_print_eps, render_print_svg, typography_qa_score
+from ftc.print_assets import (
+    mockup_qa_score,
+    render_print_eps,
+    render_print_svg,
+    typography_qa_score,
+)
 from ftc.svg_mockups import render_design_svg
 
 console = Console()
@@ -169,7 +173,7 @@ def main() -> int:
         f"(avg {summary['pricing_if_one_of_each_sold']['avg_margin_pct']}% gross)"
     )
     console.print("\nNext: open the catalog in a browser. To render photoreal:")
-    console.print("  cp .env.example .env  &&  fill FAL_KEY  &&  python workers/render_worker.py")
+    console.print("  cp .env.example .env  &&  fill FAL_KEY  &&  python3 workers/render_worker.py")
     return 0
 
 

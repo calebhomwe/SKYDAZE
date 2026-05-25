@@ -4,25 +4,25 @@ install:
 	pip install -r requirements.txt
 
 scrape:
-	python scraper.py
+	python3 scraper.py
 
 scrape-real:
-	FTC_RUN_MODE=real python scraper.py
+	FTC_RUN_MODE=real python3 scraper.py
 
 test:
-	python run_test.py
+	python3 run_test.py
 
 test-real:
-	FTC_RUN_MODE=real python run_test.py
+	FTC_RUN_MODE=real python3 run_test.py
 
 full:
-	python generate_collection.py
+	python3 generate_collection.py
 
 verify:
-	python verify_collection.py
+	python3 verify_collection.py
 
 package:
-	python package_catalog.py
+	python3 package_catalog.py
 
 clean:
 	rm -rf artifacts/scrapes/raw artifacts/concepts artifacts/qa __pycache__ ftc/__pycache__

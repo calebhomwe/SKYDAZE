@@ -4,7 +4,7 @@ self-contained HTML file with every SVG inlined as a data URI.
 Result: one .html you can email, drop into Slack, or open offline.
 
 Run:
-    python package_catalog.py [--limit 1000]
+    python3 package_catalog.py [--limit 1000]
 """
 from __future__ import annotations
 

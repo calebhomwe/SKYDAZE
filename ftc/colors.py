@@ -43,11 +43,7 @@ EARTHS: list[str] = ["rust", "ember", "moss", "sand", "walnut", "stone", "oat"]
 
 
 def _hex(r: float, g: float, b: float) -> str:
-    return "#{:02X}{:02X}{:02X}".format(
-        max(0, min(255, int(round(r * 255)))),
-        max(0, min(255, int(round(g * 255)))),
-        max(0, min(255, int(round(b * 255)))),
-    )
+    return f"#{max(0, min(255, round(r * 255))):02X}{max(0, min(255, round(g * 255))):02X}{max(0, min(255, round(b * 255))):02X}"
 
 
 def _value_curve(value_step: float) -> float:
@@ -102,14 +98,18 @@ def _values_from_hue(hue: float, rng: random.Random) -> tuple[float, float, floa
 def monochrome(rng: random.Random, hue_name: str) -> Palette:
     hue = BRAND_HUES[hue_name]
     sat = rng.uniform(0.05, 0.18)
-    d, m, l = _values_from_hue(hue, rng)
-    hexes = (_hsv_to_hex(hue, sat * 0.4, d), _hsv_to_hex(hue, sat, m), _hsv_to_hex(hue, sat * 0.6, l))
+    dark, mid, light = _values_from_hue(hue, rng)
+    hexes = (
+        _hsv_to_hex(hue, sat * 0.4, dark),
+        _hsv_to_hex(hue, sat, mid),
+        _hsv_to_hex(hue, sat * 0.6, light),
+    )
     return Palette(
         name=f"{hue_name}-monochrome",
         family="monochrome",
         hexes=hexes,
         weights=(0.60, 0.30, 0.10),
-        contrast_score=abs(l - d),
+        contrast_score=abs(light - dark),
         rationale=f"Single-hue {hue_name}; Munsell-stepped value, chroma capped at {sat:.2f}.",
     )
 
@@ -118,7 +118,7 @@ def analogous(rng: random.Random, hue_names: tuple[str, str, str]) -> Palette:
     hues = [BRAND_HUES[n] for n in hue_names]
     sats = [rng.uniform(0.08, 0.22) for _ in hues]
     values = sorted([rng.uniform(0.20, 0.35), rng.uniform(0.45, 0.60), rng.uniform(0.78, 0.90)])
-    hexes = tuple(_hsv_to_hex(h, s, v) for h, s, v in zip(hues, sats, values))
+    hexes = tuple(_hsv_to_hex(h, s, v) for h, s, v in zip(hues, sats, values, strict=False))
     return Palette(
         name=f"{'+'.join(hue_names)}-analogous",
         family="analogous",
@@ -134,7 +134,7 @@ def earth_neutral(rng: random.Random) -> Palette:
     hues = [BRAND_HUES[n] for n in names]
     sats = [rng.uniform(0.10, 0.28), rng.uniform(0.06, 0.18), rng.uniform(0.03, 0.10)]
     vals = sorted([rng.uniform(0.18, 0.30), rng.uniform(0.45, 0.60), rng.uniform(0.78, 0.92)])
-    hexes = tuple(_hsv_to_hex(h, s, v) for h, s, v in zip(hues, sats, vals))
+    hexes = tuple(_hsv_to_hex(h, s, v) for h, s, v in zip(hues, sats, vals, strict=False))
     return Palette(
         name=f"{'+'.join(names)}-earth",
         family="earth-neutral",
@@ -199,7 +199,7 @@ def triadic_restrained(rng: random.Random, hue_name: str) -> Palette:
     triad = [base, (base + 1 / 3) % 1.0, (base + 2 / 3) % 1.0]
     sats = [rng.uniform(0.05, 0.12) for _ in triad]
     vals = sorted([rng.uniform(0.18, 0.28), rng.uniform(0.48, 0.60), rng.uniform(0.80, 0.92)])
-    hexes = tuple(_hsv_to_hex(h, s, v) for h, s, v in zip(triad, sats, vals))
+    hexes = tuple(_hsv_to_hex(h, s, v) for h, s, v in zip(triad, sats, vals, strict=False))
     return Palette(
         name=f"{hue_name}-triadic-restrained",
         family="triadic-restrained",
