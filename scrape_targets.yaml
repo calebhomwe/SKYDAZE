@@ -9,6 +9,28 @@ pinterest:
   - https://www.pinterest.com/search/pins/?q=lemaire%20editorial
   - https://www.pinterest.com/search/pins/?q=monastic%20fashion%20editorial
   - https://www.pinterest.com/search/pins/?q=tonal%20embroidery%20detail
+  # User-added Pinterest boards (2026-05-25)
+  - https://au.pinterest.com/ideas/graphic-t-shirts-street-style/947339884093/
+  - https://au.pinterest.com/pin/vintage-graphic-tees-collection--20688479531795623/
+  - https://www.pinterest.com/search/pins/?q=streetwear+graphic+tee+pinterest
+  - https://pin.it/MHuaw0Ozs
+
+vexels:
+  # Template references for print-ready graphic style benchmarks
+  - https://www.vexels.com/psd/preview/344685/chrome-text-scalable-t-shirt-psd
+  - https://www.vexels.com/templates/t-shirt/
+  - https://www.vexels.com/tags/streetwear/
+
+reddit_streetwear:
+  # JSON API endpoints — no auth required for public data
+  - https://www.reddit.com/r/streetwear/top.json?t=month&limit=25
+  - https://www.reddit.com/r/streetwearstartup/top.json?t=month&limit=25
+  - https://www.reddit.com/r/findfashion/search.json?q=graphic+tee+streetwear&sort=top&t=month
+
+youtube_trends:
+  # YouTube channel pages for streetwear design inspiration context
+  - https://www.youtube.com/results?search_query=streetwear+graphic+tee+design+2025
+  - https://www.youtube.com/results?search_query=christian+streetwear+brand+2025
 
 kittl:
   - https://www.kittl.com/templates/streetwear
