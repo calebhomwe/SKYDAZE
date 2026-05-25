@@ -3,7 +3,9 @@
 Produces:
   artifacts/collection_v1/
     catalog.html               <-- open this in a browser
-    svg/<id>.svg               <-- per-design flat mockup
+    svg/<id>.svg               <-- per-design standalone print artwork
+    eps/<id>.eps               <-- per-design EPS companion
+    mockups/<id>.svg           <-- flat apparel/accessory preview
     designs.json               <-- full catalog data (all 1000)
     concepts/<id>.json         <-- Section-4 concept payload per design
     pricing.csv                <-- MSRP / COGS / margin per design
@@ -26,6 +28,7 @@ from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
 from ftc.catalog import write_catalog
 from ftc.config import ARTIFACTS
 from ftc.design_engine import SECTION_PLAN, generate_collection
+from ftc.print_assets import mockup_qa_score, render_print_eps, render_print_svg, typography_qa_score
 from ftc.svg_mockups import render_design_svg
 
 console = Console()
@@ -42,6 +45,8 @@ def main() -> int:
     console.rule("[bold]FTC Collection V1 — 1000 designs[/bold]")
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "svg").mkdir(parents=True, exist_ok=True)
+    (OUT / "eps").mkdir(parents=True, exist_ok=True)
+    (OUT / "mockups").mkdir(parents=True, exist_ok=True)
     (OUT / "concepts").mkdir(parents=True, exist_ok=True)
 
     designs = generate_collection()
@@ -54,7 +59,7 @@ def main() -> int:
     technique_counts: Counter = Counter()
 
     with Progress(SpinnerColumn(), TextColumn("{task.description}"), BarColumn(), TextColumn("{task.completed}/{task.total}")) as p:
-        task = p.add_task("rendering svg + writing concepts", total=len(designs))
+        task = p.add_task("rendering print assets + writing concepts", total=len(designs))
         for d in designs:
             svg_dict = d.as_catalog_row() | {
                 "_palette_obj": d.palette,
@@ -65,14 +70,25 @@ def main() -> int:
                 "print_placement": d.print_placement,
                 "id": d.id,
             }
-            svg = render_design_svg(svg_dict)
-            (OUT / "svg" / f"{d.id}.svg").write_text(svg, encoding="utf-8")
+            print_svg = render_print_svg(d)
+            print_eps = render_print_eps(d)
+            mockup_svg = render_design_svg(svg_dict)
+            (OUT / "svg" / f"{d.id}.svg").write_text(print_svg, encoding="utf-8")
+            (OUT / "eps" / f"{d.id}.eps").write_text(print_eps, encoding="utf-8")
+            (OUT / "mockups" / f"{d.id}.svg").write_text(mockup_svg, encoding="utf-8")
 
             concept_path = OUT / "concepts" / f"{d.id}.json"
             concept_path.write_text(json.dumps(_stash_palette_obj_on_dict(d), indent=2))
 
             row = d.as_catalog_row()
             row["svg_path"] = f"svg/{d.id}.svg"
+            row["eps_path"] = f"eps/{d.id}.eps"
+            row["mockup_path"] = f"mockups/{d.id}.svg"
+            row["canvas_px"] = 2048
+            row["asset_type"] = "standalone_vector_graphic"
+            row["usable_surfaces"] = ["tee", "hat", "hoodie", "tote", "label"]
+            row["typography_qa_score"] = typography_qa_score(d.title, d.typography_layout)
+            row["mockup_qa_score"] = mockup_qa_score(d.print_technique, d.palette)
             catalog_rows.append(row)
 
             pricing_rows.append({
@@ -128,12 +144,21 @@ def main() -> int:
                 for s in SECTION_PLAN
             },
         },
+        "asset_exports": {
+            "print_svg": len(list((OUT / "svg").glob("*.svg"))),
+            "eps": len(list((OUT / "eps").glob("*.eps"))),
+            "mockup_svg": len(list((OUT / "mockups").glob("*.svg"))),
+            "canvas_px": 2048,
+            "background": "transparent",
+        },
     }
     (OUT / "summary.json").write_text(json.dumps(summary, indent=2))
 
     console.rule("[bold green]Collection V1 — complete[/bold green]")
     console.print(f"\nCatalog: [bold]{catalog_path}[/bold]")
-    console.print(f"SVGs:    {OUT / 'svg'}  ({len(designs)} files)")
+    console.print(f"SVGs:    {OUT / 'svg'}  ({len(designs)} print artwork files)")
+    console.print(f"EPS:     {OUT / 'eps'}  ({len(designs)} files)")
+    console.print(f"Mockups: {OUT / 'mockups'}")
     console.print(f"Concepts:{OUT / 'concepts'}")
     console.print(f"Pricing: {OUT / 'pricing.csv'}")
     console.print(f"Summary: {OUT / 'summary.json'}")

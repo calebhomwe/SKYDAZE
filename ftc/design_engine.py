@@ -101,29 +101,11 @@ HARDWARE_DETAILS: list[str] = [
 
 # Section taxonomy + sizing
 SECTION_PLAN: dict[str, dict] = {
-    "tracksuit": {
-        "count": 250,
-        "msrp_band": (160, 240),
-        "cogs_band": (38, 62),
-        "fit_families": ["relaxed", "dropped-shoulder", "tapered-pant"],
-    },
-    "outerwear": {
-        "count": 250,
-        "msrp_band": (220, 480),
-        "cogs_band": (62, 130),
-        "fit_families": ["boxy", "architectural", "long-line"],
-    },
     "tee": {
-        "count": 250,
+        "count": 1000,
         "msrp_band": (80, 160),
         "cogs_band": (18, 36),
         "fit_families": ["relaxed", "boxy", "dropped-shoulder"],
-    },
-    "accessory": {
-        "count": 250,
-        "msrp_band": (60, 220),
-        "cogs_band": (10, 48),
-        "fit_families": ["one-size", "low-crown", "deep-fit"],
     },
 }
 
@@ -228,16 +210,16 @@ def _generate_one(section: str, idx: int, seed: str) -> Design:
     margin = (msrp - cogs) / msrp * 100
 
     aesthetic = (
-        f"{fit_family.capitalize()} {silhouette.replace('-', ' ')} in {palette.hexes[0]} body, "
-        f"{palette.hexes[1] if len(palette.hexes)>1 else palette.hexes[0]} accent; "
-        f"{technique.lower()} mark at {placement}; mood of quiet architecture; "
-        f"negative space carries the composition."
+        f"Standalone vector graphic built for tee, hat, hoodie, tote, and label use; "
+        f"{palette.hexes[0]} field with {palette.hexes[1] if len(palette.hexes)>1 else palette.hexes[0]} accent; "
+        f"{technique.lower()} production mark at {placement}; quiet architecture, chrome-text restraint, "
+        f"badge geometry, and negative space carry the composition."
     )
     fal_prompt = (
-        f"Editorial product shot of a 300gsm garment-washed cotton {silhouette.replace('-', ' ')} "
-        f"in {palette.hexes[0]}, subtle {technique.lower()} mark at {placement}, "
-        f"north window light, plaster backdrop, 4:5 aspect ratio, "
-        f"luxury streetwear, Lemaire restraint, Fear of God silhouette discipline"
+        f"High-definition product mockup of standalone FTC vector artwork applied to a 300gsm "
+        f"garment-washed cotton {silhouette.replace('-', ' ')} in {palette.hexes[0]}, "
+        f"subtle {technique.lower()} mark at {placement}, no people, no portrait, no illustration scene, "
+        f"north window light, plaster backdrop, 4:5 aspect ratio, luxury streetwear, Lemaire restraint"
     )
     novita_prompt = (
         f"7s clip: slow tilt across a draped {silhouette.replace('-', ' ')} in {palette.hexes[0]}, "
@@ -249,7 +231,15 @@ def _generate_one(section: str, idx: int, seed: str) -> Design:
         f"{placement} placement"
     )
 
-    tags = [palette.family, technique.lower().replace(" ", "_"), section, fit_family]
+    tags = [
+        palette.family,
+        technique.lower().replace(" ", "_"),
+        section,
+        fit_family,
+        "pinterest_graphic_tee",
+        "reddit_streetwearstartup",
+        "youtube_print_design",
+    ]
     promo_hook = (
         f"Caption: museum-label cadence, <= 35 words. "
         f"Reel with sub-bass drone or single field recording."

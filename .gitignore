@@ -25,6 +25,7 @@ dist/
 
 # --- FTC artifacts (regenerable; never commit pipeline output) ---
 artifacts/
+.firecrawl/
 
 # --- Logs & caches ---
 *.log

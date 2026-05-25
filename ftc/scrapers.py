@@ -64,7 +64,11 @@ def _extract_tokens(text: str) -> list[str]:
         "tonal", "embroidery", "puff", "deboss", "discharge", "garment-washed",
         "heavyweight", "drop-shoulder", "minimalist", "monochrome", "earth-tone",
         "negative space", "matte hardware", "sacred geometry", "architectural",
-        "monastic", "editorial", "luxury", "restraint",
+        "monastic", "editorial", "luxury", "restraint", "graphic tee",
+        "streetwear", "vintage", "chrome text", "badge", "wordmark", "typography",
+        "oversized", "distressed", "halftone", "bootleg", "y2k", "racing",
+        "tribal", "metallic", "scalable", "vector", "mockup", "hat", "cap",
+        "community", "feedback", "drop", "screen print", "dtg", "heat press",
     ]
     lower = text.lower()
     return [k for k in keywords if k in lower]
@@ -98,7 +102,9 @@ def _dry_run_stub(url: str, category: str) -> ScrapeResult:
         f"[DRY-RUN STUB] {category} reference from {url}. "
         "Heavyweight cotton, tonal embroidery, garment-washed finish, "
         "drop-shoulder silhouette, matte hardware, monochrome palette, "
-        "architectural negative space."
+        "architectural negative space, streetwear graphic tee typography, "
+        "chrome text, vintage badge systems, scalable vector marks, and "
+        "community feedback loops for drops."
     )
     return ScrapeResult(
         url=url,

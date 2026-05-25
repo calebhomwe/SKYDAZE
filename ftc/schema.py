@@ -24,7 +24,7 @@ CONCEPT_SCHEMA: dict = {
     ],
     "additionalProperties": False,
     "properties": {
-        "id": {"type": "string", "pattern": r"^FTC-\d{3,4}$"},
+        "id": {"type": "string", "pattern": r"^FTC-(?:\d{3,4}|[A-Z]{2}-\d{4})$"},
         "title": {"type": "string", "minLength": 1, "maxLength": 64},
         "theological_core": {"type": "string", "minLength": 1, "maxLength": 280},
         "aesthetic_direction": {"type": "string", "minLength": 1},

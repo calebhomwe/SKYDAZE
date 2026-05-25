@@ -1,4 +1,4 @@
-"""Static HTML catalog viewer for the 1000-design collection.
+"""Static HTML catalog viewer for the 1000-design print artwork collection.
 
 One file. Open in any browser. No build step. Lazy-loads SVGs from disk.
 Includes filters for section, palette family, technique, fit, MSRP band.
@@ -16,7 +16,7 @@ PAGE_HEAD = """<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>FTC FULL TIME CHRISTIAN — Collection V1 (1000)</title>
+<title>FTC FULL TIME CHRISTIAN - Collection V1 (1000)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <style>
   :root {
@@ -68,7 +68,7 @@ def _card_html(d: Design, svg_rel_path: str) -> str:
   <div class="meta">
     <div class="id">{d.id}</div>
     <div class="title">{d.title}</div>
-    <div class="row"><span>{d.section}</span><span>${d.msrp_usd}</span></div>
+    <div class="row"><span>{d.section} print graphic</span><span>${d.msrp_usd}</span></div>
     <div class="swatches">{swatches}</div>
   </div>
 </div>"""
@@ -79,6 +79,11 @@ def _designs_json(designs: list[Design], svg_rel_dir: str) -> str:
     for d in designs:
         row = d.as_catalog_row()
         row["svg_path"] = f"{svg_rel_dir}/{d.id}.svg"
+        row["eps_path"] = f"eps/{d.id}.eps"
+        row["mockup_path"] = f"mockups/{d.id}.svg"
+        row["asset_type"] = "standalone_vector_graphic"
+        row["canvas_px"] = 2048
+        row["usable_surfaces"] = ["tee", "hat", "hoodie", "tote", "label"]
         row["theological_core"] = d.theological_core
         row["typography_layout"] = d.typography_layout
         row["hardware_detail"] = d.hardware_detail
@@ -154,7 +159,7 @@ allCards.forEach(c => {
     const d = dataById[c.dataset.id];
     if (!d) return;
     modalInner.innerHTML = `
-      <div><img src="${d.svg_path}" alt="${d.id}"/></div>
+      <div><img src="${d.svg_path}" alt="${d.id} print artwork"/></div>
       <div>
         <div class="modal-id">${d.id} · ${d.section}</div>
         <h2>${d.title}</h2>
@@ -163,6 +168,8 @@ allCards.forEach(c => {
           <dt>Aesthetic direction</dt><dd>${d.aesthetic_direction}</dd>
           <dt>Typography</dt><dd>${d.typography_layout}</dd>
           <dt>Print</dt><dd>${d.print_technique} · ${d.print_placement}</dd>
+          <dt>Asset</dt><dd>${d.asset_type} · ${d.canvas_px}px SVG · EPS companion · transparent background</dd>
+          <dt>Usable surfaces</dt><dd>${d.usable_surfaces.join(' / ')}</dd>
           <dt>Hardware / Finish</dt><dd>${d.hardware_detail}</dd>
           <dt>Fit family</dt><dd>${d.fit_family}</dd>
           <dt>Palette</dt><dd>${d.palette_name} · ${d.palette_family} · ${d.palette_hex.join(' / ')}</dd>
@@ -180,10 +187,14 @@ allCards.forEach(c => {
 def render_catalog(designs: list[Design], svg_rel_dir: str = "svg") -> str:
     cards = "\n".join(_card_html(d, f"{svg_rel_dir}/{d.id}.svg") for d in designs)
     data = _designs_json(designs, svg_rel_dir)
+    section_summary = " · ".join(
+        f"{sum(1 for d in designs if d.section == section)} {section}"
+        for section in sorted({d.section for d in designs})
+    )
     return (
         PAGE_HEAD
         + '<header><h1>FTC FULL TIME CHRISTIAN  ·  Collection V1</h1>'
-        + f'<div class="sub">1000 designs  ·  250 tracksuit  ·  250 outerwear  ·  250 tee  ·  250 accessory</div>'
+        + f'<div class="sub">{len(designs)} standalone print graphics  ·  {section_summary}  ·  SVG + EPS exports</div>'
         + _controls_html(designs)
         + '</header>'
         + f'<div class="grid">{cards}</div>'
