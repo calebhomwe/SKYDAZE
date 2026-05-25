@@ -1,12 +1,12 @@
 # FTC Agent Village
 
-> 100 specialized agents that execute the FTC pipeline under the
+> 110 specialized agents that execute the FTC pipeline under the
 > [FTC_MASTER_CONTEXT.md](../FTC_MASTER_CONTEXT.md) constitution.
 
 ## TL;DR
 
 - **One source of truth:** every agent inherits from `FTC_MASTER_CONTEXT.md`.
-- **One registry:** [`REGISTRY.yaml`](./REGISTRY.yaml) lists all 100 agents with
+- **One registry:** [`REGISTRY.yaml`](./REGISTRY.yaml) lists all 110 agents with
   role, model, tools, gates, handoffs, and a tight system prompt.
 - **One gate:** `brand-steward` is the final yes/no on anything that leaves
   the building.
@@ -29,8 +29,8 @@
 | 11 | Ops & Compliance | 4 |
 | 12 | Analytics | 4 |
 | 13 | Infrastructure | 5 |
-| 14 | Agent Interoperability | 7 |
-| | **Total** | **100** |
+| 14 | Agent Interoperability | 17 |
+| | **Total** | **110** |
 
 ## Standard Lifecycle (one drop)
 
@@ -87,9 +87,9 @@ loaded into:
    tutorial.
 5. Open a PR; `brand-steward` reviews.
 
-## Interoperability Pod (new in v1.1)
+## Interoperability Pod (expanded in v1.2)
 
-Tier 14 adds seven agents for multi-agent collaboration and cross-model routing:
+Tier 14 now includes 17 agents for multi-agent collaboration and cross-model routing:
 
 - `cline-execution-pilot`
 - `openclaw-parallel-orchestrator`
@@ -98,14 +98,23 @@ Tier 14 adds seven agents for multi-agent collaboration and cross-model routing:
 - `handoff-protocol-engineer`
 - `merge-readiness-auditor`
 - `alliance-telemetry-auditor`
+- `langgraph-flow-compiler`
+- `crewai-mission-allocator`
+- `autogen-dialog-conductor`
+- `openai-agents-sdk-bridge`
+- `anthropic-agent-bridge`
+- `cursor-cloud-executor`
+- `branch-isolation-manager`
+- `prompt-regression-sentinel`
+- `replay-debug-coordinator`
+- `ensemble-verdict-judge`
 
-## Slots Reserved (room toward 110)
+## Slots Reserved (room toward 120)
 
-`REGISTRY.yaml` ends with an `OPEN SLOTS` block: localization-translator,
-sustainability-auditor, returns-experience-agent, customer-service-tone-coach,
-retail-window-stylist, editorial-collaborator-scout, archive-curator,
-postpurchase-community-manager, wholesale-partnership-coordinator,
-prelaunch-qa-firedrill-runner.
+`REGISTRY.yaml` ends with an `OPEN SLOTS` block: context-compression-specialist,
+memory-pruning-custodian, model-drift-forecaster, incident-commander-agent,
+synthetic-data-curator, golden-eval-maintainer, artifact-signing-notary,
+policy-diff-sentinel, latency-budget-optimizer, autonomous-release-conductor.
 
 ## Cross-Pollination Note
 
