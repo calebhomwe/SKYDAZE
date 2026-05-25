@@ -126,6 +126,7 @@ Tier 15 adds ten agents for realistic trap-cinematic campaign production:
 - `ad-performance-rerank-analyst`
 
 This pod is OpenRouter-first and explicitly supports image, embeddings, audio, video, rerank, speech, and transcription workloads with Novita video fallback logic.
+Starter prompt pack: `agents/CINEMATIC_AD_CAMPAIGN_PLAYBOOK.md`.
 
 ## Slots Reserved (room toward 130)
 
