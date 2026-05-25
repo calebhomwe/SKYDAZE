@@ -36,12 +36,20 @@ def _stub_score(concept: dict) -> Score:
     """Deterministic non-LLM score for dry-run."""
     blob = json.dumps(concept, sort_keys=True).encode()
     digest = hashlib.sha256(blob).digest()
-    lux = 0.70 + (digest[0] / 255) * 0.25
-    theo = 0.65 + (digest[1] / 255) * 0.30
+    pass_all = os.getenv("FTC_DRY_RUN_PASS_ALL", "").lower() in {"1", "true", "yes"}
+    if pass_all:
+        # Fast-lane simulation mode for end-to-end orchestration testing.
+        lux = 0.83 + (digest[0] / 255) * 0.12
+        theo = 0.78 + (digest[1] / 255) * 0.17
+        rationale = "dry-run pass-all mode (deterministic high scores)"
+    else:
+        lux = 0.70 + (digest[0] / 255) * 0.25
+        theo = 0.65 + (digest[1] / 255) * 0.30
+        rationale = "dry-run stub score (deterministic from concept hash)"
     return Score(
         luxury_score=round(lux, 3),
         theology_depth=round(theo, 3),
-        rationale="dry-run stub score (deterministic from concept hash)",
+        rationale=rationale,
     )
 
 
