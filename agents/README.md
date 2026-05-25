@@ -127,6 +127,9 @@ Tier 15 adds ten agents for realistic trap-cinematic campaign production:
 
 This pod is OpenRouter-first and explicitly supports image, embeddings, audio, video, rerank, speech, and transcription workloads with Novita video fallback logic.
 Starter prompt pack: `agents/CINEMATIC_AD_CAMPAIGN_PLAYBOOK.md`.
+Distributed execution assets:
+- `agents/RUTHLESS_MULTI_LLM_ROUTING.yaml`
+- `agents/RUTHLESS_AD_ASSET_LIBRARY.md`
 
 ## Slots Reserved (room toward 130)
 
