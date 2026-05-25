@@ -1,0 +1,75 @@
+version: "3.9"
+
+# FTC pipeline orchestration with n8n.
+# Run:
+#   cd ops/n8n
+#   cp .env.example .env   # add the same keys your local pipeline uses
+#   docker compose up -d
+#   open http://localhost:5678
+#
+# Survives restarts via the n8n_data + postgres_data volumes.
+# Workflows in ./workflows/*.json import automatically on first boot.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: n8n
+      POSTGRES_USER: n8n
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U n8n -d n8n"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "5678:5678"
+    environment:
+      # Database
+      DB_TYPE: postgresdb
+      DB_POSTGRESDB_HOST: postgres
+      DB_POSTGRESDB_DATABASE: n8n
+      DB_POSTGRESDB_USER: n8n
+      DB_POSTGRESDB_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+
+      # Auth
+      N8N_BASIC_AUTH_ACTIVE: "true"
+      N8N_BASIC_AUTH_USER: ${N8N_USER:-ftc}
+      N8N_BASIC_AUTH_PASSWORD: ${N8N_PASSWORD:-changeme}
+
+      # Encryption (rotate if compromised)
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY:-rotate-me-please}
+
+      # Webhook URL — set to your public host if behind a reverse proxy
+      WEBHOOK_URL: ${WEBHOOK_URL:-http://localhost:5678/}
+
+      # Provider credentials are read here; n8n nodes reference them as env vars
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      FAL_KEY: ${FAL_KEY:-}
+      NOVITA_API_KEY: ${NOVITA_API_KEY:-}
+      FIRECRAWL_API_KEY: ${FIRECRAWL_API_KEY:-}
+      SHOPIFY_STORE_DOMAIN: ${SHOPIFY_STORE_DOMAIN:-}
+      SHOPIFY_ADMIN_TOKEN: ${SHOPIFY_ADMIN_TOKEN:-}
+
+      # Performance
+      EXECUTIONS_MODE: regular
+      N8N_LOG_LEVEL: info
+      GENERIC_TIMEZONE: ${TZ:-Etc/UTC}
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./workflows:/workflows:ro
+
+volumes:
+  postgres_data:
+  n8n_data:

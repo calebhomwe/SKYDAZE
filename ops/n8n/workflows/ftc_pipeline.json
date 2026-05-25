@@ -1,0 +1,84 @@
+{
+  "name": "FTC Pipeline — full drop",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "hours", "intervalValue": 24 }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Daily 04:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /workflows/.. && python scraper.py"
+      },
+      "id": "scrape",
+      "name": "Phase 1 · Scrape",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [420, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /workflows/.. && python run_test.py"
+      },
+      "id": "test_batch",
+      "name": "Phase 2 · Test Batch (5)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [640, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /workflows/.. && python generate_collection.py"
+      },
+      "id": "generate_1000",
+      "name": "Phase 3 · Generate 1000",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [860, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /workflows/.. && python workers/render_worker.py --limit 50"
+      },
+      "id": "render",
+      "name": "Phase 4 · Render (50/day)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1080, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/{{$env.SLACK_HOOK || ''}}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "text", "value": "FTC pipeline run complete · check artifacts/collection_v1/" }
+          ]
+        }
+      },
+      "id": "notify",
+      "name": "Notify",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1300, 300]
+    }
+  ],
+  "connections": {
+    "Daily 04:00": { "main": [[{ "node": "Phase 1 · Scrape", "type": "main", "index": 0 }]] },
+    "Phase 1 · Scrape": { "main": [[{ "node": "Phase 2 · Test Batch (5)", "type": "main", "index": 0 }]] },
+    "Phase 2 · Test Batch (5)": { "main": [[{ "node": "Phase 3 · Generate 1000", "type": "main", "index": 0 }]] },
+    "Phase 3 · Generate 1000": { "main": [[{ "node": "Phase 4 · Render (50/day)", "type": "main", "index": 0 }]] },
+    "Phase 4 · Render (50/day)": { "main": [[{ "node": "Notify", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
