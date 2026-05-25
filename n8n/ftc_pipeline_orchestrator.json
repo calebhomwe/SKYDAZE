@@ -1,0 +1,90 @@
+{
+  "name": "FTC Pipeline Orchestrator",
+  "nodes": [
+    {
+      "parameters": {
+        "command": "python3 pipeline_orchestrate.py --json"
+      },
+      "id": "run-orchestrator",
+      "name": "Run Orchestrator",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [520, 320]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const raw = $input.first().json.stdout || '{}';\nreturn [{ json: JSON.parse(raw) }];"
+      },
+      "id": "parse-status",
+      "name": "Parse Orchestrator JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [800, 320]
+    },
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [220, 220]
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "mode": "everyX",
+              "unit": "minutes",
+              "value": 30
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Cron Trigger",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [220, 420]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Run Orchestrator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cron Trigger": {
+      "main": [
+        [
+          {
+            "node": "Run Orchestrator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Orchestrator": {
+      "main": [
+        [
+          {
+            "node": "Parse Orchestrator JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1"
+}

@@ -97,7 +97,7 @@ def main() -> int:
     )
 
     console.rule("[bold green]Phase 1 complete — Reference Scraping[/bold green]")
-    console.print(f"Synthesis written to: artifacts/scrapes/reference_synthesis.json")
+    console.print("Synthesis written to: artifacts/scrapes/reference_synthesis.json")
     console.print(f"Summary written to:   {summary_path.relative_to(summary_path.parents[2])}")
     console.print("\nNext: [bold]python run_test.py[/bold]  (Phase 2 — 5-concept test batch)")
     return 0

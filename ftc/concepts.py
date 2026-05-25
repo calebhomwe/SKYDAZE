@@ -119,8 +119,14 @@ _STUB_CONCEPTS: list[dict[str, Any]] = [
 
 
 def generate_stub(n: int) -> list[dict[str, Any]]:
-    """Return n hand-crafted exemplar concepts (clamped to available stubs)."""
-    return [json.loads(json.dumps(c)) for c in _STUB_CONCEPTS[:n]]
+    """Return n hand-crafted exemplar concepts (repeated/renumbered as needed)."""
+    concepts: list[dict[str, Any]] = []
+    for i in range(n):
+        base = json.loads(json.dumps(_STUB_CONCEPTS[i % len(_STUB_CONCEPTS)]))
+        base["id"] = f"FTC-{i + 1:03d}"
+        base["title"] = f"{base['title']} {i + 1}"
+        concepts.append(base)
+    return concepts
 
 
 def generate_via_openrouter(n: int, drop_brief: str, synthesis: dict) -> list[dict[str, Any]]:
