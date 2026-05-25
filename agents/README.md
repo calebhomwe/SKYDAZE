@@ -1,17 +1,17 @@
 # FTC Agent Village
 
-> 100 specialized agents that execute the FTC pipeline under the
+> 120 specialized agents that execute the FTC pipeline under the
 > [FTC_MASTER_CONTEXT.md](../FTC_MASTER_CONTEXT.md) constitution.
 
 ## TL;DR
 
 - **One source of truth:** every agent inherits from `FTC_MASTER_CONTEXT.md`.
-- **One registry:** [`REGISTRY.yaml`](./REGISTRY.yaml) lists all 100 agents with
+- **One registry:** [`REGISTRY.yaml`](./REGISTRY.yaml) lists all 120 agents with
   role, model, tools, gates, handoffs, and a tight system prompt.
 - **One gate:** `brand-steward` is the final yes/no on anything that leaves
   the building.
 
-## Tiers (15)
+## Tiers (16)
 
 | Tier | Domain | Members |
 | :--- | :--- | ---: |
@@ -29,8 +29,9 @@
 | 11 | Ops & Compliance | 4 |
 | 12 | Analytics | 4 |
 | 13 | Infrastructure | 5 |
-| 14 | Agent Interoperability | 7 |
-| | **Total** | **100** |
+| 14 | Agent Interoperability | 17 |
+| 15 | Cinematic Ads | 10 |
+| | **Total** | **120** |
 
 ## Standard Lifecycle (one drop)
 
@@ -87,9 +88,9 @@ loaded into:
    tutorial.
 5. Open a PR; `brand-steward` reviews.
 
-## Interoperability Pod (new in v1.1)
+## Interoperability Pod (expanded in v1.3)
 
-Tier 14 adds seven agents for multi-agent collaboration and cross-model routing:
+Tier 14 now includes 17 agents for multi-agent collaboration and cross-model routing:
 
 - `cline-execution-pilot`
 - `openclaw-parallel-orchestrator`
@@ -98,14 +99,45 @@ Tier 14 adds seven agents for multi-agent collaboration and cross-model routing:
 - `handoff-protocol-engineer`
 - `merge-readiness-auditor`
 - `alliance-telemetry-auditor`
+- `langgraph-flow-compiler`
+- `crewai-mission-allocator`
+- `autogen-dialog-conductor`
+- `openai-agents-sdk-bridge`
+- `anthropic-agent-bridge`
+- `cursor-cloud-executor`
+- `branch-isolation-manager`
+- `prompt-regression-sentinel`
+- `replay-debug-coordinator`
+- `ensemble-verdict-judge`
 
-## Slots Reserved (room toward 110)
+## Cinematic Ad Pod (new in v1.3)
 
-`REGISTRY.yaml` ends with an `OPEN SLOTS` block: localization-translator,
-sustainability-auditor, returns-experience-agent, customer-service-tone-coach,
-retail-window-stylist, editorial-collaborator-scout, archive-curator,
-postpurchase-community-manager, wholesale-partnership-coordinator,
-prelaunch-qa-firedrill-runner.
+Tier 15 adds ten agents for realistic trap-cinematic campaign production:
+
+- `trap-cinema-creative-director`
+- `teen-hype-culture-calibrator`
+- `boohooman-reference-harvester`
+- `christian-trap-symbolism-editor`
+- `product-lineup-shot-planner`
+- `openrouter-multimodal-router`
+- `visual-qwen-shot-generator`
+- `cinematic-video-prompt-engineer`
+- `audio-speech-score-designer`
+- `ad-performance-rerank-analyst`
+
+This pod is OpenRouter-first and explicitly supports image, embeddings, audio, video, rerank, speech, and transcription workloads with Novita video fallback logic.
+Starter prompt pack: `agents/CINEMATIC_AD_CAMPAIGN_PLAYBOOK.md`.
+Distributed execution assets:
+- `agents/RUTHLESS_MULTI_LLM_ROUTING.yaml`
+- `agents/RUTHLESS_AD_ASSET_LIBRARY.md`
+
+## Slots Reserved (room toward 130)
+
+`REGISTRY.yaml` ends with an `OPEN SLOTS` block: livestream-drop-director,
+ugc-remix-curator, creator-whitelist-manager, ad-fraud-signal-monitor,
+motion-logo-microanimator, scent-and-space-retail-translator,
+seasonal-lookbook-reconstructor, generative-casting-agent,
+demand-spike-allocator, multilingual-hype-copy-localizer.
 
 ## Cross-Pollination Note
 
