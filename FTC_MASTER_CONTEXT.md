@@ -1,5 +1,5 @@
 # FTC FULL TIME CHRISTIAN — MASTER CONTEXT FILE
-> **VERSION:** 2.1 | **LAST UPDATED:** 2026-05-25  
+> **VERSION:** 2.2 | **LAST UPDATED:** 2026-05-25  
 > **PURPOSE:** Single source of truth for all AI agents. Reference this file before ANY generation task.
 
 ---
@@ -18,13 +18,14 @@ Skulls, clipart religion, cheap typography, overt proselytizing, neon saturation
 ---
 
 ## 2. REFERENCE SYNTHESIS (SCRAPE-GROUNDED)
-*Derived from Kittl, Pinterest, Stampd, and contemporary luxury streetwear benchmarks.*
+*Derived from Kittl, Pinterest, Stampd, BoohooMAN campaign language, and contemporary luxury streetwear benchmarks.*
 
 | Reference Source | Key Design Tokens Extracted | Application to FTC |
 | :--- | :--- | :--- |
 | **Stampd Transit Tee** | Relaxed drop-shoulder fit, matte black hardware, subtle tonal branding, heavyweight drape | Silhouette baseline; hardware as theological metaphor (anchor, cornerstone) |
 | **Kittl Streetwear Templates** | Bold sans-serif typography, distressed textures, layered composition, negative space mastery | Typography hierarchy; avoid clean digital fonts—opt for worn, human-scale type |
 | **Pinterest Graphic Boards** | Abstract symbolism, muted earth tones + monochrome, editorial photography styling, fabric texture focus | Color palette curation; mockup lighting direction; abstract over literal |
+| **BoohooMAN Campaign References** | High-energy youth pacing, street-cast confidence, product-forward framing, hype-ready sequencing | Use pacing and shot energy only; maintain FTC material quality and anti-fast-fashion silhouette rules |
 | **Luxury Benchmarks (FOG/Lemaire)** | Minimalist logos, premium fabric storytelling, quiet colorways, architectural draping | Restraint principle; let material speak louder than graphics |
 | **Theological Abstraction** | Sacred geometry, natural phenomena (light/water/stone), poetic fragmentation, hidden interior messaging | Translate doctrine into visual language; never illustrate verses directly |
 
@@ -41,10 +42,11 @@ Every design MUST pass:
 ## 3. TECHNICAL STACK (LOCAL EXECUTION ONLY)
 | Function | Tool | Notes |
 | :--- | :--- | :--- |
-| Concept & Theology | DeepSeek-V3 / Qwen-Max via OpenRouter | Superior nuance for abstract faith concepts |
-| Production Visuals | Seedream 4.0 / Flux Pro via Fal.ai | Best fabric texture fidelity; 4:5 AR native |
-| Video Promo | Seedream Video / Kling via Novita AI | Fabric physics + lighting shift specialization |
+| Concept & Theology | DeepSeek-Flash-v4 / Qwen-Max via OpenRouter | Fast abstract reasoning for doctrine-driven concepts |
+| Production Visuals | Visual Qwen / Seedream 4.0 / Flux Pro via OpenRouter or Fal.ai | Prioritize realistic garment texture and cinematic lighting |
+| Video Promo | Kling / Seedream Video via Novita AI (fallback OpenRouter video models) | Keep Novita first if healthy; fail over to OpenRouter when unavailable |
 | Mockups | Nano Banana Pro (external) + Fal.ai Flux fallback | Tonal embroidery/puff print simulation |
+| Multimodal APIs | OpenRouter (Image, Embeddings, Audio, Video, Rerank, Speech, Transcription) | Default unified access layer for generation + evaluation tasks |
 | Scraping | Firecrawl API + BeautifulSoup fallback | Pinterest/Google JS-rendered page handling |
 | Credentials | Local `.env` only | NEVER hardcoded. NEVER in chat. |
 
@@ -96,6 +98,21 @@ All concept generation MUST return this exact structure:
 | Full Generation (100) | 🔒 Locked | Unlocks after test batch passes |
 | Shopify Integration | 🔒 Locked | Post-generation phase |
 | Social Scheduler | 🔒 Locked | Post-promo phase |
+
+---
+
+## 8. CINEMATIC AD DIRECTION PACK (RUTHLESS MODE)
+
+Use for campaign generation across hoodies, track pants, shoes, logo tees, long sleeves, and oversized silhouettes.
+
+- **Visual tone:** Realistic, cinematic, trap-influenced energy with luxury-grade restraint.
+- **Audience energy:** Teen and young adult hype cadence, culturally sharp, never costume.
+- **Artist-adjacent cue:** Gunna-style confidence in posture, motion, and framing (without imitation of likeness).
+- **Faith layer:** Christian symbolism remains abstract (light, stone, water, geometry, hidden text), never preachy.
+- **Reference policy:** BoohooMAN can inform pacing/composition rhythm only; FTC silhouette and material standards remain non-negotiable.
+- **Camera language:** Hero closeups + kinetic mid-shots + texture macros; prioritize drape, stitching, and hardware realism.
+- **Audio language:** Dark ambient trap-adjacent beds, restrained vocal fragments, no generic worship hooks.
+- **Hard bans for ads:** No cartoon styling, no neon overload, no fake cloth physics, no fast-fashion fit shortcuts.
 
 ---
 

@@ -1,17 +1,17 @@
 # FTC Agent Village
 
-> 110 specialized agents that execute the FTC pipeline under the
+> 120 specialized agents that execute the FTC pipeline under the
 > [FTC_MASTER_CONTEXT.md](../FTC_MASTER_CONTEXT.md) constitution.
 
 ## TL;DR
 
 - **One source of truth:** every agent inherits from `FTC_MASTER_CONTEXT.md`.
-- **One registry:** [`REGISTRY.yaml`](./REGISTRY.yaml) lists all 110 agents with
+- **One registry:** [`REGISTRY.yaml`](./REGISTRY.yaml) lists all 120 agents with
   role, model, tools, gates, handoffs, and a tight system prompt.
 - **One gate:** `brand-steward` is the final yes/no on anything that leaves
   the building.
 
-## Tiers (15)
+## Tiers (16)
 
 | Tier | Domain | Members |
 | :--- | :--- | ---: |
@@ -30,7 +30,8 @@
 | 12 | Analytics | 4 |
 | 13 | Infrastructure | 5 |
 | 14 | Agent Interoperability | 17 |
-| | **Total** | **110** |
+| 15 | Cinematic Ads | 10 |
+| | **Total** | **120** |
 
 ## Standard Lifecycle (one drop)
 
@@ -87,7 +88,7 @@ loaded into:
    tutorial.
 5. Open a PR; `brand-steward` reviews.
 
-## Interoperability Pod (expanded in v1.2)
+## Interoperability Pod (expanded in v1.3)
 
 Tier 14 now includes 17 agents for multi-agent collaboration and cross-model routing:
 
@@ -109,12 +110,30 @@ Tier 14 now includes 17 agents for multi-agent collaboration and cross-model rou
 - `replay-debug-coordinator`
 - `ensemble-verdict-judge`
 
-## Slots Reserved (room toward 120)
+## Cinematic Ad Pod (new in v1.3)
 
-`REGISTRY.yaml` ends with an `OPEN SLOTS` block: context-compression-specialist,
-memory-pruning-custodian, model-drift-forecaster, incident-commander-agent,
-synthetic-data-curator, golden-eval-maintainer, artifact-signing-notary,
-policy-diff-sentinel, latency-budget-optimizer, autonomous-release-conductor.
+Tier 15 adds ten agents for realistic trap-cinematic campaign production:
+
+- `trap-cinema-creative-director`
+- `teen-hype-culture-calibrator`
+- `boohooman-reference-harvester`
+- `christian-trap-symbolism-editor`
+- `product-lineup-shot-planner`
+- `openrouter-multimodal-router`
+- `visual-qwen-shot-generator`
+- `cinematic-video-prompt-engineer`
+- `audio-speech-score-designer`
+- `ad-performance-rerank-analyst`
+
+This pod is OpenRouter-first and explicitly supports image, embeddings, audio, video, rerank, speech, and transcription workloads with Novita video fallback logic.
+
+## Slots Reserved (room toward 130)
+
+`REGISTRY.yaml` ends with an `OPEN SLOTS` block: livestream-drop-director,
+ugc-remix-curator, creator-whitelist-manager, ad-fraud-signal-monitor,
+motion-logo-microanimator, scent-and-space-retail-translator,
+seasonal-lookbook-reconstructor, generative-casting-agent,
+demand-spike-allocator, multilingual-hype-copy-localizer.
 
 ## Cross-Pollination Note
 
