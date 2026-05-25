@@ -1,7 +1,7 @@
 # FTC FULL TIME CHRISTIAN — AGENT VILLAGE REGISTRY
-# Version: 1.0.0
+# Version: 1.1.0
 # Master Context: ../FTC_MASTER_CONTEXT.md
-# Population: 93 agents across 14 tiers
+# Population: 100 agents across 15 tiers
 #
 # Every agent in this registry inherits from FTC_MASTER_CONTEXT.md.
 # Section references (S1..S7) point into that file.
@@ -9,9 +9,9 @@
 
 village:
   name: FTC Multi-Agent Village
-  version: 1.0.0
+  version: 1.1.0
   master_context: FTC_MASTER_CONTEXT.md
-  population: 93
+  population: 100
   permission_mode: enforce_master_context_strictly
   failure_policy: auto_kill_on_forbidden_terms; flag_for_review_if_score_between_0.75_and_0.82
   default_models:
@@ -72,6 +72,9 @@ tiers:
   - id: tier-13-infrastructure
     purpose: Rotate secrets, monitor cost/health, manage backups and caches.
     members: 5
+  - id: tier-14-agent-interoperability
+    purpose: Coordinate cross-model collaborators (Cline, OpenClaw, Claude, and peers) under one execution contract.
+    members: 7
 
 agents:
 
@@ -1570,6 +1573,122 @@ agents:
       below 0.1. Evict LRU. Never cache anything with PII.
     handoff_to: [cost-monitor]
 
+  # ============================================================
+  # TIER 14 — AGENT INTEROPERABILITY
+  # ============================================================
+
+  - id: FTC-094
+    name: cline-execution-pilot
+    tier: tier-14-agent-interoperability
+    summary: Converts approved briefs into execution packets tuned for Cline-style coding agents.
+    reports_to: phase-director
+    consumes: [pipeline_state.json, drop_brief.yaml, gate_results.json]
+    produces: [interop/cline_packets/*.yaml]
+    model: claude-sonnet-4-6
+    tools: [read, write, route]
+    gates: ["task_scope_defined", "acceptance_criteria_present"]
+    system_prompt: |
+      You are the Cline Execution Pilot. Turn approved briefs into precise
+      execution packets with file scope, constraints, and acceptance checks.
+      Prefer deterministic instructions over open-ended prose.
+    handoff_to: [openclaw-parallel-orchestrator, model-router-federator]
+
+  - id: FTC-095
+    name: openclaw-parallel-orchestrator
+    tier: tier-14-agent-interoperability
+    summary: Splits validated work into safe parallel tracks for OpenClaw-style multi-agent runs.
+    reports_to: phase-director
+    consumes: [interop/cline_packets/*.yaml, pipeline_state.json]
+    produces: [interop/openclaw_plan.yaml]
+    model: claude-sonnet-4-6
+    tools: [read, plan, write, route]
+    gates: ["parallel_tracks_non_overlapping", "dependency_graph_acyclic"]
+    system_prompt: |
+      You are the OpenClaw Parallel Orchestrator. Decompose execution packets
+      into independent branches with explicit dependency edges and merge order.
+      Never schedule conflicting write surfaces in parallel.
+    handoff_to: [claude-consensus-lead, handoff-protocol-engineer]
+
+  - id: FTC-096
+    name: claude-consensus-lead
+    tier: tier-14-agent-interoperability
+    summary: Leads high-reasoning consensus on competing outputs before downstream merge.
+    reports_to: brand-steward
+    consumes: [interop/openclaw_plan.yaml, interop/candidate_outputs/**]
+    produces: [interop/consensus_decision.json]
+    model: claude-opus-4-7
+    tools: [read, score, write]
+    gates: ["winning_option_selected", "rejection_reason_logged"]
+    system_prompt: |
+      You are the Claude Consensus Lead. Evaluate competing outputs for
+      correctness, restraint, and downstream compatibility. Pick one winner,
+      document why, and reject the rest with terse rationale.
+    handoff_to: [quality-gate-keeper, merge-readiness-auditor]
+
+  - id: FTC-097
+    name: model-router-federator
+    tier: tier-14-agent-interoperability
+    summary: Routes tasks to the best-fit model family (fast, structured, or reasoning) with budget awareness.
+    reports_to: cost-monitor
+    consumes: [interop/cline_packets/*.yaml, cost_report.json, api_health.json]
+    produces: [interop/model_routes.json]
+    model: claude-haiku-4-5
+    tools: [read, calc, write, route]
+    gates: ["route_confidence >= 0.7", "budget_headroom_present"]
+    system_prompt: |
+      You are the Model Router Federator. Route each task to fast, structured,
+      or reasoning models using cost and latency constraints. Favor the least
+      expensive route that still clears quality gates.
+    handoff_to: [cline-execution-pilot, openclaw-parallel-orchestrator]
+
+  - id: FTC-098
+    name: handoff-protocol-engineer
+    tier: tier-14-agent-interoperability
+    summary: Standardizes handoff contracts so external agents can exchange state losslessly.
+    reports_to: phase-director
+    consumes: [interop/openclaw_plan.yaml, interop/model_routes.json]
+    produces: [interop/handoff_contracts/*.yaml]
+    model: claude-sonnet-4-6
+    tools: [read, write, validate]
+    gates: ["required_fields_complete", "schema_version_pinned"]
+    system_prompt: |
+      You are the Handoff Protocol Engineer. Define strict contracts for
+      inputs, outputs, ownership, and rollback. Every contract must be versioned
+      and machine-validated before execution.
+    handoff_to: [merge-readiness-auditor, security-sentinel]
+
+  - id: FTC-099
+    name: merge-readiness-auditor
+    tier: tier-14-agent-interoperability
+    summary: Verifies that parallel agent outputs can merge without regressions.
+    reports_to: quality-gate-keeper
+    consumes: [interop/consensus_decision.json, interop/handoff_contracts/*.yaml, qa_reports/**/*.json]
+    produces: [interop/merge_readiness.json]
+    model: claude-sonnet-4-6
+    tools: [read, validate, score, write]
+    gates: ["merge_conflict_risk <= 0.2", "all_required_checks_green"]
+    system_prompt: |
+      You are the Merge Readiness Auditor. Validate branch compatibility,
+      check contract adherence, and score integration risk. Block merge on
+      unresolved conflicts, failed gates, or missing QA evidence.
+    handoff_to: [brand-steward, phase-director]
+
+  - id: FTC-100
+    name: alliance-telemetry-auditor
+    tier: tier-14-agent-interoperability
+    summary: Measures multi-agent throughput, quality drift, and retry overhead across the alliance.
+    reports_to: brand-steward
+    consumes: [interop/**/*.json, gate_results.json, cost_report.json]
+    produces: [interop/alliance_telemetry.json]
+    model: claude-haiku-4-5
+    tools: [read, calc, write]
+    gates: ["telemetry_window_hours >= 24", "drift_alerts_logged"]
+    system_prompt: |
+      You are the Alliance Telemetry Auditor. Track throughput, quality drift,
+      retry rates, and model-route efficiency. Emit actionable alerts when
+      agent collaboration degrades.
+    handoff_to: [brand-steward, cost-monitor, score-trend-analyzer]
+
 # ============================================================
 # CALL GRAPH (HIGH-LEVEL)
 # ============================================================
@@ -1589,9 +1708,10 @@ agents:
 #     -> instagram/tiktok-scheduler, email, press (tier 10)
 #   -> security-sentinel watches all artifacts
 #   -> infra agents (tier 13) run on schedule
+#   -> interoperability agents (tier 14) coordinate external-model collaboration
 
 # ============================================================
-# OPEN SLOTS (room to extend toward 100)
+# OPEN SLOTS (room to extend toward 110)
 # ============================================================
 # - localization-translator
 # - sustainability-auditor
@@ -1600,3 +1720,6 @@ agents:
 # - retail-window-stylist
 # - editorial-collaborator-scout
 # - archive-curator
+# - postpurchase-community-manager
+# - wholesale-partnership-coordinator
+# - prelaunch-qa-firedrill-runner

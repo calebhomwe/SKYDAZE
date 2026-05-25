@@ -1,17 +1,17 @@
 # FTC Agent Village
 
-> 93 specialized agents that execute the FTC pipeline under the
+> 100 specialized agents that execute the FTC pipeline under the
 > [FTC_MASTER_CONTEXT.md](../FTC_MASTER_CONTEXT.md) constitution.
 
 ## TL;DR
 
 - **One source of truth:** every agent inherits from `FTC_MASTER_CONTEXT.md`.
-- **One registry:** [`REGISTRY.yaml`](./REGISTRY.yaml) lists all 93 agents with
+- **One registry:** [`REGISTRY.yaml`](./REGISTRY.yaml) lists all 100 agents with
   role, model, tools, gates, handoffs, and a tight system prompt.
 - **One gate:** `brand-steward` is the final yes/no on anything that leaves
   the building.
 
-## Tiers (14)
+## Tiers (15)
 
 | Tier | Domain | Members |
 | :--- | :--- | ---: |
@@ -29,7 +29,8 @@
 | 11 | Ops & Compliance | 4 |
 | 12 | Analytics | 4 |
 | 13 | Infrastructure | 5 |
-| | **Total** | **93** |
+| 14 | Agent Interoperability | 7 |
+| | **Total** | **100** |
 
 ## Standard Lifecycle (one drop)
 
@@ -86,11 +87,25 @@ loaded into:
    tutorial.
 5. Open a PR; `brand-steward` reviews.
 
-## Slots Reserved (room toward 100)
+## Interoperability Pod (new in v1.1)
+
+Tier 14 adds seven agents for multi-agent collaboration and cross-model routing:
+
+- `cline-execution-pilot`
+- `openclaw-parallel-orchestrator`
+- `claude-consensus-lead`
+- `model-router-federator`
+- `handoff-protocol-engineer`
+- `merge-readiness-auditor`
+- `alliance-telemetry-auditor`
+
+## Slots Reserved (room toward 110)
 
 `REGISTRY.yaml` ends with an `OPEN SLOTS` block: localization-translator,
 sustainability-auditor, returns-experience-agent, customer-service-tone-coach,
-retail-window-stylist, editorial-collaborator-scout, archive-curator.
+retail-window-stylist, editorial-collaborator-scout, archive-curator,
+postpurchase-community-manager, wholesale-partnership-coordinator,
+prelaunch-qa-firedrill-runner.
 
 ## Cross-Pollination Note
 
