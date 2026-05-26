@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    
+    <filter id="grain-2045875340" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2045875340"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0"/>
+    </filter>
+    <rect x="0" y="0" width="1200" height="1500" filter="url(#grain-2045875340)"/>
+    
+  </defs>
+  <rect x="0" y="0" width="1200" height="1500" fill="#242427"/>
+  <circle cx="597" cy="753" r="60" fill="none" stroke="#C9CADF" stroke-width="1.40" opacity="0.850"/>
+<circle cx="598" cy="751" r="108" fill="none" stroke="#C9CADF" stroke-width="1.34" opacity="0.795"/>
+<circle cx="602" cy="751" r="156" fill="none" stroke="#C9CADF" stroke-width="1.28" opacity="0.740"/>
+<circle cx="601" cy="752" r="204" fill="none" stroke="#C9CADF" stroke-width="1.22" opacity="0.685"/>
+<circle cx="602" cy="749" r="252" fill="none" stroke="#C9CADF" stroke-width="1.16" opacity="0.630"/>
+<circle cx="598" cy="752" r="300" fill="none" stroke="#C9CADF" stroke-width="1.10" opacity="0.575"/>
+<circle cx="597" cy="753" r="348" fill="none" stroke="#C9CADF" stroke-width="1.04" opacity="0.520"/>
+<circle cx="603" cy="750" r="396" fill="none" stroke="#C9CADF" stroke-width="0.98" opacity="0.465"/>
+<circle cx="598" cy="753" r="444" fill="none" stroke="#C9CADF" stroke-width="0.92" opacity="0.410"/>
+<circle cx="597" cy="751" r="492" fill="none" stroke="#C9CADF" stroke-width="0.86" opacity="0.355"/>
+<circle cx="599" cy="753" r="540" fill="none" stroke="#C9CADF" stroke-width="0.80" opacity="0.300"/>
+<circle cx="603" cy="750" r="588" fill="none" stroke="#C9CADF" stroke-width="0.74" opacity="0.245"/>
+<circle cx="601" cy="753" r="636" fill="none" stroke="#C9CADF" stroke-width="0.68" opacity="0.190"/>
+<circle cx="598" cy="753" r="684" fill="none" stroke="#C9CADF" stroke-width="0.62" opacity="0.135"/>
+  
+    <text x="600" y="1380" font-family="'JetBrains Mono', Menlo, monospace" font-size="22"
+          fill="#E8E2D3" text-anchor="middle"
+          letter-spacing="6" opacity="0.85">WATCHMAN</text>
+    <text x="600" y="1420" font-family="'JetBrains Mono', Menlo, monospace" font-size="11"
+          fill="#E8E2D3" text-anchor="middle"
+          letter-spacing="3" opacity="0.55">FTC · FULL TIME CHRISTIAN</text>
+    
+</svg>

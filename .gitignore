@@ -23,8 +23,23 @@ dist/
 *.swo
 .DS_Store
 
-# --- FTC artifacts (regenerable; never commit pipeline output) ---
-artifacts/
+# --- FTC artifacts (regenerable; mostly excluded) ---
+# Default: exclude everything in artifacts
+artifacts/*
+# But re-include lightweight viewable outputs (gallery + SVG graphics + worlds + markdown logs)
+!artifacts/graphics/
+!artifacts/game/
+!artifacts/gallery.html
+!artifacts/work_log/
+# Within those re-included directories, exclude heavy/sensitive subpaths
+artifacts/game/genesis/renders/
+artifacts/game/genesis/audio/
+artifacts/game/genesis/characters/*.png
+artifacts/game/genesis/items/*.png
+artifacts/graphics/*.png
+
+# --- Mobile / Secrets ---
+mobile/ftc-ios/FTC/Resources/Secrets.plist
 
 # --- Logs & caches ---
 *.log

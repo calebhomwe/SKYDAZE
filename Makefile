@@ -3,6 +3,8 @@
         caveman-install caveman-uninstall caveman-update \
         spawn-plan spawn-dry spawn-launch \
         youtube-harvest youtube-harvest-real \
+        graphics worlds gallery render-multi render-multi-dry \
+        brand-research game-dev mobile-build \
         clean lint
 
 install:
@@ -77,6 +79,54 @@ youtube-harvest:
 
 youtube-harvest-real:
 	FTC_RUN_MODE=real python -m ftc.youtube --real
+
+# --- Graphics + game (Tiers 30-31) -----------------------------------------
+graphics:
+	python3 -m ftc.graphics_engine
+
+worlds:
+	python3 -m game.genesis.mesh_renderer
+
+gallery: graphics worlds
+	python3 build_gallery.py
+	@echo ""
+	@echo "Open artifacts/gallery.html in a browser."
+
+# --- Multi-provider image rendering (Tier 32) ------------------------------
+render-multi-dry:
+	python3 workers/multi_provider_router.py --limit 5 --dry-run
+
+render-multi:
+	FTC_RUN_MODE=real python3 workers/multi_provider_router.py --limit 20
+
+# --- Brand research + playbook (Tier 29) -----------------------------------
+brand-research:
+	@echo "Brand dossiers in research/brands/:"
+	@ls research/brands/
+	@echo ""
+	@echo "Master playbook: research/STREETWEAR_PLAYBOOK.md"
+
+# --- Game dev (Tier 31) -----------------------------------------------------
+game-dev:
+	@echo "GENESIS game assets:"
+	@echo "  Worlds: $$(ls artifacts/game/genesis/worlds/*.svg 2>/dev/null | wc -l)"
+	@echo "  Characters defined: $$(grep -c '^[A-Z_]* = Character' game/genesis/characters.py)"
+	@echo "  Items defined: $$(grep -c '^[A-Z_]* = Item' game/genesis/items.py)"
+	@echo ""
+	@echo "Playbook: research/game_dev/GAME_DEV_PLAYBOOK.md"
+
+# --- Mobile app (Tier 33) ---------------------------------------------------
+mobile-build:
+	@echo "iOS app scaffold ready at mobile/ftc-ios/"
+	@echo ""
+	@echo "Build instructions:"
+	@echo "  1. cd mobile/ftc-ios/"
+	@echo "  2. cp FTC/Resources/Secrets.plist.example FTC/Resources/Secrets.plist"
+	@echo "  3. Fill in FAL_KEY / NOVITA_API_KEY / OPENROUTER_API_KEY"
+	@echo "  4. open Package.swift  # opens in Xcode"
+	@echo "  5. Press cmd-R to run in simulator"
+	@echo ""
+	@echo "TestFlight: Product -> Archive -> Distribute App -> App Store Connect"
 
 clean:
 	rm -rf artifacts/scrapes/raw artifacts/concepts artifacts/qa __pycache__ ftc/__pycache__

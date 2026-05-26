@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    
+    <filter id="grain-3453991127" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3453991127"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0"/>
+    </filter>
+    <rect x="0" y="0" width="1200" height="1500" filter="url(#grain-3453991127)"/>
+    
+  </defs>
+  <rect x="0" y="0" width="1200" height="1500" fill="#4A4543"/>
+  <path d="M 227,231 L 256,260 L 280,297 L 303,321 L 319,351 L 336,382 L 366,420 L 396,443 L 422,481 L 450,517 L 471,540 L 501,561 L 530,589 L 559,624 L 583,653 L 609,680 L 637,713 L 658,750 L 677,770 L 692,797 L 714,827 L 729,863 L 751,885 L 770,907 L 787,935 L 805,966 L 820,1004 L 839,1035 L 864,1070 L 879,1097 L 902,1120 L 928,1155 L 948,1193 L 976,1216 L 1002,1246 L 1018,1281" fill="none" stroke="#DFCDBF" stroke-width="1.4" opacity="0.85"/>
+  
+    <text x="600" y="1380" font-family="Georgia, 'Times New Roman', serif" font-size="22"
+          fill="#E8E2D3" text-anchor="middle"
+          letter-spacing="6" opacity="0.85">HARVEST</text>
+    <text x="600" y="1420" font-family="Georgia, 'Times New Roman', serif" font-size="11"
+          fill="#E8E2D3" text-anchor="middle"
+          letter-spacing="3" opacity="0.55">FTC · FULL TIME CHRISTIAN</text>
+    
+</svg>
