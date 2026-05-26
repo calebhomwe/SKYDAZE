@@ -1,4 +1,5 @@
 .PHONY: install scrape scrape-real test test-real collection package render render-dry \
+        render-comfy render-comfy-dry render-comfy-cn \
         caveman-install caveman-uninstall caveman-update \
         spawn-plan spawn-dry spawn-launch \
         clean lint
@@ -30,6 +31,16 @@ render-dry:
 
 render:
 	FTC_RUN_MODE=real python workers/render_worker.py
+
+# --- ComfyUI (self-hosted / RunPod, cheapest path) -------------------------
+render-comfy-dry:
+	python workers/comfyui_worker.py --dry-run --limit 5
+
+render-comfy:
+	python workers/comfyui_worker.py
+
+render-comfy-cn:
+	python workers/comfyui_worker.py --controlnet
 
 # --- caveman (token-compression skill) --------------------------------------
 caveman-install:
