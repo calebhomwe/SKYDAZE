@@ -26,6 +26,13 @@ dist/
 # --- FTC artifacts (regenerable; never commit pipeline output) ---
 artifacts/
 
+# --- Firecrawl scratch output ---
+.firecrawl/
+
+# --- Godot ---
+games/lumenfall/.godot/
+games/**/.import/
+
 # --- Logs & caches ---
 *.log
 .cache/

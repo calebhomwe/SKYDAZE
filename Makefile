@@ -1,4 +1,4 @@
-.PHONY: install scrape test full clean lint spawn-plan spawn-preflight spawn-dry spawn-launch
+.PHONY: install scrape test full clean lint spawn-plan spawn-preflight spawn-dry spawn-launch game-run game-stress game-cover
 
 install:
 	pip install -r requirements.txt
@@ -32,3 +32,13 @@ spawn-dry:
 
 spawn-launch:
 	python3 ops/spawn/launch_swarm.py --mode execute
+
+game-run:
+	godot --path games/lumenfall res://scenes/Main.tscn
+
+game-stress:
+	mkdir -p artifacts/lumenfall
+	godot --headless --path games/lumenfall res://tests/StressScene.tscn
+
+game-cover:
+	python3 games/lumenfall/tools/generate_cover.py

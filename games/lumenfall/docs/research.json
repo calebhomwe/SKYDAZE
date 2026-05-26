@@ -1,0 +1,40 @@
+{
+  "reference_game": "Arcaea",
+  "sources": [
+    {
+      "name": "arcaea_wiki",
+      "url": "https://arcaea.fandom.com/wiki/Arcaea",
+      "ok": false,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "arcaea_gameplay",
+      "url": "https://arcaea.fandom.com/wiki/Gameplay",
+      "ok": false,
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "name": "rhythm_addiction",
+      "url": "https://en.wikipedia.org/wiki/Rhythm_game",
+      "ok": true,
+      "chars": 54821
+    }
+  ],
+  "arcaea_core_mechanics": [
+    "Dual-plane input: floor taps/holds plus sky lane arcs and holds",
+    "Strict timing judgement ladder with score and skill systems",
+    "Chart complexity via simultaneous streams, flicks, and arc traces",
+    "High-contrast futuristic UI with motion readability",
+    "Song unlock progression and tiered difficulties",
+    "Story fragments increase retention between sessions"
+  ],
+  "addictive_design_patterns": [
+    "Hit -> glow -> combo -> audio accent feedback loop",
+    "Near-miss recovery with tighter windows at high difficulty",
+    "Daily mission and streak bonuses",
+    "Fever/overdrive visual transformation",
+    "Sub-2-second restart to next attempt",
+    "Personal best and grade shown before replay",
+    "Short first chart with climax at ~70% timeline"
+  ]
+}
