@@ -1,15 +1,18 @@
 # LUMENFALL
 
-Arcaea-inspired lane rhythm game built in **Godot 4.4**. Tap, hold, and trace **Lumen Arcs** across four lanes. Build combo to trigger **RAPTURE CHAIN** fever for double score and gold nebula visuals.
+Arcaea-inspired **dual-plane** lane rhythm game built in **Godot 4.4**. Tap, hold, flick, and trace **Lumen Arcs** on floor and sky rails. Build combo to trigger **RAPTURE CHAIN** fever for double score, screen shake, and a BPM-synced beat bed.
 
 ## Controls
 
-| Key | Lane |
-|-----|------|
-| D | 0 |
-| F | 1 |
-| J | 2 |
-| K | 3 |
+| Plane | Keys | Lanes |
+|-------|------|-------|
+| Floor | D F J K | 0–3 |
+| Sky | W E U I | 0–3 |
+
+| Action | Key |
+|--------|-----|
+| Menu | ESC |
+| Retry | R |
 
 ## Run locally
 
@@ -17,7 +20,7 @@ Arcaea-inspired lane rhythm game built in **Godot 4.4**. Tap, hold, and trace **
 # From repo root (Godot 4.4+ on PATH)
 make game-run
 
-# Headless stress suites (200 / 500 / 1000 note spawns)
+# Headless stress suites (200 / 500 / 1000 / 2000 note spawns, dual-plane)
 make game-stress
 ```
 
@@ -25,20 +28,35 @@ make game-stress
 
 ```
 games/lumenfall/
-├── data/charts/          # JSON beatmaps
-├── scenes/Main.tscn      # Playable scene
-├── scripts/              # Gameplay + UI + visuals
-├── shaders/              # Nebula background
+├── data/charts/          # JSON beatmaps (first_light, rapture_chain, void_surge)
+├── scenes/Menu.tscn      # Song select + daily mission
+├── scenes/Game.tscn      # Gameplay + HUD
+├── scripts/autoload/     # GameState, ChartLibrary, BeatEngine
+├── scripts/gameplay/     # BeatmapPlayer, dual-plane lanes, notes
 ├── tests/                # Headless stress harness
 └── docs/RESEARCH.md      # Arcaea / rhythm-game research
 ```
 
+## Meta progression
+
+- **Daily mission**: clear 3 songs per UTC day
+- **Streak**: consecutive play days (resets if you skip a day)
+- **Unlocks**: B+ on *First Light* → *Rapture Chain*; A+ on *Rapture Chain* → *Void Surge*
+
 ## Chart format
 
 ```json
-{"t": 1500, "lane": 1, "type": "tap"}
-{"t": 2200, "lane": 1, "type": "hold", "end_t": 2900}
-{"t": 3300, "lane": 0, "type": "arc", "lane_end": 3, "end_t": 3900}
+{"t": 1500, "lane": 1, "plane": "floor", "type": "tap"}
+{"t": 2200, "lane": 0, "plane": "sky", "type": "flick"}
+{"t": 3300, "lane": 0, "plane": "floor", "type": "arc", "lane_end": 3, "end_t": 3900}
+```
+
+Generate procedural charts:
+
+```bash
+python3 games/lumenfall/tools/generate_chart.py rapture_chain
+python3 games/lumenfall/tools/generate_chart.py void_surge
+python3 games/lumenfall/tools/generate_chart.py custom --title "My Chart" --count 120 --bpm 180
 ```
 
 ## Image generation hook
@@ -51,7 +69,8 @@ Writes `assets/textures/cover_prompt.json` for OpenRouter image generation when 
 
 ## Design goals (from research)
 
-- Dual-plane readability like Arcaea (floor taps + arc traces)
+- Dual-plane readability like Arcaea (floor taps + sky flicks/arcs)
 - Strict Pure/Great/Good/Miss ladder with visible accuracy
 - Sub-2s restart loop and fever dopamine spike at 50 combo
+- Procedural BPM beat bed via `BeatEngine` (no external audio required)
 - Shader-driven backgrounds for fast skin swaps

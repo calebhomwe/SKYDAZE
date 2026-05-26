@@ -2,7 +2,7 @@ extends Node
 ## Headless stress harness — spawns dense charts and verifies stability.
 
 const OUTPUT_PATH := "/workspace/artifacts/lumenfall/stress_result.json"
-const NOTE_COUNTS := [200, 500, 1000]
+const NOTE_COUNTS := [200, 500, 1000, 2000]
 const MAX_FRAMES := 120000
 
 var _player

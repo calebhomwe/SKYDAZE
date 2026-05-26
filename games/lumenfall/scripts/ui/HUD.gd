@@ -27,11 +27,15 @@ func bind_chart(chart: Dictionary) -> void:
 
 func show_results(summary: Dictionary) -> void:
 	_results.visible = true
-	_grade.text = "GRADE %s\n%d pts\n%.1f%% acc\n%d combo" % [
+	var daily: Dictionary = summary.get("daily", {})
+	_grade.text = "GRADE %s\n%d pts\n%.1f%% acc\n%d combo\n\nDaily %d/%d  Streak %d\n\nESC = menu  R = retry" % [
 		summary.get("grade", "?"),
 		int(summary.get("score", 0)),
 		float(summary.get("accuracy", 0.0)),
 		int(summary.get("max_combo", 0)),
+		int(daily.get("clears", 0)),
+		int(daily.get("goal", 3)),
+		int(daily.get("streak", 0)),
 	]
 
 

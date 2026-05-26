@@ -1,9 +1,11 @@
 extends Node
-## Global run state: score, combo, fever, persistence.
+## Global run state: score, combo, fever, daily meta, persistence.
 
 const FEVER_COMBO_THRESHOLD := 50
 const FEVER_DURATION_SEC := 10.0
+const DAILY_CLEAR_GOAL := 3
 const SAVE_PATH := "user://lumenfall_scores.json"
+const META_PATH := "user://lumenfall_meta.json"
 
 var chart_id: String = "first_light"
 var score: int = 0
@@ -14,14 +16,23 @@ var fever_time_left: float = 0.0
 var judgements := {"pure": 0, "great": 0, "good": 0, "miss": 0}
 var high_scores: Dictionary = {}
 
+var daily_streak: int = 0
+var clears_today: int = 0
+var last_play_day: String = ""
+var total_clears: int = 0
+var unlocked: Array = ["first_light"]
+
 signal score_changed(new_score: int)
 signal combo_changed(new_combo: int)
 signal fever_changed(active: bool)
 signal judgement_registered(kind: String)
+signal meta_changed
 
 
 func _ready() -> void:
 	_load_scores()
+	_load_meta()
+	_roll_daily()
 
 
 func reset_run() -> void:
@@ -110,6 +121,76 @@ func commit_high_score() -> void:
 		_save_scores()
 
 
+func record_clear(grade: String) -> void:
+	total_clears += 1
+	var today := _utc_day()
+	if last_play_day == today:
+		clears_today += 1
+	else:
+		if last_play_day != "":
+			daily_streak += 1
+		else:
+			daily_streak = 1
+		last_play_day = today
+		clears_today = 1
+	_unlock_progression(grade)
+	_save_meta()
+	meta_changed.emit()
+
+
+func daily_mission_progress() -> Dictionary:
+	return {
+		"goal": DAILY_CLEAR_GOAL,
+		"clears": clears_today,
+		"complete": clears_today >= DAILY_CLEAR_GOAL,
+		"streak": daily_streak,
+	}
+
+
+func is_unlocked(id: String) -> bool:
+	return unlocked.has(id)
+
+
+func _unlock_progression(grade: String) -> void:
+	if chart_id == "first_light" and grade in ["B", "A", "S", "P"]:
+		if not unlocked.has("rapture_chain"):
+			unlocked.append("rapture_chain")
+	if chart_id == "rapture_chain" and grade in ["A", "S", "P"]:
+		if not unlocked.has("void_surge"):
+			unlocked.append("void_surge")
+
+
+func _utc_day() -> String:
+	var dt := Time.get_datetime_dict_from_system(true)
+	return "%04d-%02d-%02d" % [dt.year, dt.month, dt.day]
+
+
+func _is_yesterday(day: String) -> bool:
+	if day == "":
+		return false
+	var parts := day.split("-")
+	if parts.size() != 3:
+		return false
+	var y := int(parts[0])
+	var m := int(parts[1])
+	var d := int(parts[2])
+	d -= 1
+	if d < 1:
+		m -= 1
+		if m < 1:
+			m = 12
+			y -= 1
+		d = 28
+	return _utc_day() != day
+
+
+func _roll_daily() -> void:
+	var today := _utc_day()
+	if last_play_day != "" and last_play_day != today and not _is_yesterday(last_play_day):
+		daily_streak = 0
+		clears_today = 0
+
+
 func _load_scores() -> void:
 	if not FileAccess.file_exists(SAVE_PATH):
 		return
@@ -126,3 +207,34 @@ func _save_scores() -> void:
 	if file == null:
 		return
 	file.store_string(JSON.stringify(high_scores, "\t"))
+
+
+func _load_meta() -> void:
+	if not FileAccess.file_exists(META_PATH):
+		return
+	var file := FileAccess.open(META_PATH, FileAccess.READ)
+	if file == null:
+		return
+	var parsed = JSON.parse_string(file.get_as_text())
+	if typeof(parsed) != TYPE_DICTIONARY:
+		return
+	daily_streak = int(parsed.get("daily_streak", 0))
+	clears_today = int(parsed.get("clears_today", 0))
+	last_play_day = str(parsed.get("last_play_day", ""))
+	total_clears = int(parsed.get("total_clears", 0))
+	var u = parsed.get("unlocked", ["first_light"])
+	if typeof(u) == TYPE_ARRAY:
+		unlocked = u
+
+
+func _save_meta() -> void:
+	var file := FileAccess.open(META_PATH, FileAccess.WRITE)
+	if file == null:
+		return
+	file.store_string(JSON.stringify({
+		"daily_streak": daily_streak,
+		"clears_today": clears_today,
+		"last_play_day": last_play_day,
+		"total_clears": total_clears,
+		"unlocked": unlocked,
+	}, "\t"))

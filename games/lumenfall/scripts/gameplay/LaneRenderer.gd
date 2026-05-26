@@ -1,17 +1,25 @@
 extends Node2D
 class_name LaneRenderer
-## Glowing lane rails (Arcaea-style readability).
+## Dual-plane lane rails — floor + sky (Arcaea-style).
 
 const LANE_COUNT := 4
 const LANE_WIDTH := 140.0
-const HIT_LINE_Y := 560.0
+const FLOOR_HIT_Y := 560.0
+const SKY_HIT_Y := 160.0
 
 var fever_t := 0.0
+var shake_strength: float = 0.0
 
 
 func _process(delta: float) -> void:
 	fever_t += delta
+	shake_strength = lerpf(shake_strength, 0.0, delta * 8.0)
+	position.x = sin(fever_t * 40.0) * shake_strength
 	queue_redraw()
+
+
+func hit_line_y(plane: String) -> float:
+	return SKY_HIT_Y if plane == "sky" else FLOOR_HIT_Y
 
 
 func lane_x(lane: float, viewport_width: float) -> float:
@@ -20,18 +28,26 @@ func lane_x(lane: float, viewport_width: float) -> float:
 	return start_x + LANE_WIDTH * (lane + 0.5)
 
 
-func _draw() -> void:
-	var vp := get_viewport_rect().size
-	var fever := 1.0 if GameState.fever_active else 0.0
+func trigger_shake(amount: float = 4.0) -> void:
+	shake_strength = maxf(shake_strength, amount)
+
+
+func _draw_plane(vp: Vector2, hit_y: float, top_y: float, base_col: Color, glow_col: Color, fever: float) -> void:
 	for i in LANE_COUNT:
-		var x := lane_x(float(i), vp.x)
-		var col := Color(0.15, 0.2, 0.35, 0.55)
-		if i % 2 == 0:
-			col = Color(0.1, 0.14, 0.28, 0.65)
-		draw_line(Vector2(x, 80), Vector2(x, HIT_LINE_Y + 40), col, 2.0)
-		var glow := Color(0.0, 0.85, 1.0, 0.08 + fever * 0.12)
-		draw_line(Vector2(x - 1, 80), Vector2(x - 1, HIT_LINE_Y + 40), glow, 4.0)
-	# Hit line
-	var pulse := 0.5 + 0.5 * sin(fever_t * 4.0)
+		var x: float = lane_x(float(i), vp.x)
+		draw_line(Vector2(x, top_y), Vector2(x, hit_y + 30), base_col, 2.0)
+		var glow := glow_col * Color(1, 1, 1, 0.08 + fever * 0.14)
+		draw_line(Vector2(x - 1, top_y), Vector2(x - 1, hit_y + 30), glow, 4.0)
+	var pulse: float = 0.5 + 0.5 * sin(fever_t * 4.0)
 	var hit_col := Color(1.0, 1.0, 1.0, 0.35 + pulse * 0.25 + fever * 0.2)
-	draw_line(Vector2(40, HIT_LINE_Y), Vector2(vp.x - 40, HIT_LINE_Y), hit_col, 3.0)
+	draw_line(Vector2(40, hit_y), Vector2(vp.x - 40, hit_y), hit_col, 3.0)
+
+
+func _draw() -> void:
+	var vp: Vector2 = get_viewport_rect().size
+	var fever: float = 1.0 if GameState.fever_active else 0.0
+	_draw_plane(vp, SKY_HIT_Y, 60.0, Color(0.2, 0.12, 0.35, 0.7), Color(0.85, 0.35, 1.0, 1.0), fever)
+	_draw_plane(vp, FLOOR_HIT_Y, 300.0, Color(0.1, 0.14, 0.28, 0.65), Color(0.0, 0.85, 1.0, 1.0), fever)
+	# Plane labels
+	draw_string(ThemeDB.fallback_font, Vector2(48, SKY_HIT_Y - 12), "SKY", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color(0.85, 0.55, 1.0, 0.55))
+	draw_string(ThemeDB.fallback_font, Vector2(48, FLOOR_HIT_Y - 12), "FLOOR", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color(0.4, 0.85, 1.0, 0.55))

@@ -1,22 +1,19 @@
 extends Node
-## Main scene coordinator.
+## App router: menu -> game loop.
 
-@onready var _gameplay = $Gameplay
-@onready var _hud = $HUD
+const GAME_SCENE := "res://scenes/Game.tscn"
 
 
 func _ready() -> void:
-	var chart := ChartLibrary.load_chart("first_light")
-	if _hud.has_method("bind_chart"):
-		_hud.bind_chart(chart)
-	_gameplay.chart_finished.connect(_on_chart_finished)
+	get_tree().change_scene_to_file("res://scenes/Menu.tscn")
 
 
-func _on_chart_finished(summary: Dictionary) -> void:
-	if _hud.has_method("show_results"):
-		_hud.show_results(summary)
-
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		get_tree().quit()
+func go_play(chart_id: String) -> void:
+	var err := get_tree().change_scene_to_file(GAME_SCENE)
+	if err != OK:
+		push_error("Failed to load game scene")
+		return
+	await get_tree().process_frame
+	var game := get_tree().current_scene
+	if game and game.has_method("set"):
+		game.set("chart_id", chart_id)

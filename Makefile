@@ -34,7 +34,7 @@ spawn-launch:
 	python3 ops/spawn/launch_swarm.py --mode execute
 
 game-run:
-	godot --path games/lumenfall res://scenes/Main.tscn
+	godot --path games/lumenfall res://scenes/Menu.tscn
 
 game-stress:
 	mkdir -p artifacts/lumenfall
