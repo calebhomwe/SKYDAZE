@@ -1,0 +1,71 @@
+version: 1
+defaults:
+  cloud: local
+  headless: true
+  output: json
+  mode: plan-only
+  max_parallel: 4
+  prompt_file: ops/spawn/prompts/general_execution_contract.md
+
+# Total workers declared: 54
+workers:
+  # Core coding and QA lanes (explicitly requested)
+  - name: hermes-coding
+    agent: hermes
+    replicas: 2
+    purpose: c-plus-plus-and-blueprint-coding
+    prompt_file: ops/spawn/prompts/project_a_divine_wrath.md
+
+  - name: openclaw-filesystem
+    agent: openclaw
+    replicas: 2
+    purpose: filesystem-git-and-asset-pipeline
+    prompt_file: ops/spawn/prompts/project_a_divine_wrath.md
+
+  - name: codex-qa
+    agent: codex
+    replicas: 2
+    purpose: unit-stress-and-qa
+    prompt_file: ops/spawn/prompts/project_a_divine_wrath.md
+
+  - name: kilocode-optimization
+    agent: kilocode
+    replicas: 2
+    purpose: refactor-and-performance
+    prompt_file: ops/spawn/prompts/project_a_divine_wrath.md
+
+  # Backend support model lanes via OpenRouter model override.
+  # These model IDs should be validated with `spawn ... --dry-run` before full launch.
+  - name: qwen-max-architecture
+    agent: cursor
+    replicas: 2
+    purpose: architecture-review
+    model: qwen/qwen-max
+    prompt_file: ops/spawn/prompts/project_a_divine_wrath.md
+
+  - name: qwen-vl-visual-qa
+    agent: cursor
+    replicas: 2
+    purpose: visual-qa
+    model: qwen/qwen-vl-max
+    prompt_file: ops/spawn/prompts/project_a_divine_wrath.md
+
+  - name: deepseek-v4-flash-logic
+    agent: cursor
+    replicas: 2
+    purpose: high-speed-logic-and-ideation
+    model: deepseek/deepseek-chat-v4-flash
+    prompt_file: ops/spawn/prompts/project_b_revenue_sprints.md
+
+  # Scale lanes to enforce a >=50 worker target.
+  - name: cursor-general-execution
+    agent: cursor
+    replicas: 20
+    purpose: execution-and-delivery
+    prompt_file: ops/spawn/prompts/general_execution_contract.md
+
+  - name: claude-general-execution
+    agent: claude
+    replicas: 20
+    purpose: synthesis-and-quality-gates
+    prompt_file: ops/spawn/prompts/general_execution_contract.md

@@ -1,0 +1,39 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+.eggs/
+*.egg-info/
+build/
+dist/
+
+# --- IDE ---
+.idea/
+.vscode/
+.cursor/
+*.swp
+*.swo
+.DS_Store
+
+# --- FTC artifacts (regenerable; never commit pipeline output) ---
+artifacts/
+
+# --- Logs & caches ---
+*.log
+.cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- Secrets ---
+*.key
+*.pem
+secrets/

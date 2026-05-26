@@ -1,0 +1,199 @@
+execution_routing_matrix:
+  architecture:
+    default_provider: openrouter
+    video_primary_override: novita
+    video_fallback_provider: openrouter
+    rationale:
+      - Default all ad workloads to OpenRouter endpoints.
+      - Run Novita video first when healthy.
+      - Fall back to OpenRouter video routes on Novita degradation.
+
+  budget_guardrails:
+    owner: cost-monitor
+    soft_alert_threshold_pct: 0.80
+    throttle_threshold_pct: 0.90
+    hard_stop_threshold_pct: 1.00
+    actions:
+      soft_alert:
+        - Keep premium routes only for near-pass candidates.
+        - Reduce candidate fan-out before expensive downstream generation.
+      throttle:
+        - Freeze exploratory variants.
+        - Prioritize rerank-first pruning.
+      hard_stop:
+        - Stop new generation jobs.
+        - Allow only QA and remediation for in-flight critical assets.
+
+  quality_gate_policy:
+    global_pass:
+      - luxury_score >= 0.82
+      - theology_depth >= 0.75
+      - forbidden_term_count == 0
+    global_flag:
+      - 0.75 <= luxury_score < 0.82
+    global_kill:
+      - forbidden_term_count > 0
+      - avg_score < 0.60
+    cinematic_specific:
+      - fabric_realism_score >= 0.85
+      - speech_intelligibility >= 0.85
+      - top_variant_confidence >= 0.80
+
+  routes:
+    - workload: creative_reasoning
+      modality: text
+      primary:
+        provider: openrouter
+        model: deepseek/deepseek-chat-v4-fast
+      secondary:
+        provider: openrouter
+        model: qwen/qwen-max
+      trigger_to_fallback:
+        - status in [429,500,502,503,504] or timeout > 20s
+        - schema_adherence < 0.95
+      pass_to:
+        - trap-cinema-creative-director
+        - openrouter-multimodal-router
+
+    - workload: still_generation
+      modality: image
+      primary:
+        provider: openrouter
+        model: qwen/visual-qwen
+      secondary:
+        provider: openrouter
+        model: bytedance/seedream-4
+      trigger_to_fallback:
+        - status in [429,500,502,503,504] or timeout > 45s
+        - fabric_realism_score < 0.85
+      pass_to:
+        - cinematic-video-prompt-engineer
+        - ad-performance-rerank-analyst
+
+    - workload: motion_generation
+      modality: video
+      primary:
+        provider: novita
+        model: kling-or-seedream-video
+      secondary:
+        provider: openrouter
+        model: openrouter/video-fallback
+      trigger_to_fallback:
+        - novita_health != healthy
+        - status in [429,500,502,503,504] or timeout > 90s
+        - duration_out_of_range or cloth_physics_fail
+      pass_to:
+        - audio-speech-score-designer
+        - ad-performance-rerank-analyst
+
+    - workload: soundtrack_generation
+      modality: audio
+      primary:
+        provider: openrouter
+        model: openrouter/audio-premium
+      secondary:
+        provider: openrouter
+        model: openrouter/audio-fast
+      trigger_to_fallback:
+        - render_failure or timeout > 60s
+        - lyric_safety_fail
+      pass_to:
+        - audio-speech-score-designer
+        - ad-performance-rerank-analyst
+
+    - workload: voice_hook_synthesis
+      modality: speech
+      primary:
+        provider: openrouter
+        model: openrouter/speech-natural
+      secondary:
+        provider: openrouter
+        model: openrouter/speech-fast
+      trigger_to_fallback:
+        - speech_intelligibility < 0.85
+        - status in [429,500,502,503,504]
+      pass_to:
+        - audio-speech-score-designer
+        - ad-performance-rerank-analyst
+
+    - workload: speech_to_text
+      modality: transcription
+      primary:
+        provider: openrouter
+        model: openrouter/transcription-accurate
+      secondary:
+        provider: openrouter
+        model: openrouter/transcription-fast
+      trigger_to_fallback:
+        - wer > 0.15
+        - keyword_drop_detected
+        - timeout > 30s
+      pass_to:
+        - ad-performance-rerank-analyst
+        - quality-gate-keeper
+
+    - workload: semantic_indexing
+      modality: embeddings
+      primary:
+        provider: openrouter
+        model: openrouter/embeddings-high-recall
+      secondary:
+        provider: openrouter
+        model: openrouter/embeddings-fast
+      trigger_to_fallback:
+        - embedding_latency_p95 > 2s
+        - retrieval_recall_drop
+      pass_to:
+        - ad-performance-rerank-analyst
+
+    - workload: candidate_selection
+      modality: rerank
+      primary:
+        provider: openrouter
+        model: openrouter/rerank-precision
+      secondary:
+        provider: openrouter
+        model: openrouter/rerank-fast
+      trigger_to_fallback:
+        - rerank_timeout > 10s
+        - top_variant_confidence < 0.80
+      pass_to:
+        - brand-steward
+        - instagram-scheduler
+        - tiktok-scheduler
+
+execution_dag:
+  - intake_brief_and_health
+  - generate_control_plane_prompts
+  - resolve_openrouter_routes
+  - generate_stills
+  - generate_video_novita_first
+  - generate_audio_and_speech
+  - transcribe_outputs
+  - embed_assets
+  - rerank_candidates
+  - quality_gate_pass_flag_kill
+  - brand_steward_final_approval
+  - publish_to_social_schedulers
+
+failure_scenarios:
+  - scenario: novita_video_outage
+    remediation: immediate_openrouter_video_fallback_then_continue
+  - scenario: openrouter_429_burst
+    remediation: exponential_backoff_then_secondary_model_route
+  - scenario: budget_over_80pct
+    remediation: reduce_variant_fanout_and_preserve_premium_for_top_candidates
+  - scenario: budget_over_90pct
+    remediation: freeze_exploration_and_allow_only_remediation_paths
+  - scenario: forbidden_term_detected
+    remediation: kill_asset_regenerate_with_safe_prompt_profile
+  - scenario: luxury_score_below_threshold
+    remediation: flag_or_regenerate_with_material_and_lighting_constraints
+  - scenario: fabric_realism_failure
+    remediation: enforce_gsm_texture_camera_constraints_and_rerun
+  - scenario: speech_intelligibility_failure
+    remediation: regenerate_voice_chain_then_retranscribe
+  - scenario: low_rerank_confidence
+    remediation: expand_candidate_pool_and_rerank_precision
+  - scenario: cross_modal_semantic_drift
+    remediation: regenerate_weakest_modality_from_winning_storyboard_then_rerank
