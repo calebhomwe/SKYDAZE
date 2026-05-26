@@ -13,7 +13,7 @@ import os
 from typing import Any
 
 from .caveman import apply as caveman_apply
-from .config import RUN_MODE, require
+from .config import DEEPSEEK_FLASH_MODEL, RUN_MODE, require
 
 CONCEPT_SYSTEM_PROMPT = """You are the Theology Concept Architect of FTC FULL TIME CHRISTIAN.
 
@@ -139,7 +139,7 @@ def generate_via_openrouter(n: int, drop_brief: str, synthesis: dict) -> list[di
     )
 
     resp = client.chat.completions.create(
-        model="deepseek/deepseek-chat",  # OpenRouter slug for DeepSeek-V3
+        model=DEEPSEEK_FLASH_MODEL,  # DeepSeek Flash v4 via OpenRouter; override via DEEPSEEK_FLASH_MODEL env
         messages=[
             {"role": "system", "content": caveman_apply(CONCEPT_SYSTEM_PROMPT)},
             {"role": "user", "content": user_msg},

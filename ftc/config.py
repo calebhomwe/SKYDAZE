@@ -19,6 +19,11 @@ ARTIFACTS = REPO_ROOT / "artifacts"
 RUN_MODE = os.getenv("FTC_RUN_MODE", "dry-run").lower()
 DAILY_BUDGET_USD = float(os.getenv("FTC_DAILY_BUDGET_USD", "50"))
 
+# DeepSeek Flash v4 via OpenRouter. Override with DEEPSEEK_MODEL env var if
+# OpenRouter updates the slug. Current cheapest fast model for concept generation.
+DEEPSEEK_MODEL = os.getenv("DEEPSEEK_MODEL", "deepseek/deepseek-chat")
+DEEPSEEK_FLASH_MODEL = os.getenv("DEEPSEEK_FLASH_MODEL", "deepseek/deepseek-chat")
+
 
 @dataclass(frozen=True)
 class Keys:
@@ -30,6 +35,7 @@ class Keys:
     anthropic: str | None = os.getenv("ANTHROPIC_API_KEY")
     shopify_domain: str | None = os.getenv("SHOPIFY_STORE_DOMAIN")
     shopify_token: str | None = os.getenv("SHOPIFY_ADMIN_TOKEN")
+    youtube_api: str | None = os.getenv("YOUTUBE_API_KEY")
 
 
 KEYS = Keys()

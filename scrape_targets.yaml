@@ -9,6 +9,8 @@ pinterest:
   - https://www.pinterest.com/search/pins/?q=lemaire%20editorial
   - https://www.pinterest.com/search/pins/?q=monastic%20fashion%20editorial
   - https://www.pinterest.com/search/pins/?q=tonal%20embroidery%20detail
+  - https://www.pinterest.com/search/pins/?q=christian%20streetwear%20lookbook
+  - https://www.pinterest.com/search/pins/?q=quiet%20luxury%20menswear
 
 kittl:
   - https://www.kittl.com/templates/streetwear
@@ -29,7 +31,26 @@ luxury_benchmarks:
   - https://www.lemaire.fr/
   - https://www.fearofgod.com/
 
-# Limits applied across all targets
+# -----------------------------------------------------------------------
+# YouTube intelligence — Tier 16 agents (ftc/youtube.py)
+# Search queries are executed by the youtube-transcript-api + yt-dlp chain.
+# Categories map to YOUTUBE_TARGETS in ftc/youtube.py.
+# -----------------------------------------------------------------------
+youtube:
+  categories:
+    - luxury_streetwear_aesthetics
+    - christian_culture_signals
+    - trap_cinematic_references
+    - streetwear_culture
+    - garment_craft
+  max_per_query: 3
+  save_synthesis: true
+  output: artifacts/research/youtube_synthesis.json
+  # Priority video IDs — add manually curated high-signal videos here.
+  # Format: standard 11-char YouTube video ID.
+  priority_video_ids: []
+
+# Limits applied across all web targets
 limits:
   max_pages_per_host: 10
   rate_limit_rps: 0.5

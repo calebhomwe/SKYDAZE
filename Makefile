@@ -2,6 +2,7 @@
         render-comfy render-comfy-dry render-comfy-cn \
         caveman-install caveman-uninstall caveman-update \
         spawn-plan spawn-dry spawn-launch \
+        youtube-harvest youtube-harvest-real \
         clean lint
 
 install:
@@ -69,6 +70,13 @@ spawn-dry:
 
 spawn-launch:
 	python3 ops/spawn/launch_swarm.py --mode execute
+
+# --- YouTube intelligence (Tier 16) ----------------------------------------
+youtube-harvest:
+	python -m ftc.youtube
+
+youtube-harvest-real:
+	FTC_RUN_MODE=real python -m ftc.youtube --real
 
 clean:
 	rm -rf artifacts/scrapes/raw artifacts/concepts artifacts/qa __pycache__ ftc/__pycache__
