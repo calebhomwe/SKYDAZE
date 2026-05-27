@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    
+    <filter id="grain-4170134716" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4170134716"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0"/>
+    </filter>
+    <rect x="0" y="0" width="1200" height="1500" filter="url(#grain-4170134716)"/>
+    
+  </defs>
+  <rect x="0" y="0" width="1200" height="1500" fill="#2E3728"/>
+  <path d="M 219,221 L 247,255 L 262,279 L 282,315 L 299,350 L 316,373 L 340,393 L 370,413 L 394,446 L 419,468 L 436,493 L 452,531 L 474,563 L 498,599 L 516,619 L 531,641 L 556,676 L 585,702 L 607,724 L 634,753 L 663,783 L 680,806 L 707,840 L 732,878 L 751,911 L 776,931 L 793,964 L 818,991 L 847,1027 L 871,1054 L 900,1074 L 921,1109 L 941,1140 L 967,1169 L 982,1195 L 1002,1225 L 1019,1253 L 1043,1274" fill="none" stroke="#CFC8C6" stroke-width="1.4" opacity="0.85"/>
+  
+    <text x="600" y="1380" font-family="Georgia, 'Times New Roman', serif" font-size="22"
+          fill="#E8E2D3" text-anchor="middle"
+          letter-spacing="6" opacity="0.85">TRUE VINE</text>
+    <text x="600" y="1420" font-family="Georgia, 'Times New Roman', serif" font-size="11"
+          fill="#E8E2D3" text-anchor="middle"
+          letter-spacing="3" opacity="0.55">FTC · FULL TIME CHRISTIAN</text>
+    
+</svg>

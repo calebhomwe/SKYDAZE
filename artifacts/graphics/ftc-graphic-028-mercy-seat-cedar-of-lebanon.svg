@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    
+    <filter id="grain-2601141352" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="2601141352"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0"/>
+    </filter>
+    <rect x="0" y="0" width="1200" height="1500" filter="url(#grain-2601141352)"/>
+    
+  </defs>
+  <rect x="0" y="0" width="1200" height="1500" fill="#4A4442"/>
+  
+    <path d="M 200 900 Q 350 500 600 800 Q 850 500 1000 900" fill="none"
+          stroke="#D3E0CA" stroke-width="2" opacity="0.85"/>
+    <rect x="320" y="900" width="560" height="120" fill="none"
+          stroke="#D3E0CA" stroke-width="1.2" opacity="0.6"/>
+    
+  
+    <text x="600" y="1380" font-family="Inter, Helvetica, sans-serif" font-size="22"
+          fill="#E8E2D3" text-anchor="middle"
+          letter-spacing="6" opacity="0.85">CEDAR OF LEBANON</text>
+    <text x="600" y="1420" font-family="Inter, Helvetica, sans-serif" font-size="11"
+          fill="#E8E2D3" text-anchor="middle"
+          letter-spacing="3" opacity="0.55">FTC · FULL TIME CHRISTIAN</text>
+    
+</svg>

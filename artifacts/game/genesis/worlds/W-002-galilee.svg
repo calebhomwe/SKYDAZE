@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  
+    <defs>
+      <linearGradient id="sky-W-002" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0F1416"/>
+        <stop offset="55%" stop-color="#3A5C66"/>
+        <stop offset="100%" stop-color="#8FA9AE"/>
+      </linearGradient>
+      <linearGradient id="ground-W-002" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#8FA9AE"/>
+        <stop offset="50%" stop-color="#D5D8C8"/>
+        <stop offset="100%" stop-color="#EFE9D4"/>
+      </linearGradient>
+      <radialGradient id="sun-W-002" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#EFE9D4" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#EFE9D4" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="grain-W-002" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="679008424"/>
+        <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+      </filter>
+    </defs>
+    
+  
+    <rect x="0" y="0" width="1600" height="900" fill="url(#sky-W-002)"/>
+    <circle cx="1180" cy="280" r="220" fill="url(#sun-W-002)"/>
+    <rect x="0" y="520" width="1600" height="380" fill="url(#ground-W-002)"/>
+    
+  <rect x="0" y="500" width="1600" height="40" fill="#8FA9AE" opacity="0.35"/><rect x="0" y="520" width="1600" height="14" fill="#D5D8C8" opacity="0.25"/>
+  <polygon points="800.0,680.0 744.0,708.0 744.0,658.0 800.0,630.0" fill="#3A5C66" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="744.0,708.0 800.0,736.0 800.0,686.0 744.0,658.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="800.0,630.0 856.0,658.0 800.0,686.0 744.0,658.0" fill="#3A5C66" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="920.0,740.0 864.0,768.0 864.0,729.0 920.0,701.0" fill="#3A5C66" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="864.0,768.0 920.0,796.0 920.0,757.0 864.0,729.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="920.0,701.0 976.0,729.0 920.0,757.0 864.0,729.0" fill="#3A5C66" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="1040.0,800.0 984.0,828.0 984.0,793.0 1040.0,765.0" fill="#3A5C66" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="984.0,828.0 1040.0,856.0 1040.0,821.0 984.0,793.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1040.0,765.0 1096.0,793.0 1040.0,821.0 984.0,793.0" fill="#3A5C66" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="1160.0,860.0 1104.0,888.0 1104.0,835.0 1160.0,807.0" fill="#3A5C66" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1104.0,888.0 1160.0,916.0 1160.0,863.0 1104.0,835.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1160.0,807.0 1216.0,835.0 1160.0,863.0 1104.0,835.0" fill="#3A5C66" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="1280.0,920.0 1224.0,948.0 1224.0,903.0 1280.0,875.0" fill="#3A5C66" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1224.0,948.0 1280.0,976.0 1280.0,931.0 1224.0,903.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1280.0,875.0 1336.0,903.0 1280.0,931.0 1224.0,903.0" fill="#3A5C66" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="1400.0,980.0 1344.0,1008.0 1344.0,951.0 1400.0,923.0" fill="#3A5C66" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1344.0,1008.0 1400.0,1036.0 1400.0,979.0 1344.0,951.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1400.0,923.0 1456.0,951.0 1400.0,979.0 1344.0,951.0" fill="#3A5C66" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="680.0,900.0 624.0,928.0 624.0,922.0 680.0,894.0" fill="#D5D8C8" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="624.0,928.0 680.0,956.0 680.0,950.0 624.0,922.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="680.0,894.0 736.0,922.0 680.0,950.0 624.0,922.0" fill="#D5D8C8" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="720.0,920.0 664.0,948.0 664.0,942.0 720.0,914.0" fill="#D5D8C8" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="664.0,948.0 720.0,976.0 720.0,970.0 664.0,942.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="720.0,914.0 776.0,942.0 720.0,970.0 664.0,942.0" fill="#D5D8C8" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="760.0,940.0 704.0,968.0 704.0,962.0 760.0,934.0" fill="#D5D8C8" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="704.0,968.0 760.0,996.0 760.0,990.0 704.0,962.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="760.0,934.0 816.0,962.0 760.0,990.0 704.0,962.0" fill="#D5D8C8" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="800.0,960.0 744.0,988.0 744.0,982.0 800.0,954.0" fill="#D5D8C8" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="744.0,988.0 800.0,1016.0 800.0,1010.0 744.0,982.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="800.0,954.0 856.0,982.0 800.0,1010.0 744.0,982.0" fill="#D5D8C8" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="840.0,980.0 784.0,1008.0 784.0,1002.0 840.0,974.0" fill="#D5D8C8" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="784.0,1008.0 840.0,1036.0 840.0,1030.0 784.0,1002.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="840.0,974.0 896.0,1002.0 840.0,1030.0 784.0,1002.0" fill="#D5D8C8" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="880.0,1000.0 824.0,1028.0 824.0,1022.0 880.0,994.0" fill="#D5D8C8" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="824.0,1028.0 880.0,1056.0 880.0,1050.0 824.0,1022.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="880.0,994.0 936.0,1022.0 880.0,1050.0 824.0,1022.0" fill="#D5D8C8" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="920.0,1020.0 864.0,1048.0 864.0,1042.0 920.0,1014.0" fill="#D5D8C8" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="864.0,1048.0 920.0,1076.0 920.0,1070.0 864.0,1042.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="920.0,1014.0 976.0,1042.0 920.0,1070.0 864.0,1042.0" fill="#D5D8C8" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="960.0,1040.0 904.0,1068.0 904.0,1062.0 960.0,1034.0" fill="#D5D8C8" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="904.0,1068.0 960.0,1096.0 960.0,1090.0 904.0,1062.0" fill="#8FA9AE" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="960.0,1034.0 1016.0,1062.0 960.0,1090.0 904.0,1062.0" fill="#D5D8C8" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+
+    <rect x="385.64179216728854" y="797.3208960836442" width="2" height="36" fill="#2A2A2A" opacity="0.85"/>
+    <circle cx="386.64179216728854" cy="795.3208960836442" r="3.5" fill="#FFE6A0" opacity="0.95"/>
+    <circle cx="386.64179216728854" cy="795.3208960836442" r="11" fill="#FFE6A0" opacity="0.15"/>
+    
+
+    <rect x="596.7306066532035" y="902.8653033266017" width="2" height="36" fill="#2A2A2A" opacity="0.85"/>
+    <circle cx="597.7306066532035" cy="900.8653033266017" r="3.5" fill="#FFE6A0" opacity="0.95"/>
+    <circle cx="597.7306066532035" cy="900.8653033266017" r="11" fill="#FFE6A0" opacity="0.15"/>
+    
+
+    <rect x="755.0957421690725" y="982.0478710845363" width="2" height="36" fill="#2A2A2A" opacity="0.85"/>
+    <circle cx="756.0957421690725" cy="980.0478710845363" r="3.5" fill="#FFE6A0" opacity="0.95"/>
+    <circle cx="756.0957421690725" cy="980.0478710845363" r="11" fill="#FFE6A0" opacity="0.15"/>
+    
+
+    <rect x="563.7310520871263" y="886.3655260435631" width="2" height="36" fill="#2A2A2A" opacity="0.85"/>
+    <circle cx="564.7310520871263" cy="884.3655260435631" r="3.5" fill="#FFE6A0" opacity="0.95"/>
+    <circle cx="564.7310520871263" cy="884.3655260435631" r="11" fill="#FFE6A0" opacity="0.15"/>
+    
+
+    <rect x="728.3601759457327" y="968.6800879728664" width="2" height="36" fill="#2A2A2A" opacity="0.85"/>
+    <circle cx="729.3601759457327" cy="966.6800879728664" r="3.5" fill="#FFE6A0" opacity="0.95"/>
+    <circle cx="729.3601759457327" cy="966.6800879728664" r="11" fill="#FFE6A0" opacity="0.15"/>
+    
+
+    <rect x="625.0606701619231" y="917.0303350809615" width="2" height="36" fill="#2A2A2A" opacity="0.85"/>
+    <circle cx="626.0606701619231" cy="915.0303350809615" r="3.5" fill="#FFE6A0" opacity="0.95"/>
+    <circle cx="626.0606701619231" cy="915.0303350809615" r="11" fill="#FFE6A0" opacity="0.15"/>
+    
+  <rect x="0" y="0" width="1600" height="900" filter="url(#grain-W-002)"/>
+  
+    <g font-family="Inter, Helvetica, sans-serif">
+      <text x="60" y="60" font-size="14" fill="#EFE9D4" opacity="0.7" letter-spacing="4">GENESIS · W-002</text>
+      <text x="60" y="86" font-size="34" fill="#EFE9D4" opacity="0.95" letter-spacing="6">GALILEE</text>
+      <text x="60" y="112" font-size="11" fill="#EFE9D4" opacity="0.55" letter-spacing="2">The Sea of Tiberias</text>
+      <text x="60" y="840" font-size="10" fill="#EFE9D4" opacity="0.55" letter-spacing="2">—</text>
+      <text x="60" y="858" font-size="12" fill="#EFE9D4" opacity="0.7" letter-spacing="1.5" font-style="italic">"The boat tilts. The teacher sleeps. The storm is not the test."</text>
+    </g>
+    
+</svg>

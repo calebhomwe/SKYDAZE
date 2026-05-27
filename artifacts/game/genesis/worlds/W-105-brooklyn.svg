@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  
+    <defs>
+      <linearGradient id="sky-W-105" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0D1115"/>
+        <stop offset="55%" stop-color="#2B313A"/>
+        <stop offset="100%" stop-color="#6F7782"/>
+      </linearGradient>
+      <linearGradient id="ground-W-105" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#6F7782"/>
+        <stop offset="50%" stop-color="#B5BAC1"/>
+        <stop offset="100%" stop-color="#E4E2DC"/>
+      </linearGradient>
+      <radialGradient id="sun-W-105" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#E4E2DC" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#E4E2DC" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="grain-W-105" x="0" y="0" width="100%" height="100%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="1656785023"/>
+        <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0"/>
+      </filter>
+    </defs>
+    
+  
+    <rect x="0" y="0" width="1600" height="900" fill="url(#sky-W-105)"/>
+    <circle cx="1180" cy="280" r="220" fill="url(#sun-W-105)"/>
+    <rect x="0" y="520" width="1600" height="380" fill="url(#ground-W-105)"/>
+    
+  <rect x="0" y="500" width="1600" height="40" fill="#6F7782" opacity="0.35"/><rect x="0" y="520" width="1600" height="14" fill="#B5BAC1" opacity="0.25"/>
+  <polygon points="800.0,600.0 744.0,628.0 744.0,522.0 800.0,494.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="744.0,628.0 800.0,656.0 800.0,550.0 744.0,522.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="800.0,494.0 856.0,522.0 800.0,550.0 744.0,522.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="758.0" y="568.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="782.0" y="568.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="720.0,640.0 664.0,668.0 664.0,532.0 720.0,504.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="664.0,668.0 720.0,696.0 720.0,560.0 664.0,532.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="720.0,504.0 776.0,532.0 720.0,560.0 664.0,532.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="678.0" y="608.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="702.0" y="608.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="678.0" y="580.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="702.0" y="580.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="724.0" cy="668.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="718.0" y="652.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="719.0" cy="642.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="728.0" cy="636.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="712.0" cy="636.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="640.0,680.0 584.0,708.0 584.0,594.0 640.0,566.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="584.0,708.0 640.0,736.0 640.0,622.0 584.0,594.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="640.0,566.0 696.0,594.0 640.0,622.0 584.0,594.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="598.0" y="648.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="622.0" y="648.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="560.0,720.0 504.0,748.0 504.0,599.0 560.0,571.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="504.0,748.0 560.0,776.0 560.0,627.0 504.0,599.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="560.0,571.0 616.0,599.0 560.0,627.0 504.0,599.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="518.0" y="688.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="542.0" y="688.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="518.0" y="660.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="542.0" y="660.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="564.0" cy="748.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="558.0" y="732.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="559.0" cy="722.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="568.0" cy="716.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="552.0" cy="716.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="480.0,760.0 424.0,788.0 424.0,701.0 480.0,673.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="424.0,788.0 480.0,816.0 480.0,729.0 424.0,701.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="480.0,673.0 536.0,701.0 480.0,729.0 424.0,701.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="400.0,800.0 344.0,828.0 344.0,680.0 400.0,652.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="344.0,828.0 400.0,856.0 400.0,708.0 344.0,680.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="400.0,652.0 456.0,680.0 400.0,708.0 344.0,680.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="358.0" y="768.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="382.0" y="768.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="358.0" y="740.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="382.0" y="740.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="404.0" cy="828.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="398.0" y="812.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="399.0" cy="802.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="408.0" cy="796.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="392.0" cy="796.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="800.0,680.0 744.0,708.0 744.0,601.0 800.0,573.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="744.0,708.0 800.0,736.0 800.0,629.0 744.0,601.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="800.0,573.0 856.0,601.0 800.0,629.0 744.0,601.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="758.0" y="648.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="782.0" y="648.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="804.0" cy="708.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="798.0" y="692.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="799.0" cy="682.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="808.0" cy="676.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="792.0" cy="676.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="720.0,720.0 664.0,748.0 664.0,628.0 720.0,600.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="664.0,748.0 720.0,776.0 720.0,656.0 664.0,628.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="720.0,600.0 776.0,628.0 720.0,656.0 664.0,628.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="678.0" y="688.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="702.0" y="688.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="678.0" y="660.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="702.0" y="660.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="560.0,800.0 504.0,828.0 504.0,722.0 560.0,694.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="504.0,828.0 560.0,856.0 560.0,750.0 504.0,722.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="560.0,694.0 616.0,722.0 560.0,750.0 504.0,722.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="518.0" y="768.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="542.0" y="768.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="564.0" cy="828.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="558.0" y="812.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="559.0" cy="802.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="568.0" cy="796.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="552.0" cy="796.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="480.0,840.0 424.0,868.0 424.0,773.0 480.0,745.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="424.0,868.0 480.0,896.0 480.0,801.0 424.0,773.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="480.0,745.0 536.0,773.0 480.0,801.0 424.0,773.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="438.0" y="808.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="462.0" y="808.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="484.0" cy="868.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="478.0" y="852.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="479.0" cy="842.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="488.0" cy="836.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="472.0" cy="836.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="960.0,680.0 904.0,708.0 904.0,593.0 960.0,565.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="904.0,708.0 960.0,736.0 960.0,621.0 904.0,593.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="960.0,565.0 1016.0,593.0 960.0,621.0 904.0,593.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="918.0" y="648.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="942.0" y="648.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="964.0" cy="708.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="958.0" y="692.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="959.0" cy="682.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="968.0" cy="676.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="952.0" cy="676.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="880.0,720.0 824.0,748.0 824.0,601.0 880.0,573.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="824.0,748.0 880.0,776.0 880.0,629.0 824.0,601.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="880.0,573.0 936.0,601.0 880.0,629.0 824.0,601.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="838.0" y="688.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="862.0" y="688.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="838.0" y="660.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="862.0" y="660.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="884.0" cy="748.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="878.0" y="732.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="879.0" cy="722.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="888.0" cy="716.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="872.0" cy="716.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="800.0,760.0 744.0,788.0 744.0,706.0 800.0,678.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="744.0,788.0 800.0,816.0 800.0,734.0 744.0,706.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="800.0,678.0 856.0,706.0 800.0,734.0 744.0,706.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+
+    <ellipse cx="804.0" cy="788.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="798.0" y="772.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="799.0" cy="762.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="808.0" cy="756.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="792.0" cy="756.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="720.0,800.0 664.0,828.0 664.0,713.0 720.0,685.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="664.0,828.0 720.0,856.0 720.0,741.0 664.0,713.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="720.0,685.0 776.0,713.0 720.0,741.0 664.0,713.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="678.0" y="768.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="702.0" y="768.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="724.0" cy="828.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="718.0" y="812.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="719.0" cy="802.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="728.0" cy="796.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="712.0" cy="796.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="640.0,840.0 584.0,868.0 584.0,728.0 640.0,700.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="584.0,868.0 640.0,896.0 640.0,756.0 584.0,728.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="640.0,700.0 696.0,728.0 640.0,756.0 584.0,728.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="598.0" y="808.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="622.0" y="808.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="598.0" y="780.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="622.0" y="780.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="644.0" cy="868.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="638.0" y="852.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="639.0" cy="842.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="648.0" cy="836.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="632.0" cy="836.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="560.0,880.0 504.0,908.0 504.0,766.0 560.0,738.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="504.0,908.0 560.0,936.0 560.0,794.0 504.0,766.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="560.0,738.0 616.0,766.0 560.0,794.0 504.0,766.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="518.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="542.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="518.0" y="820.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="542.0" y="820.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="564.0" cy="908.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="558.0" y="892.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="559.0" cy="882.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="568.0" cy="876.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="552.0" cy="876.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1040.0,720.0 984.0,748.0 984.0,623.0 1040.0,595.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="984.0,748.0 1040.0,776.0 1040.0,651.0 984.0,623.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1040.0,595.0 1096.0,623.0 1040.0,651.0 984.0,623.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="998.0" y="688.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1022.0" y="688.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="998.0" y="660.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1022.0" y="660.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="1044.0" cy="748.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="1038.0" y="732.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="1039.0" cy="722.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="1048.0" cy="716.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="1032.0" cy="716.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="960.0,760.0 904.0,788.0 904.0,682.0 960.0,654.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="904.0,788.0 960.0,816.0 960.0,710.0 904.0,682.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="960.0,654.0 1016.0,682.0 960.0,710.0 904.0,682.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="918.0" y="728.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="942.0" y="728.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="964.0" cy="788.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="958.0" y="772.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="959.0" cy="762.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="968.0" cy="756.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="952.0" cy="756.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="880.0,800.0 824.0,828.0 824.0,742.0 880.0,714.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="824.0,828.0 880.0,856.0 880.0,770.0 824.0,742.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="880.0,714.0 936.0,742.0 880.0,770.0 824.0,742.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+
+    <ellipse cx="884.0" cy="828.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="878.0" y="812.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="879.0" cy="802.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="888.0" cy="796.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="872.0" cy="796.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="720.0,880.0 664.0,908.0 664.0,807.0 720.0,779.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="664.0,908.0 720.0,936.0 720.0,835.0 664.0,807.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="720.0,779.0 776.0,807.0 720.0,835.0 664.0,807.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="678.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="702.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="724.0" cy="908.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="718.0" y="892.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="719.0" cy="882.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="728.0" cy="876.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="712.0" cy="876.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="640.0,920.0 584.0,948.0 584.0,862.0 640.0,834.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="584.0,948.0 640.0,976.0 640.0,890.0 584.0,862.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="640.0,834.0 696.0,862.0 640.0,890.0 584.0,862.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+
+    <ellipse cx="644.0" cy="948.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="638.0" y="932.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="639.0" cy="922.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="648.0" cy="916.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="632.0" cy="916.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1120.0,760.0 1064.0,788.0 1064.0,703.0 1120.0,675.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1064.0,788.0 1120.0,816.0 1120.0,731.0 1064.0,703.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1120.0,675.0 1176.0,703.0 1120.0,731.0 1064.0,703.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="1040.0,800.0 984.0,828.0 984.0,736.0 1040.0,708.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="984.0,828.0 1040.0,856.0 1040.0,764.0 984.0,736.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1040.0,708.0 1096.0,736.0 1040.0,764.0 984.0,736.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="998.0" y="768.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1022.0" y="768.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="1044.0" cy="828.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="1038.0" y="812.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="1039.0" cy="802.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="1048.0" cy="796.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="1032.0" cy="796.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="880.0,880.0 824.0,908.0 824.0,758.0 880.0,730.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="824.0,908.0 880.0,936.0 880.0,786.0 824.0,758.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="880.0,730.0 936.0,758.0 880.0,786.0 824.0,758.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="838.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="862.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="838.0" y="820.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="862.0" y="820.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="838.0" y="792.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="862.0" y="792.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="884.0" cy="908.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="878.0" y="892.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="879.0" cy="882.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="888.0" cy="876.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="872.0" cy="876.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="720.0,960.0 664.0,988.0 664.0,888.0 720.0,860.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="664.0,988.0 720.0,1016.0 720.0,916.0 664.0,888.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="720.0,860.0 776.0,888.0 720.0,916.0 664.0,888.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="678.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="702.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="724.0" cy="988.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="718.0" y="972.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="719.0" cy="962.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="728.0" cy="956.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="712.0" cy="956.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1120.0,840.0 1064.0,868.0 1064.0,778.0 1120.0,750.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1064.0,868.0 1120.0,896.0 1120.0,806.0 1064.0,778.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1120.0,750.0 1176.0,778.0 1120.0,806.0 1064.0,778.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1078.0" y="808.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1102.0" y="808.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="1040.0,880.0 984.0,908.0 984.0,785.0 1040.0,757.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="984.0,908.0 1040.0,936.0 1040.0,813.0 984.0,785.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1040.0,757.0 1096.0,785.0 1040.0,813.0 984.0,785.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="998.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1022.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="998.0" y="820.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1022.0" y="820.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="960.0,920.0 904.0,948.0 904.0,874.0 960.0,846.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="904.0,948.0 960.0,976.0 960.0,902.0 904.0,874.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="960.0,846.0 1016.0,874.0 960.0,902.0 904.0,874.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+
+    <ellipse cx="964.0" cy="948.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="958.0" y="932.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="959.0" cy="922.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="968.0" cy="916.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="952.0" cy="916.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="880.0,960.0 824.0,988.0 824.0,861.0 880.0,833.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="824.0,988.0 880.0,1016.0 880.0,889.0 824.0,861.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="880.0,833.0 936.0,861.0 880.0,889.0 824.0,861.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="838.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="862.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="838.0" y="900.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="862.0" y="900.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="800.0,1000.0 744.0,1028.0 744.0,896.0 800.0,868.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="744.0,1028.0 800.0,1056.0 800.0,924.0 744.0,896.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="800.0,868.0 856.0,896.0 800.0,924.0 744.0,896.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="758.0" y="968.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="782.0" y="968.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="758.0" y="940.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="782.0" y="940.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="804.0" cy="1028.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="798.0" y="1012.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="799.0" cy="1002.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="808.0" cy="996.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="792.0" cy="996.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1280.0,840.0 1224.0,868.0 1224.0,742.0 1280.0,714.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1224.0,868.0 1280.0,896.0 1280.0,770.0 1224.0,742.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1280.0,714.0 1336.0,742.0 1280.0,770.0 1224.0,742.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1238.0" y="808.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1262.0" y="808.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1238.0" y="780.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1262.0" y="780.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="1200.0,880.0 1144.0,908.0 1144.0,769.0 1200.0,741.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1144.0,908.0 1200.0,936.0 1200.0,797.0 1144.0,769.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1200.0,741.0 1256.0,769.0 1200.0,797.0 1144.0,769.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1158.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1182.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1158.0" y="820.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1182.0" y="820.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="1204.0" cy="908.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="1198.0" y="892.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="1199.0" cy="882.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="1208.0" cy="876.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="1192.0" cy="876.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1040.0,960.0 984.0,988.0 984.0,897.0 1040.0,869.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="984.0,988.0 1040.0,1016.0 1040.0,925.0 984.0,897.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1040.0,869.0 1096.0,897.0 1040.0,925.0 984.0,897.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="998.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1022.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="960.0,1000.0 904.0,1028.0 904.0,887.0 960.0,859.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="904.0,1028.0 960.0,1056.0 960.0,915.0 904.0,887.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="960.0,859.0 1016.0,887.0 960.0,915.0 904.0,887.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="918.0" y="968.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="942.0" y="968.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="918.0" y="940.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="942.0" y="940.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="1360.0,880.0 1304.0,908.0 1304.0,791.0 1360.0,763.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1304.0,908.0 1360.0,936.0 1360.0,819.0 1304.0,791.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1360.0,763.0 1416.0,791.0 1360.0,819.0 1304.0,791.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1318.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1342.0" y="848.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="1364.0" cy="908.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="1358.0" y="892.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="1359.0" cy="882.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="1368.0" cy="876.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="1352.0" cy="876.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1280.0,920.0 1224.0,948.0 1224.0,851.0 1280.0,823.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1224.0,948.0 1280.0,976.0 1280.0,879.0 1224.0,851.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1280.0,823.0 1336.0,851.0 1280.0,879.0 1224.0,851.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1238.0" y="888.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1262.0" y="888.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="1284.0" cy="948.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="1278.0" y="932.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="1279.0" cy="922.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="1288.0" cy="916.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="1272.0" cy="916.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1200.0,960.0 1144.0,988.0 1144.0,879.0 1200.0,851.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1144.0,988.0 1200.0,1016.0 1200.0,907.0 1144.0,879.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1200.0,851.0 1256.0,879.0 1200.0,907.0 1144.0,879.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1158.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1182.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="1040.0,1040.0 984.0,1068.0 984.0,970.0 1040.0,942.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="984.0,1068.0 1040.0,1096.0 1040.0,998.0 984.0,970.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1040.0,942.0 1096.0,970.0 1040.0,998.0 984.0,970.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="998.0" y="1008.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1022.0" y="1008.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="1044.0" cy="1068.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="1038.0" y="1052.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="1039.0" cy="1042.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="1048.0" cy="1036.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="1032.0" cy="1036.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1440.0,920.0 1384.0,948.0 1384.0,848.0 1440.0,820.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1384.0,948.0 1440.0,976.0 1440.0,876.0 1384.0,848.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1440.0,820.0 1496.0,848.0 1440.0,876.0 1384.0,848.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1398.0" y="888.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1422.0" y="888.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="1360.0,960.0 1304.0,988.0 1304.0,845.0 1360.0,817.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1304.0,988.0 1360.0,1016.0 1360.0,873.0 1304.0,845.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1360.0,817.0 1416.0,845.0 1360.0,873.0 1304.0,845.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1318.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1342.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1318.0" y="900.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1342.0" y="900.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="1280.0,1000.0 1224.0,1028.0 1224.0,898.0 1280.0,870.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1224.0,1028.0 1280.0,1056.0 1280.0,926.0 1224.0,898.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1280.0,870.0 1336.0,898.0 1280.0,926.0 1224.0,898.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1238.0" y="968.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1262.0" y="968.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1238.0" y="940.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1262.0" y="940.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="1284.0" cy="1028.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="1278.0" y="1012.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="1279.0" cy="1002.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="1288.0" cy="996.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="1272.0" cy="996.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1200.0,1040.0 1144.0,1068.0 1144.0,984.0 1200.0,956.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1144.0,1068.0 1200.0,1096.0 1200.0,1012.0 1144.0,984.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1200.0,956.0 1256.0,984.0 1200.0,1012.0 1144.0,984.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<polygon points="1120.0,1080.0 1064.0,1108.0 1064.0,1004.0 1120.0,976.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1064.0,1108.0 1120.0,1136.0 1120.0,1032.0 1064.0,1004.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1120.0,976.0 1176.0,1004.0 1120.0,1032.0 1064.0,1004.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1078.0" y="1048.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1102.0" y="1048.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="1520.0,960.0 1464.0,988.0 1464.0,896.0 1520.0,868.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1464.0,988.0 1520.0,1016.0 1520.0,924.0 1464.0,896.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1520.0,868.0 1576.0,896.0 1520.0,924.0 1464.0,896.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1478.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1502.0" y="928.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="1440.0,1000.0 1384.0,1028.0 1384.0,913.0 1440.0,885.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1384.0,1028.0 1440.0,1056.0 1440.0,941.0 1384.0,913.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1440.0,885.0 1496.0,913.0 1440.0,941.0 1384.0,913.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1398.0" y="968.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1422.0" y="968.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+
+    <ellipse cx="1444.0" cy="1028.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="1438.0" y="1012.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="1439.0" cy="1002.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="1448.0" cy="996.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="1432.0" cy="996.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1360.0,1040.0 1304.0,1068.0 1304.0,938.0 1360.0,910.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1304.0,1068.0 1360.0,1096.0 1360.0,966.0 1304.0,938.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1360.0,910.0 1416.0,938.0 1360.0,966.0 1304.0,938.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+<rect x="1318.0" y="1008.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1342.0" y="1008.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1318.0" y="980.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<rect x="1342.0" y="980.0" width="6" height="8" fill="#FFE9B0" opacity="0.45"/>
+<polygon points="1280.0,1080.0 1224.0,1108.0 1224.0,1032.0 1280.0,1004.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1224.0,1108.0 1280.0,1136.0 1280.0,1060.0 1224.0,1032.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1280.0,1004.0 1336.0,1032.0 1280.0,1060.0 1224.0,1032.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+
+    <ellipse cx="1284.0" cy="1108.0" rx="8.819999999999999" ry="3.4299999999999993" fill="#2B313A" opacity="0.35"/>
+    <rect x="1278.0" y="1092.0" width="3" height="14" fill="#3A2A20" opacity="0.85"/>
+    <circle cx="1279.0" cy="1082.0" r="9.799999999999999" fill="#6F7782" opacity="0.92"/>
+    <circle cx="1288.0" cy="1076.0" r="6.8599999999999985" fill="#6F7782" opacity="0.8"/>
+    <circle cx="1272.0" cy="1076.0" r="6.369999999999999" fill="#6F7782" opacity="0.7"/>
+    
+<polygon points="1120.0,1160.0 1064.0,1188.0 1064.0,1101.0 1120.0,1073.0" fill="#2B313A" stroke="#000" stroke-opacity="0.15" stroke-width="0.6"/>
+<polygon points="1064.0,1188.0 1120.0,1216.0 1120.0,1129.0 1064.0,1101.0" fill="#6F7782" stroke="#000" stroke-opacity="0.18" stroke-width="0.6"/>
+<polygon points="1120.0,1073.0 1176.0,1101.0 1120.0,1129.0 1064.0,1101.0" fill="#2B313A" opacity="0.92" stroke="#000" stroke-opacity="0.12" stroke-width="0.5"/>
+  <rect x="0" y="0" width="1600" height="900" filter="url(#grain-W-105)"/>
+  
+    <g font-family="Inter, Helvetica, sans-serif">
+      <text x="60" y="60" font-size="14" fill="#E4E2DC" opacity="0.7" letter-spacing="4">GENESIS · W-105</text>
+      <text x="60" y="86" font-size="34" fill="#E4E2DC" opacity="0.95" letter-spacing="6">BROOKLYN</text>
+      <text x="60" y="112" font-size="11" fill="#E4E2DC" opacity="0.55" letter-spacing="2">NYC — Bed-Stuy / Crown Heights / Brownsville</text>
+      <text x="60" y="840" font-size="10" fill="#E4E2DC" opacity="0.55" letter-spacing="2">40.6782, -73.9442</text>
+      <text x="60" y="858" font-size="12" fill="#E4E2DC" opacity="0.7" letter-spacing="1.5" font-style="italic">"Stoop is altar. Block is parish. Aunties are deacons."</text>
+    </g>
+    
+</svg>
