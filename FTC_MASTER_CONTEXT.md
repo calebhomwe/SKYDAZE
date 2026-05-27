@@ -122,20 +122,9 @@ Use for campaign generation across hoodies, track pants, shoes, logo tees, long 
 
 ---
 
-## 9. GENESIS GAME (BIBLE-ROOTED WALKING GAME)
+## 9. PARKED MODULES
 
-A contemplative walking game shipped alongside the brand. Same theological ethic, different medium.
-
-- **Worlds:** 13 total — 6 biblical (Eden, Galilee, Bethlehem, Jerusalem, Sinai, Gethsemane), 7 modern diaspora (Scarborough, Perth, DMV, Maryland, Brooklyn, South London, Lagos Island). Defined in `game/genesis/world_schema.py`.
-- **Characters:** 18 — 11 biblical figures + 7 modern diaspora NPCs. `game/genesis/characters.py`.
-- **Items:** 35 collectibles with weight + rarity. `game/genesis/items.py`.
-- **Visual style:** Monument Valley isometric × Studio Ghibli atmospheric. Procedural SVG world tiles via `game/genesis/mesh_renderer.py`.
-- **Audio:** Field recordings + ambient layers (Nils Frahm + Arvo Pärt reference). Per-world brief in `world_schema.py`.
-- **Mechanics:** Restraint stat (high = patient = unlocks more parables); weight stat (item carrying capacity); 30 parables in 5-fragment unlocks per NPC interaction.
-- **Multiplayer:** Silent presence via CloudKit — other players as silhouettes carrying lamps. No chat, no voice. Gifting via shelters only.
-- **Monetization:** Free download. First 3 worlds free. Two one-time IAP packs ($4.99 each, $11.99 bundle). No microtransactions. No loot boxes. No ads.
-- **Liturgical calendar:** Advent (Dec) → Bethlehem expansion; Lent → Gethsemane; Easter → Jerusalem; Harvest (Oct) → Maryland.
-- **Playbook:** [`research/game_dev/GAME_DEV_PLAYBOOK.md`](./research/game_dev/GAME_DEV_PLAYBOOK.md).
+- **GENESIS game** lives at [`parked/genesis-game/`](./parked/genesis-game/). Bible-rooted walking game scaffold (Python world schema + Swift Eden vertical slice + 13 world SVGs + Roblox shirt-customization scaffold). NOT part of the FTC brand pipeline. Reserved for integration into a future Christian game and/or Roblox experience where users customize shirts. Do not wire Tier-29-onward agents into this module unless explicitly directed.
 
 ---
 

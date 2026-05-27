@@ -8,11 +8,11 @@
 
 | Artifact | Open it |
 | :--- | :--- |
-| **Visual gallery** — 30 streetwear graphics + 13 GENESIS worlds | [`artifacts/gallery.html`](./artifacts/gallery.html) — open in any browser |
-| **GENESIS worlds** — Eden through Lagos Island | [`artifacts/game/genesis/worlds/`](./artifacts/game/genesis/worlds/) |
+| **Visual gallery** — 30 streetwear graphics + 13 concept world tiles | [`artifacts/gallery.html`](./artifacts/gallery.html) — open in any browser |
 | **Streetwear graphics** — 15 procedural styles, 30 renders | [`artifacts/graphics/`](./artifacts/graphics/) |
-| **Brand research** — Yeezy, Off-White, Nike, etc. (8 dossiers) | [`research/brands/`](./research/brands/) |
+| **Brand research** — Yeezy, Off-White, Nike, etc. (11 dossiers) | [`research/brands/`](./research/brands/) |
 | **iOS app scaffold** — SwiftUI, calls Fal/Novita/OpenRouter | [`mobile/ftc-ios/`](./mobile/ftc-ios/) |
+| **Parked: GENESIS game / Roblox** — for later integration | [`parked/genesis-game/`](./parked/genesis-game/) |
 
 ---
 
@@ -21,8 +21,8 @@
 ### Brand pipeline (`ftc/`, `workers/`, `agents/`)
 1000-design combinatorial collection engine. 300 specialized AI agents across 34 tiers, each with a tight system prompt, gates, and handoffs. DeepSeek Flash v4 drives high-throughput concept generation; Claude Opus 4.7 owns the orchestration tier. See [`agents/README.md`](./agents/README.md).
 
-### GENESIS game (`game/genesis/`)
-A contemplative walking game where the player visits 13 worlds — 6 biblical (Eden, Galilee, Bethlehem, Jerusalem, Sinai, Gethsemane) and 7 modern diaspora cities (Scarborough, Perth, DMV, Maryland, Brooklyn, South London, Lagos Island) — collecting items and unlocking parables. Built in SwiftUI. See [`research/game_dev/GAME_DEV_PLAYBOOK.md`](./research/game_dev/GAME_DEV_PLAYBOOK.md).
+### Parked work — GENESIS game (`parked/genesis-game/`)
+Scaffold for a future Bible-rooted walking game / Roblox shirt-customization experience. Includes the Python world schema (13 worlds), the Swift Eden vertical slice, 13 rendered world SVGs as concept art, the game-dev playbook, and a Roblox Lua shirt-customizer scaffold. **Not wired into the brand pipeline.** Ready to lift into a separate game repo or your Roblox project. See [`parked/genesis-game/README.md`](./parked/genesis-game/README.md).
 
 ### iOS app (`mobile/ftc-ios/`)
 SwiftUI app with four tabs:
