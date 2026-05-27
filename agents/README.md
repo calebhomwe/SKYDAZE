@@ -1,7 +1,8 @@
 # FTC Agent Village
 
-> 250 specialized agents that execute the FTC pipeline under the
+> 290 specialized agents that execute the FTC pipeline under the
 > [FTC_MASTER_CONTEXT.md](../FTC_MASTER_CONTEXT.md) constitution.
+> (Tier 31 / GENESIS Game Dev was parked → `parked/genesis-game/`. IDs FTC-271..280 are intentionally unused.)
 
 ## TL;DR
 
@@ -48,7 +49,12 @@
 | 26 | Wholesale & B2B | 10 |
 | 27 | Cross-Platform Media | 10 |
 | 28 | Data Science & ML Intelligence | 10 |
-| | **Total** | **250** |
+| 29 | Brand Research Intelligence | 10 |
+| 30 | Graphic Design Engine | 10 |
+| _31_ | _GENESIS Game Dev — parked_ | _0_ |
+| 32 | Multi-Provider Image Router | 10 |
+| 33 | Mobile App Build & Ship | 10 |
+| | **Total** | **290** |
 
 ## Standard Lifecycle (one drop)
 

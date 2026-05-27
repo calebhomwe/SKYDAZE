@@ -1,5 +1,5 @@
 # FTC FULL TIME CHRISTIAN — MASTER CONTEXT FILE
-> **VERSION:** 2.2 | **LAST UPDATED:** 2026-05-25  
+> **VERSION:** 2.3 | **LAST UPDATED:** 2026-05-26  
 > **PURPOSE:** Single source of truth for all AI agents. Reference this file before ANY generation task.
 
 ---
@@ -122,9 +122,71 @@ Use for campaign generation across hoodies, track pants, shoes, logo tees, long 
 
 ---
 
+## 9. PARKED MODULES
+
+- **GENESIS game** lives at [`parked/genesis-game/`](./parked/genesis-game/). Bible-rooted walking game scaffold (Python world schema + Swift Eden vertical slice + 13 world SVGs + Roblox shirt-customization scaffold). NOT part of the FTC brand pipeline. Reserved for integration into a future Christian game and/or Roblox experience where users customize shirts. Do not wire Tier-29-onward agents into this module unless explicitly directed.
+
+---
+
+## 10. MOBILE APP (FTC iOS, SwiftUI)
+
+Repository: [`mobile/ftc-ios/`](./mobile/ftc-ios/).
+
+- **Tabs:** Generate / Gallery / Drops / Creator.
+- **Generation flow:** User types concept → `ProviderRouter` actor tries providers in cost order → image returned in 3-30s.
+- **Provider routing:** Novita Flux Schnell → OpenRouter Flux Schnell → Fal Flux Schnell → Seedream-4 → Flux 1.1 Pro → Gemini Flash Image → Nano Banana 2. Fallback to procedural SVG.
+- **Persistence:** Local Documents directory; optional CloudKit sync; cost log at `Documents/cost_log.jsonl` (only structured local file in markdown-first project).
+- **Creator portal:** Auth-separate tab. Unique discount code, real-time commission, content packs, withdraw-to-bank (Stripe Connect roadmap).
+- **Push:** APNs for drops and restocks only. No marketing-spam.
+- **Bot detection:** Device fingerprint + behavioral signals at checkout. <1% false-positive rate target.
+- **Platforms:** iOS 17+ at v1. macOS via Catalyst free. visionOS port planned for spatial gallery.
+
+---
+
+## 11. BRAND RESEARCH PROTOCOL (MARKDOWN ONLY)
+
+All competitive intelligence lives at [`research/`](./research/) in **markdown, never JSON**. Per-brand dossier structure:
+
+1. Founding logic + customer
+2. Visual codes table
+3. Strategic moves
+4. What we steal (FTC application)
+5. What we avoid (with specific reasoning)
+6. Colorways → FTC palette translation
+7. Typography lessons
+8. Photography & art direction
+9. Materials worth replicating
+10. Failure modes to avoid
+11. TL;DR — apply to FTC
+
+**Dossiers v1 (committed):** Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP.
+**Master synthesis:** [`research/STREETWEAR_PLAYBOOK.md`](./research/STREETWEAR_PLAYBOOK.md) — the 10 commandments + forbidden-moves list.
+
+Cadence: each dossier curator (Tier 29) refreshes monthly. Playbook synthesizer (FTC-260) updates quarterly.
+
+---
+
+## 12. MULTI-PROVIDER IMAGE ROUTING
+
+Every image-gen request flows through `workers/multi_provider_router.py` (Tier 32). Logic:
+
+1. **Cost-ordered fallback chain** (cheapest → costliest):
+   - Novita Flux Schnell ($0.001) → OpenRouter Flux Schnell ($0.003) → Fal Flux Schnell ($0.003) → Fal Nano Banana 2 ($0.03) → Fal Seedream-4 ($0.04) → OpenRouter Flux 1.1 Pro ($0.04) → OpenRouter Gemini Flash Image ($0.04) → Fal Flux Pro ($0.05).
+2. **Background discipline:** `BG_BY_SECTION` enforces alternating black/white backdrop — tee: white, tracksuit: black, outerwear: white, accessory: black. Per-drop inversion allowed.
+3. **Cost tracking:** Markdown ledger at `artifacts/work_log/render_routing.md` and per-day rollup at `artifacts/ops/cost_ledger.md`.
+4. **Circuit breaker:** Tier 32 budget circuit breaker halts at 100% of `FTC_DAILY_BUDGET_USD`, warns at 80%.
+5. **Quality rerank:** When multiple providers succeed on the same concept, `image-quality-rerank-arbiter` (FTC-284) picks the winner; losers move to `artifacts/_archive/`.
+6. **HuggingFace open-weights bridge:** `huggingface-zimae-explorer` (FTC-269) and `hf-zimae-bridge` (FTC-290) keep an open lane for Zimae / Stable Cascade / PixArt models as a cheap supplementary path.
+
+---
+
 > **USAGE INSTRUCTION FOR CLAUDE:**  
 > Before responding to ANY FTC-related query, read this file in full.  
 > If asked to generate concepts, validate against Section 4 + Section 5.  
 > If asked to write code, comply with Section 3 + Section 6.  
+> If asked about the game, see Section 9.  
+> If asked about the iOS app, see Section 10.  
+> If asked about a competitor brand, see Section 11.  
+> If asked to render an image, route via Section 12.  
 > If uncertain about aesthetic alignment, default to Section 2 + Section 1.  
 > **NEVER deviate from this context. This is the brand.**

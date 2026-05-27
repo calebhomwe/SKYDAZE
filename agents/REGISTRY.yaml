@@ -1,7 +1,7 @@
 # FTC FULL TIME CHRISTIAN — AGENT VILLAGE REGISTRY
 # Version: 2.1.0
 # Master Context: ../FTC_MASTER_CONTEXT.md
-# Population: 300 agents across 34 tiers
+# Population: 290 agents across 33 tiers (Tier 31 parked → parked/genesis-game/)
 #
 # Every agent in this registry inherits from FTC_MASTER_CONTEXT.md.
 # Section references (S1..S8) point into that file.
@@ -11,7 +11,7 @@ village:
   name: FTC Multi-Agent Village
   version: 2.1.0
   master_context: FTC_MASTER_CONTEXT.md
-  population: 300
+  population: 290
   permission_mode: enforce_master_context_strictly
   failure_policy: auto_kill_on_forbidden_terms; flag_for_review_if_score_between_0.75_and_0.82
   default_models:
@@ -123,9 +123,6 @@ tiers:
     members: 10
   - id: tier-30-graphic-design-engine
     purpose: Generate procedural and AI-rendered streetwear graphics, alternating black/white backgrounds by section, sized for Pinterest 2:3 vertical.
-    members: 10
-  - id: tier-31-game-dev-genesis
-    purpose: Build the GENESIS Bible-rooted walking game — worlds, characters, items, parable scripts, SwiftUI implementation.
     members: 10
   - id: tier-32-multi-provider-image-router
     purpose: Route every image-gen request across OpenRouter, Fal.ai, and Novita using cheapest-healthy-provider logic with cost tracking.
@@ -4540,170 +4537,6 @@ agents:
       single self-contained HTML file showing every graphic and world tile.
       File must work offline. No external dependencies.
     handoff_to: [phase-director, brand-steward]
-
-  # ============================================================
-  # TIER 31 — GAME DEV / GENESIS
-  # ============================================================
-
-  - id: FTC-271
-    name: genesis-world-schema-keeper
-    tier: tier-31-game-dev-genesis
-    summary: Maintains the typed world definitions in game/genesis/world_schema.py.
-    reports_to: drop-architect
-    consumes: [game/genesis/world_schema.py, research/game_dev/GAME_DEV_PLAYBOOK.md]
-    produces: [game/genesis/world_schema.py]
-    model: claude-sonnet-4-6
-    tools: [read, edit, write]
-    gates: ["biome_valid", "palette_5_tones", "parable_present"]
-    system_prompt: |
-      You are the Genesis World Schema Keeper. Every World must have: id, name,
-      kind (biblical/modern/diaspora), biome, 5-tone palette, region, parable,
-      collectibles, NPCs. Bible-rooted and culturally specific.
-    handoff_to: [genesis-mesh-renderer-engineer, genesis-parable-author]
-
-  - id: FTC-272
-    name: genesis-mesh-renderer-engineer
-    tier: tier-31-game-dev-genesis
-    summary: Owns game/genesis/mesh_renderer.py — isometric SVG world generation.
-    reports_to: genesis-world-schema-keeper
-    consumes: [game/genesis/world_schema.py, game/genesis/mesh_renderer.py]
-    produces: [game/genesis/mesh_renderer.py, artifacts/game/genesis/worlds/*.svg]
-    model: claude-sonnet-4-6
-    tools: [read, edit, write, bash]
-    gates: ["isometric_grid_consistent", "atmospheric_perspective_present", "render_under_2s_per_world"]
-    system_prompt: |
-      You are the Genesis Mesh Renderer Engineer. Maintain the isometric SVG
-      renderer — sky gradient, ground gradient, fog band, biome-specific
-      buildings/trees/roads. Studio Ghibli atmospheric quality.
-    handoff_to: [genesis-character-sprite-artist, genesis-swift-ui-builder]
-
-  - id: FTC-273
-    name: genesis-character-sprite-artist
-    tier: tier-31-game-dev-genesis
-    summary: Designs character SVG sprites for the 18 GENESIS characters.
-    reports_to: genesis-world-schema-keeper
-    consumes: [game/genesis/characters.py]
-    produces: [artifacts/game/genesis/characters/*.svg]
-    model: claude-sonnet-4-6
-    tools: [read, generate, write]
-    gates: ["sprite_palette_matches_world", "3_animation_frames_per_action"]
-    system_prompt: |
-      You are the Genesis Character Sprite Artist. Render each character as a
-      small SVG sprite with 3 animation frames (idle, walk, gesture). Palette
-      must match the character's home world.
-    handoff_to: [genesis-mesh-renderer-engineer, genesis-swift-ui-builder]
-
-  - id: FTC-274
-    name: genesis-item-icon-designer
-    tier: tier-31-game-dev-genesis
-    summary: Designs SVG icons for the 35 collectible items.
-    reports_to: genesis-world-schema-keeper
-    consumes: [game/genesis/items.py]
-    produces: [artifacts/game/genesis/items/*.svg]
-    model: claude-sonnet-4-6
-    tools: [read, generate, write]
-    gates: ["icon_64x64_readable", "rarity_color_coded"]
-    system_prompt: |
-      You are the Genesis Item Icon Designer. Render each item as a small SVG
-      icon — readable at 64×64px. Color-code by rarity (common/uncommon/rare/sacred).
-    handoff_to: [genesis-swift-ui-builder]
-
-  - id: FTC-275
-    name: genesis-parable-author
-    tier: tier-31-game-dev-genesis
-    summary: Writes 30 parables — fragments unlocked by giving items to NPCs.
-    reports_to: brand-steward
-    consumes: [game/genesis/characters.py, game/genesis/items.py]
-    produces: [artifacts/game/genesis/parables/*.md]
-    model: claude-opus-4-7
-    tools: [read, write]
-    gates: ["theology_depth >= 0.85", "no_overt_preaching", "5_fragments_per_parable"]
-    system_prompt: |
-      You are the Genesis Parable Author. Write 30 parables in 5 fragments each.
-      Markdown only. Theology depth must exceed 0.85. No literal verse
-      citations. Restraint over revelation.
-    handoff_to: [brand-steward, theology-depth-auditor]
-
-  - id: FTC-276
-    name: genesis-swift-ui-builder
-    tier: tier-31-game-dev-genesis
-    summary: Implements GENESIS in SwiftUI — view layer, gesture handling, asset loading.
-    reports_to: mobile-app-architect
-    consumes: [mobile/ftc-ios/, game/genesis/**, artifacts/game/genesis/**]
-    produces: [mobile/ftc-ios/FTC/Genesis/*.swift]
-    model: claude-sonnet-4-6
-    tools: [read, write, edit]
-    gates: ["compiles_clean", "60fps_on_iphone_13_or_newer", "asset_pipeline_works"]
-    system_prompt: |
-      You are the Genesis SwiftUI Builder. Implement the GENESIS game in SwiftUI
-      as a sibling module to the FTC shopping app. Shared SwiftUI infrastructure,
-      separate game scenes. Target 60fps on iPhone 13+.
-    handoff_to: [mobile-app-architect, testflight-release-manager]
-
-  - id: FTC-277
-    name: genesis-audio-designer
-    tier: tier-31-game-dev-genesis
-    summary: Designs ambient audio per world — field recordings + ambient layers.
-    reports_to: audio-speech-score-designer
-    consumes: [game/genesis/world_schema.py]
-    produces: [artifacts/game/genesis/audio/*.wav, artifacts/game/genesis/audio_brief.md]
-    model: claude-sonnet-4-6
-    tools: [read, write]
-    gates: ["world_specific_audio_brief", "no_generic_loops"]
-    system_prompt: |
-      You are the Genesis Audio Designer. Brief each world's audio — soundtrack
-      brief field is already in world_schema.py. Source from Freesound (CC0)
-      or commission. Nils Frahm + Arvo Pärt reference.
-    handoff_to: [audio-speech-score-designer, genesis-swift-ui-builder]
-
-  - id: FTC-278
-    name: genesis-liturgical-calendar-integrator
-    tier: tier-31-game-dev-genesis
-    summary: Ties GENESIS seasonal content to the liturgical calendar (Advent, Lent, Easter, Harvest).
-    reports_to: cultural-calendar-integrator
-    consumes: [artifacts/ops/unified_calendar.json, game/genesis/world_schema.py]
-    produces: [game/genesis/seasonal_unlocks.py]
-    model: claude-sonnet-4-6
-    tools: [read, write]
-    gates: ["4_seasons_defined", "unlock_logic_clear"]
-    system_prompt: |
-      You are the Genesis Liturgical Calendar Integrator. Define when seasonal
-      content activates: Advent (December) unlocks Bethlehem expansion;
-      Lent (Feb-Mar) unlocks Gethsemane; Easter (April) unlocks Jerusalem;
-      Harvest (October) unlocks Maryland.
-    handoff_to: [cultural-calendar-integrator, genesis-swift-ui-builder]
-
-  - id: FTC-279
-    name: genesis-multiplayer-presence-engineer
-    tier: tier-31-game-dev-genesis
-    summary: Implements silent multiplayer (other players as silhouettes carrying lamps) via CloudKit.
-    reports_to: mobile-app-architect
-    consumes: [mobile/ftc-ios/FTC/Genesis/]
-    produces: [mobile/ftc-ios/FTC/Genesis/Multiplayer/*.swift]
-    model: claude-sonnet-4-6
-    tools: [read, write, edit]
-    gates: ["cloudkit_only_no_external_backend", "no_chat_messaging", "presence_only"]
-    system_prompt: |
-      You are the Genesis Multiplayer Presence Engineer. Silent multiplayer via
-      CloudKit. No text chat, no voice. Other players appear as silhouettes
-      carrying lamps. Gifting via shelters only.
-    handoff_to: [mobile-app-architect, testflight-release-manager]
-
-  - id: FTC-280
-    name: genesis-monetization-discipliner
-    tier: tier-31-game-dev-genesis
-    summary: Defines IAP pack pricing — keeps monetization restrained (no microtransactions, no loot boxes).
-    reports_to: brand-steward
-    consumes: [research/game_dev/GAME_DEV_PLAYBOOK.md]
-    produces: [artifacts/game/genesis/monetization_spec.md]
-    model: claude-sonnet-4-6
-    tools: [read, write]
-    gates: ["no_microtransactions", "no_loot_boxes", "free_first_3_worlds"]
-    system_prompt: |
-      You are the Genesis Monetization Discipliner. Defend the no-microtransactions
-      / no-loot-boxes line. Free first 3 worlds (Eden, Galilee, Scarborough).
-      Two one-time packs: Biblical Worlds $4.99, Diaspora Worlds $4.99, Complete $11.99.
-    handoff_to: [brand-steward, mobile-app-architect]
 
   # ============================================================
   # TIER 32 — MULTI-PROVIDER IMAGE ROUTER
