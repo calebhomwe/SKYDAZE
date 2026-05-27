@@ -29,7 +29,7 @@ python3 - <<'PY'
 from pathlib import Path
 import cairosvg
 src = Path('artifacts/graphics')
-dst = Path('parked/genesis-game/roblox/shirt-decals')
+dst = Path('parked/genesis-roblox-edition/roblox/shirt-decals')
 dst.mkdir(parents=True, exist_ok=True)
 for svg in sorted(src.glob('*.svg')):
     out = dst / (svg.stem + '.png')

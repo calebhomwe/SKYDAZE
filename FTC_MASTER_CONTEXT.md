@@ -124,7 +124,7 @@ Use for campaign generation across hoodies, track pants, shoes, logo tees, long 
 
 ## 9. PARKED MODULES
 
-- **GENESIS game** lives at [`parked/genesis-game/`](./parked/genesis-game/). Bible-rooted walking game scaffold (Python world schema + Swift Eden vertical slice + 13 world SVGs + Roblox shirt-customization scaffold). NOT part of the FTC brand pipeline. Reserved for integration into a future Christian game and/or Roblox experience where users customize shirts. Do not wire Tier-29-onward agents into this module unless explicitly directed.
+- **GENESIS game** lives at [`parked/genesis-roblox-edition/`](./parked/genesis-roblox-edition/). Bible-rooted walking game scaffold (Python world schema + Swift Eden vertical slice + 13 world SVGs + Roblox shirt-customization scaffold). NOT part of the FTC brand pipeline. Reserved for integration into a future Christian game and/or Roblox experience where users customize shirts. Do not wire Tier-29-onward agents into this module unless explicitly directed.
 
 ---
 

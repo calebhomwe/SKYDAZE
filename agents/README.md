@@ -2,7 +2,7 @@
 
 > 290 specialized agents that execute the FTC pipeline under the
 > [FTC_MASTER_CONTEXT.md](../FTC_MASTER_CONTEXT.md) constitution.
-> (Tier 31 / GENESIS Game Dev was parked → `parked/genesis-game/`. IDs FTC-271..280 are intentionally unused.)
+> (Tier 31 / GENESIS Game Dev was parked → `parked/genesis-roblox-edition/`. IDs FTC-271..280 are intentionally unused.)
 
 ## TL;DR
 

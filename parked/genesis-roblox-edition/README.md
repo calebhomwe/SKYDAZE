@@ -14,7 +14,7 @@ So it lives here, fully self-contained, ready to be lifted into either:
 ## What's inside
 
 ```
-parked/genesis-game/
+parked/genesis-roblox-edition/
 ├── python/genesis/       # World/character/item schemas (Python, engine-agnostic)
 │   ├── world_schema.py   # 13 worlds: 6 biblical + 7 diaspora
 │   ├── characters.py     # 18 characters: 11 biblical + 7 modern
@@ -63,7 +63,7 @@ The 30 FTC streetwear graphics in `../../artifacts/graphics/*.svg` can each beco
 
 ## When this gets un-parked
 
-Lift the entire `parked/genesis-game/` directory into either:
+Lift the entire `parked/genesis-roblox-edition/` directory into either:
 - a new `calebhomwe/genesis-game` repository (recommended — clean separation)
 - the FTC Roblox game repo (when it exists)
 

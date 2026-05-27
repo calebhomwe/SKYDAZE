@@ -1,6 +1,6 @@
 # SKYDAZE — FTC FULL TIME CHRISTIAN
 
-> Luxury Christian streetwear brand pipeline + GENESIS Bible-rooted walking game + cross-platform AI-generation iOS app. Built by a 300-agent village under one [master context](./FTC_MASTER_CONTEXT.md) constitution.
+> Luxury Christian streetwear brand pipeline + cross-platform AI-generation iOS app. Built by a 290-agent village under one [master context](./FTC_MASTER_CONTEXT.md) constitution. A separate Bible-rooted game scaffold lives parked at [`parked/genesis-roblox-edition/`](./parked/genesis-roblox-edition/).
 
 ---
 
@@ -12,17 +12,17 @@
 | **Streetwear graphics** — 15 procedural styles, 30 renders | [`artifacts/graphics/`](./artifacts/graphics/) |
 | **Brand research** — Yeezy, Off-White, Nike, etc. (11 dossiers) | [`research/brands/`](./research/brands/) |
 | **iOS app scaffold** — SwiftUI, calls Fal/Novita/OpenRouter | [`mobile/ftc-ios/`](./mobile/ftc-ios/) |
-| **Parked: GENESIS game / Roblox** — for later integration | [`parked/genesis-game/`](./parked/genesis-game/) |
+| **Parked: GENESIS game / Roblox** — for later integration | [`parked/genesis-roblox-edition/`](./parked/genesis-roblox-edition/) |
 
 ---
 
 ## What's in this repo
 
 ### Brand pipeline (`ftc/`, `workers/`, `agents/`)
-1000-design combinatorial collection engine. 300 specialized AI agents across 34 tiers, each with a tight system prompt, gates, and handoffs. DeepSeek Flash v4 drives high-throughput concept generation; Claude Opus 4.7 owns the orchestration tier. See [`agents/README.md`](./agents/README.md).
+1000-design combinatorial collection engine. 290 specialized AI agents across 33 tiers, each with a tight system prompt, gates, and handoffs. DeepSeek Flash v4 drives high-throughput concept generation; Claude Opus 4.7 owns the orchestration tier. See [`agents/README.md`](./agents/README.md).
 
-### Parked work — GENESIS game (`parked/genesis-game/`)
-Scaffold for a future Bible-rooted walking game / Roblox shirt-customization experience. Includes the Python world schema (13 worlds), the Swift Eden vertical slice, 13 rendered world SVGs as concept art, the game-dev playbook, and a Roblox Lua shirt-customizer scaffold. **Not wired into the brand pipeline.** Ready to lift into a separate game repo or your Roblox project. See [`parked/genesis-game/README.md`](./parked/genesis-game/README.md).
+### Parked work — GENESIS game (`parked/genesis-roblox-edition/`)
+Scaffold for a future Bible-rooted walking game / Roblox shirt-customization experience. Includes the Python world schema (13 worlds), the Swift Eden vertical slice, 13 rendered world SVGs as concept art, the game-dev playbook, and a Roblox Lua shirt-customizer scaffold. **Not wired into the brand pipeline.** Ready to lift into a separate game repo or your Roblox project. See [`parked/genesis-roblox-edition/README.md`](./parked/genesis-roblox-edition/README.md).
 
 ### iOS app (`mobile/ftc-ios/`)
 SwiftUI app with four tabs:
@@ -33,8 +33,7 @@ SwiftUI app with four tabs:
 
 ### Brand research (`research/`)
 - [`research/STREETWEAR_PLAYBOOK.md`](./research/STREETWEAR_PLAYBOOK.md) — 10 commandments synthesized from 8 brand dossiers
-- [`research/brands/`](./research/brands/) — deep markdown dossiers on Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova
-- [`research/game_dev/GAME_DEV_PLAYBOOK.md`](./research/game_dev/GAME_DEV_PLAYBOOK.md) — Monument Valley / Sky:CoTL / Studio Ghibli references for GENESIS
+- [`research/brands/`](./research/brands/) — deep markdown dossiers on Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP (11 brands)
 
 ### Image generation infrastructure (`workers/`)
 - `openrouter_image_worker.py` — Gemini 2.5 Flash Image, Flux 1.1 Pro, DALL·E 3
@@ -63,7 +62,6 @@ Keys needed (all optional in dry-run mode):
 ### 2. Generate visible output (no keys required)
 ```bash
 make graphics   # 30 SVG streetwear graphics
-make worlds     # 13 SVG GENESIS world tiles
 make gallery    # rebuild artifacts/gallery.html
 ```
 
@@ -87,7 +85,6 @@ open Package.swift  # opens in Xcode
 make youtube-harvest        # dry-run synthesis
 make youtube-harvest-real   # live transcripts (no key needed)
 make brand-research         # lists dossiers + opens playbook
-make game-dev               # lists game assets
 make mobile-build           # iOS build instructions
 ```
 
