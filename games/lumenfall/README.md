@@ -61,7 +61,7 @@ python3 games/lumenfall/tools/generate_chart.py custom --title "My Chart" --coun
 
 ## Agent squad (OpenRouter Spawn)
 
-Best coding models for app polish — see `artifacts/lumenfall/agent_squad.md`.
+Best coding models for app polish — see `ops/spawn/LUMENFALL_SQUAD.md`.
 
 ```bash
 make spawn-lumenfall-plan

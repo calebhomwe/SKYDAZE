@@ -9,12 +9,17 @@ const SKY_HIT_Y := 160.0
 
 var fever_t := 0.0
 var shake_strength: float = 0.0
+var _lane_pulse := {"floor": [0.0, 0.0, 0.0, 0.0], "sky": [0.0, 0.0, 0.0, 0.0]}
 
 
 func _process(delta: float) -> void:
 	fever_t += delta
 	shake_strength = lerpf(shake_strength, 0.0, delta * 8.0)
 	position.x = sin(fever_t * 40.0) * shake_strength
+	for plane in _lane_pulse.keys():
+		var arr: Array = _lane_pulse[plane]
+		for i in arr.size():
+			arr[i] = maxf(0.0, arr[i] - delta * 4.0)
 	queue_redraw()
 
 
@@ -30,6 +35,15 @@ func lane_x(lane: float, viewport_width: float) -> float:
 
 func trigger_shake(amount: float = 4.0) -> void:
 	shake_strength = maxf(shake_strength, amount)
+
+
+func pulse_lane(plane: String, lane: int, strength: float = 1.0) -> void:
+	if not _lane_pulse.has(plane):
+		return
+	var arr: Array = _lane_pulse[plane]
+	if lane < 0 or lane >= arr.size():
+		return
+	arr[lane] = maxf(arr[lane], strength)
 
 
 func _draw_plane(vp: Vector2, hit_y: float, top_y: float, base_col: Color, glow_col: Color, fever: float) -> void:
