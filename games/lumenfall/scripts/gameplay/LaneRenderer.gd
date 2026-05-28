@@ -46,12 +46,18 @@ func pulse_lane(plane: String, lane: int, strength: float = 1.0) -> void:
 	arr[lane] = maxf(arr[lane], strength)
 
 
-func _draw_plane(vp: Vector2, hit_y: float, top_y: float, base_col: Color, glow_col: Color, fever: float) -> void:
+func _draw_plane(vp: Vector2, hit_y: float, top_y: float, base_col: Color, glow_col: Color, fever: float, plane: String) -> void:
+	var pulses: Array = _lane_pulse.get(plane, [0.0, 0.0, 0.0, 0.0])
 	for i in LANE_COUNT:
 		var x: float = lane_x(float(i), vp.x)
 		draw_line(Vector2(x, top_y), Vector2(x, hit_y + 30), base_col, 2.0)
-		var glow := glow_col * Color(1, 1, 1, 0.08 + fever * 0.14)
-		draw_line(Vector2(x - 1, top_y), Vector2(x - 1, hit_y + 30), glow, 4.0)
+		var lane_pulse_v: float = float(pulses[i]) if i < pulses.size() else 0.0
+		var glow := glow_col * Color(1, 1, 1, 0.08 + fever * 0.14 + lane_pulse_v * 0.35)
+		var width: float = 4.0 + lane_pulse_v * 6.0
+		draw_line(Vector2(x - 1, top_y), Vector2(x - 1, hit_y + 30), glow, width)
+		if lane_pulse_v > 0.05:
+			var ring := glow_col * Color(1, 1, 1, lane_pulse_v * 0.5)
+			draw_circle(Vector2(x, hit_y), 14.0 + lane_pulse_v * 24.0, ring)
 	var pulse: float = 0.5 + 0.5 * sin(fever_t * 4.0)
 	var hit_col := Color(1.0, 1.0, 1.0, 0.35 + pulse * 0.25 + fever * 0.2)
 	draw_line(Vector2(40, hit_y), Vector2(vp.x - 40, hit_y), hit_col, 3.0)
@@ -60,8 +66,8 @@ func _draw_plane(vp: Vector2, hit_y: float, top_y: float, base_col: Color, glow_
 func _draw() -> void:
 	var vp: Vector2 = get_viewport_rect().size
 	var fever: float = 1.0 if GameState.fever_active else 0.0
-	_draw_plane(vp, SKY_HIT_Y, 60.0, Color(0.2, 0.12, 0.35, 0.7), Color(0.85, 0.35, 1.0, 1.0), fever)
-	_draw_plane(vp, FLOOR_HIT_Y, 300.0, Color(0.1, 0.14, 0.28, 0.65), Color(0.0, 0.85, 1.0, 1.0), fever)
+	_draw_plane(vp, SKY_HIT_Y, 60.0, Color(0.2, 0.12, 0.35, 0.7), Color(0.85, 0.35, 1.0, 1.0), fever, "sky")
+	_draw_plane(vp, FLOOR_HIT_Y, 300.0, Color(0.1, 0.14, 0.28, 0.65), Color(0.0, 0.85, 1.0, 1.0), fever, "floor")
 	# Plane labels
 	draw_string(ThemeDB.fallback_font, Vector2(48, SKY_HIT_Y - 12), "SKY", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color(0.85, 0.55, 1.0, 0.55))
 	draw_string(ThemeDB.fallback_font, Vector2(48, FLOOR_HIT_Y - 12), "FLOOR", HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color(0.4, 0.85, 1.0, 0.55))

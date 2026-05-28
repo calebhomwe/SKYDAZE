@@ -279,6 +279,8 @@ func _resolve_hit(note, kind: String) -> void:
 	_burst_at(note.position, kind, note.plane)
 	if _feedback:
 		_feedback.show_hit(note.position, kind)
+	if _lanes.has_method("pulse_lane"):
+		_lanes.pulse_lane(note.plane, note.lane, 1.0 if kind == "pure" else 0.65)
 	if kind == "pure":
 		_lanes.trigger_shake(5.0 if note.plane == "floor" else 3.0)
 	_active.erase(note)
