@@ -5,6 +5,8 @@ class_name BeatmapPlayer
 const NoteNodeClass = preload("res://scripts/gameplay/NoteNode.gd")
 const JudgementSystemClass = preload("res://scripts/gameplay/JudgementSystem.gd")
 const LaneRendererClass = preload("res://scripts/gameplay/LaneRenderer.gd")
+const ArcTrailLayerClass = preload("res://scripts/gameplay/ArcTrailLayer.gd")
+const HitFeedbackClass = preload("res://scripts/gameplay/HitFeedback.gd")
 
 signal chart_finished(summary: Dictionary)
 
@@ -23,17 +25,37 @@ var _song_ms: float = 0.0
 var _running: bool = false
 var _finished: bool = false
 var _lanes: Node2D
+var _arc_trails: Node2D
+var _feedback: CanvasLayer
 var _hit_particles: CPUParticles2D
 var _sky_particles: CPUParticles2D
+var _held: Dictionary = {}
 
 
 func _ready() -> void:
 	_lanes = LaneRendererClass.new()
 	add_child(_lanes)
+	_arc_trails = ArcTrailLayerClass.new()
+	_arc_trails.configure(_lanes, SCROLL_SPEED)
+	add_child(_arc_trails)
+	_feedback = HitFeedbackClass.new()
+	add_child(_feedback)
 	_setup_particles()
 	load_chart(chart_id)
 	if auto_start and not headless_simulate:
 		call_deferred("start_run")
+
+
+func _lane_key(plane: String, lane: int) -> String:
+	return "%s_%d" % [plane, lane]
+
+
+func _set_held(plane: String, lane: int, down: bool) -> void:
+	_held[_lane_key(plane, lane)] = down
+
+
+func _is_held(plane: String, lane: int) -> bool:
+	return bool(_held.get(_lane_key(plane, lane), false))
 
 
 func _setup_particles() -> void:
@@ -73,6 +95,7 @@ func start_run() -> void:
 	_spawn_index = 0
 	_running = true
 	_finished = false
+	_held.clear()
 	for n in _active:
 		_recycle_note(n)
 	_active.clear()
@@ -90,6 +113,9 @@ func _process(delta: float) -> void:
 	BeatEngine.sync_ms(_song_ms)
 	_spawn_due_notes()
 	_update_note_positions()
+	if _arc_trails:
+		_arc_trails.update_arcs(_active, _song_ms, get_viewport_rect().size.x)
+	_process_holds()
 	_auto_miss_overdue()
 	if headless_simulate:
 		_simulate_inputs()
@@ -114,13 +140,17 @@ func _spawn_due_notes() -> void:
 func _acquire_note():
 	if _pool.is_empty():
 		return NoteNodeClass.new()
-	return _pool.pop_back()
+	var note = _pool.pop_back()
+	if note.get_parent():
+		note.get_parent().remove_child(note)
+	return note
 
 
 func _recycle_note(note) -> void:
 	if note.get_parent():
 		note.get_parent().remove_child(note)
-	_pool.append(note)
+	if note not in _pool:
+		_pool.append(note)
 
 
 func _update_note_positions() -> void:
@@ -141,6 +171,8 @@ func _auto_miss_overdue() -> void:
 	for note in _active:
 		if note.consumed:
 			continue
+		if note.holding:
+			continue
 		var late_ms: float = _song_ms - note.hit_time_ms
 		if note.note_type == NoteNodeClass.NoteType.HOLD:
 			if _song_ms > note.end_time_ms + JudgementSystemClass.WINDOW_GOOD_MS:
@@ -154,14 +186,48 @@ func _auto_miss_overdue() -> void:
 		_recycle_note(note)
 
 
+func _process_holds() -> void:
+	var to_remove: Array = []
+	for note in _active:
+		if not note.holding or note.consumed:
+			continue
+		if note.note_type != NoteNodeClass.NoteType.HOLD:
+			continue
+		if not _is_held(note.plane, note.lane) and _song_ms < note.end_time_ms:
+			_register_miss(note)
+			to_remove.append(note)
+			continue
+		if _song_ms >= note.end_time_ms - JudgementSystemClass.WINDOW_GOOD_MS:
+			if headless_simulate or _is_held(note.plane, note.lane):
+				var tail_delta: float = _song_ms - note.end_time_ms
+				var tail_kind: String = JudgementSystemClass.judge_delta_ms(tail_delta)
+				var kind: String = _worst_kind(note.head_kind, tail_kind)
+				_resolve_hit(note, kind)
+				to_remove.append(note)
+	for note in to_remove:
+		_active.erase(note)
+		_recycle_note(note)
+
+
+func _worst_kind(a: String, b: String) -> String:
+	var rank := {"pure": 0, "great": 1, "good": 2, "miss": 3}
+	return a if rank.get(a, 3) >= rank.get(b, 3) else b
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if headless_simulate or not _running:
 		return
 	for lane in 4:
 		if event.is_action_pressed("lane_%d" % lane):
+			_set_held("floor", lane, true)
 			_try_hit_lane(lane, "floor")
+		if event.is_action_released("lane_%d" % lane):
+			_set_held("floor", lane, false)
 		if event.is_action_pressed("sky_lane_%d" % lane):
+			_set_held("sky", lane, true)
 			_try_hit_lane(lane, "sky")
+		if event.is_action_released("sky_lane_%d" % lane):
+			_set_held("sky", lane, false)
 
 
 func _try_hit_lane(lane: int, plane: String) -> void:
@@ -169,6 +235,8 @@ func _try_hit_lane(lane: int, plane: String) -> void:
 	var best_delta: float = INF
 	for note in _active:
 		if note.consumed or note.plane != plane:
+			continue
+		if note.holding:
 			continue
 		if note.note_type == NoteNodeClass.NoteType.ARC:
 			var lane_now: int = int(round(note.current_lane_at(_song_ms)))
@@ -181,8 +249,11 @@ func _try_hit_lane(lane: int, plane: String) -> void:
 		else:
 			if note.lane != lane:
 				continue
+			var window_ms: float = JudgementSystemClass.WINDOW_GOOD_MS
+			if note.note_type == NoteNodeClass.NoteType.FLICK:
+				window_ms = JudgementSystemClass.WINDOW_GREAT_MS
 			var delta_ms: float = absf(_song_ms - note.hit_time_ms)
-			if delta_ms < best_delta and delta_ms <= JudgementSystemClass.WINDOW_GOOD_MS:
+			if delta_ms < best_delta and delta_ms <= window_ms:
 				best = note
 				best_delta = delta_ms
 	if best == null:
@@ -193,17 +264,21 @@ func _try_hit_lane(lane: int, plane: String) -> void:
 		return
 	if best.note_type == NoteNodeClass.NoteType.HOLD:
 		best.holding = true
-		if _song_ms >= best.end_time_ms - JudgementSystemClass.WINDOW_GOOD_MS:
-			_resolve_hit(best, kind)
-	else:
-		_resolve_hit(best, kind)
+		best.head_kind = kind
+		_burst_at(best.position, kind, best.plane)
+		_lanes.trigger_shake(2.0)
+		return
+	_resolve_hit(best, kind)
 
 
 func _resolve_hit(note, kind: String) -> void:
 	note.consumed = true
+	note.holding = false
 	note.pulse()
 	GameState.register_judgement(kind, JudgementSystemClass.points_for(kind))
 	_burst_at(note.position, kind, note.plane)
+	if _feedback:
+		_feedback.show_hit(note.position, kind)
 	if kind == "pure":
 		_lanes.trigger_shake(5.0 if note.plane == "floor" else 3.0)
 	_active.erase(note)
@@ -214,6 +289,7 @@ func _register_miss(note) -> void:
 	if note.consumed:
 		return
 	note.consumed = true
+	note.holding = false
 	GameState.register_judgement("miss", 0)
 
 
@@ -234,6 +310,15 @@ func _simulate_inputs() -> void:
 	for note in _active:
 		if note.consumed:
 			continue
+		if note.note_type == NoteNodeClass.NoteType.HOLD:
+			if not note.holding:
+				var head_delta: float = note.hit_time_ms - _song_ms
+				if head_delta <= 0 and head_delta > -8:
+					_set_held(note.plane, note.lane, true)
+					_try_hit_lane(note.lane, note.plane)
+			else:
+				_set_held(note.plane, note.lane, true)
+			continue
 		var delta: float = note.hit_time_ms - _song_ms
 		if delta <= 0 and delta > -8:
 			var lane: int = int(round(note.current_lane_at(_song_ms)))
@@ -244,6 +329,7 @@ func _finish_chart() -> void:
 	_finished = true
 	_running = false
 	BeatEngine.stop()
+	_cleanup_notes()
 	GameState.commit_high_score()
 	var grade: String = GameState.letter_grade()
 	GameState.record_clear(grade)
@@ -281,3 +367,14 @@ func run_stress_spawn(count: int) -> void:
 	_spawn_index = 0
 	headless_simulate = true
 	start_run()
+
+
+func _cleanup_notes() -> void:
+	for note in _active:
+		_recycle_note(note)
+	_active.clear()
+	for note in _pool:
+		if is_instance_valid(note):
+			note.free()
+	_pool.clear()
+	_held.clear()

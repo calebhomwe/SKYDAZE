@@ -5,6 +5,7 @@ class_name JudgementSystem
 const WINDOW_PURE_MS := 25.0
 const WINDOW_GREAT_MS := 50.0
 const WINDOW_GOOD_MS := 80.0
+const WINDOW_FLICK_MS := 60.0
 
 const POINTS := {
 	"pure": 1000,
@@ -14,13 +15,13 @@ const POINTS := {
 }
 
 
-static func judge_delta_ms(delta_ms: float) -> String:
+static func judge_delta_ms(delta_ms: float, max_window_ms: float = WINDOW_GOOD_MS) -> String:
 	var ad := absf(delta_ms)
 	if ad <= WINDOW_PURE_MS:
 		return "pure"
 	if ad <= WINDOW_GREAT_MS:
 		return "great"
-	if ad <= WINDOW_GOOD_MS:
+	if ad <= max_window_ms:
 		return "good"
 	return "miss"
 

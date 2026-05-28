@@ -60,4 +60,5 @@ All run data is written under `artifacts/spawn/`:
 - Default `mode` in `swarm_plan.yaml` is `plan-only` to avoid accidental spend.
 - Workers honor `timeout_seconds` from plan defaults or per-worker overrides.
 - Model override entries in `swarm_plan.yaml` should be validated with dry-runs first.
+- **LUMENFALL app squad** (`swarm_plan_lumenfall.yaml`): 12 workers with top coding models (`gpt-5.3-codex`, `claude-opus-4.6`, `claude-sonnet-4.6`, `gemini-2.5-pro`, `qwen3-coder-plus`, etc.). See `make spawn-lumenfall-dry`.
 - Existing `ops/n8n` workflows can call this launcher as a command step.

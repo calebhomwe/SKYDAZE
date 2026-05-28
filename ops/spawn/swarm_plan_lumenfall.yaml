@@ -1,0 +1,70 @@
+version: 1
+# Focused LUMENFALL app squad — best OpenRouter coding models for Godot/app work.
+# Default plan-only. Execute with: make spawn-lumenfall-execute
+defaults:
+  cloud: local
+  headless: true
+  output: json
+  mode: plan-only
+  max_parallel: 4
+  timeout_seconds: 600
+  prompt_file: ops/spawn/prompts/lumenfall_app_squad.md
+
+# 12 workers — quality over quantity
+workers:
+  # Primary coding lanes (OpenAI + Anthropic native agents)
+  - name: codex-gameplay
+    agent: codex
+    replicas: 2
+    purpose: gameplay-holds-arcs-input
+    model: openai/gpt-5.3-codex
+    prompt_file: ops/spawn/prompts/lumenfall_app_squad.md
+
+  - name: claude-synthesis
+    agent: claude
+    replicas: 1
+    purpose: architecture-and-quality-gate
+    model: anthropic/claude-opus-4.6
+    prompt_file: ops/spawn/prompts/lumenfall_app_squad.md
+
+  # Cursor lanes with top OpenRouter models
+  - name: sonnet-gdscript
+    agent: cursor
+    replicas: 2
+    purpose: gdscript-gameplay-ui
+    model: anthropic/claude-sonnet-4.6
+    prompt_file: ops/spawn/prompts/lumenfall_app_squad.md
+
+  - name: gemini-ux
+    agent: cursor
+    replicas: 2
+    purpose: ui-menu-hud-polish
+    model: google/gemini-2.5-pro
+    prompt_file: ops/spawn/prompts/lumenfall_app_squad.md
+
+  - name: qwen-coder-tools
+    agent: cursor
+    replicas: 1
+    purpose: chart-tools-and-data
+    model: qwen/qwen3-coder-plus
+    prompt_file: ops/spawn/prompts/lumenfall_app_squad.md
+
+  - name: deepseek-perf
+    agent: cursor
+    replicas: 1
+    purpose: stress-perf-pooling
+    model: deepseek/deepseek-v4-flash
+    prompt_file: ops/spawn/prompts/lumenfall_app_squad.md
+
+  # Refactor + alternate agent stacks
+  - name: kilocode-refactor
+    agent: kilocode
+    replicas: 2
+    purpose: refactor-and-cleanup
+    prompt_file: ops/spawn/prompts/lumenfall_app_squad.md
+
+  - name: opencode-terminal
+    agent: opencode
+    replicas: 1
+    purpose: terminal-qa-and-scripts
+    prompt_file: ops/spawn/prompts/lumenfall_app_squad.md

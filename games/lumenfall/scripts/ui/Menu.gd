@@ -9,7 +9,8 @@ signal chart_selected(chart_id: String)
 
 
 func _ready() -> void:
-	GameState.meta_changed.connect(_refresh_meta)
+	if not GameState.meta_changed.is_connected(_refresh_meta):
+		GameState.meta_changed.connect(_refresh_meta)
 	_build_list()
 	_refresh_meta()
 

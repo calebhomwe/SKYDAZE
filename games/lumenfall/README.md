@@ -59,6 +59,15 @@ python3 games/lumenfall/tools/generate_chart.py void_surge
 python3 games/lumenfall/tools/generate_chart.py custom --title "My Chart" --count 120 --bpm 180
 ```
 
+## Agent squad (OpenRouter Spawn)
+
+Best coding models for app polish — see `artifacts/lumenfall/agent_squad.md`.
+
+```bash
+make spawn-lumenfall-plan
+make spawn-lumenfall-execute   # bounded 4-worker launch
+```
+
 ## Image generation hook
 
 ```bash

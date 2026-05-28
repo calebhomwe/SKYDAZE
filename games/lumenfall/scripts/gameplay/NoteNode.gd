@@ -12,6 +12,7 @@ var hit_time_ms: float = 0.0
 var end_time_ms: float = 0.0
 var consumed: bool = false
 var holding: bool = false
+var head_kind: String = ""
 
 var _radius := 18.0
 var _glow := 0.0
@@ -23,6 +24,10 @@ func setup(data: Dictionary) -> void:
 	plane = str(data.get("plane", "floor")).to_lower()
 	if plane not in ["floor", "sky"]:
 		plane = "floor"
+	hit_time_ms = float(data.get("t", 0))
+	head_kind = ""
+	holding = false
+	consumed = false
 	var t := str(data.get("type", "tap")).to_lower()
 	match t:
 		"hold":
@@ -36,7 +41,8 @@ func setup(data: Dictionary) -> void:
 			note_type = NoteType.FLICK
 		_:
 			note_type = NoteType.TAP
-	hit_time_ms = float(data.get("t", 0))
+	if note_type == NoteType.HOLD and end_time_ms <= hit_time_ms:
+		end_time_ms = hit_time_ms + 500.0
 
 
 func current_lane_at(song_ms: float) -> float:
@@ -72,7 +78,10 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, _radius + 8.0 * _glow, glow_col * Color(1, 1, 1, 0.28))
 	draw_circle(Vector2.ZERO, _radius, base_col)
 	if note_type == NoteType.HOLD:
-		draw_rect(Rect2(-_radius, -_radius * 2.5, _radius * 2.0, _radius * 5.0), base_col * Color(1, 1, 1, 0.35))
+		var tail_h := _radius * 5.0
+		if holding:
+			tail_h = maxf(tail_h, 40.0)
+		draw_rect(Rect2(-_radius, -_radius * 2.5, _radius * 2.0, tail_h), base_col * Color(1, 1, 1, 0.35))
 	if note_type == NoteType.FLICK:
 		draw_line(Vector2(-14, 0), Vector2(14, 0), Color(1, 1, 1, 0.9), 3.0)
 		draw_line(Vector2(0, -14), Vector2(0, 14), Color(1, 1, 1, 0.9), 3.0)
