@@ -5,11 +5,12 @@ Inlines all SVG content so the gallery works offline / shareable as one file.
 
 from __future__ import annotations
 
-import base64
+import base64  # noqa: F401  (used by kimi_card when PNG renders exist)
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 GRAPHICS_DIR = ROOT / "artifacts" / "graphics"
+KIMI_DIR = ROOT / "artifacts" / "graphics-kimi"
 OUT = ROOT / "artifacts" / "gallery.html"
 
 
@@ -29,6 +30,23 @@ def graphic_card(path: Path) -> str:
     """
 
 
+def kimi_card(path: Path) -> str:
+    # Format: ftc-kimi-NNN-K-XX-slug.png (or .svg if any)
+    title = path.stem.replace("ftc-kimi-", "").replace("-", " ").title()
+    if path.suffix == ".png":
+        b64 = base64.b64encode(path.read_bytes()).decode()
+        media = f'<img src="data:image/png;base64,{b64}" alt="{title}"/>'
+    else:
+        media = path.read_text()
+    return f"""
+    <article class="card kimi">
+      <div class="canvas">{media}</div>
+      <h3>{title}</h3>
+      <p class="meta">Kimi · GLM · GPT Image 2 / Seedream</p>
+    </article>
+    """
+
+
 def world_card(path: Path) -> str:
     name = path.stem.split("-", 1)[1].replace("-", " ").title()
     world_id = path.stem.split("-")[0]
@@ -44,6 +62,7 @@ def world_card(path: Path) -> str:
 
 def main() -> None:
     graphics = sorted(GRAPHICS_DIR.glob("*.svg"))
+    kimi_outputs = sorted(KIMI_DIR.glob("*.png")) + sorted(KIMI_DIR.glob("*.svg")) if KIMI_DIR.exists() else []
 
     parts = [
         """<!doctype html>
@@ -168,10 +187,21 @@ footer {
 
     parts.append(f"""
 <section>
-  <h2>STREETWEAR GRAPHICS</h2>
-  <p class="lead">{len(graphics)} procedural designs — cornerstone, veil, living-water, ember, threshold, covenant-arc, manna, wilderness, still-waters, vine, ladder, alabaster, broken-grid, mercy-seat, tabernacle. Each carries theological meaning without literal representation.</p>
+  <h2>STREETWEAR GRAPHICS · WHISPER TIER</h2>
+  <p class="lead">{len(graphics)} restraint-tier procedural designs — cornerstone, veil, living-water, ember, threshold, covenant-arc, manna, wilderness, still-waters, vine, ladder, alabaster, broken-grid, mercy-seat, tabernacle. Faith is felt, not announced.</p>
   <div class="grid">
     {"".join(graphic_card(p) for p in graphics)}
+  </div>
+</section>
+""")
+
+    if kimi_outputs:
+        parts.append(f"""
+<section>
+  <h2>KIMI · GLM · GPT IMAGE 2 / SEEDREAM</h2>
+  <p class="lead">{len(kimi_outputs)} designs from the real LLM stack — 22 Kimi K2 agents brainstorming briefs in parallel, GLM 4.6 ranking, GLM 4.5-Air safety scan, OpenRouter GPT Image 2 generating (Fal Seedream-4 fallback), Qwen VL3 reviewing brand alignment. Two agents (K-21, K-22) carry BoohooMAN men's editorial composition pacing.</p>
+  <div class="grid">
+    {"".join(kimi_card(p) for p in kimi_outputs)}
   </div>
 </section>
 """)
@@ -186,7 +216,7 @@ footer {
 
     OUT.write_text("\n".join(parts))
     size_kb = OUT.stat().st_size / 1024
-    print(f"Wrote {OUT} ({size_kb:.0f} KB) — {len(graphics)} graphics")
+    print(f"Wrote {OUT} ({size_kb:.0f} KB) — {len(graphics)} whisper graphics + {len(kimi_outputs)} Kimi/GPT Image renders")
 
 
 if __name__ == "__main__":

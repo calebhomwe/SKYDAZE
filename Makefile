@@ -3,7 +3,7 @@
         caveman-install caveman-uninstall caveman-update \
         spawn-plan spawn-dry spawn-launch \
         youtube-harvest youtube-harvest-real \
-        graphics gallery render-multi render-multi-dry \
+        graphics gallery kimi-designs kimi-designs-real render-multi render-multi-dry \
         brand-research mobile-build \
         clean lint
 
@@ -88,6 +88,13 @@ gallery: graphics
 	python3 build_gallery.py
 	@echo ""
 	@echo "Open artifacts/gallery.html in a browser."
+
+# --- Kimi/GLM/Qwen design pipeline (real LLM stack — needs OPENROUTER_API_KEY) ---
+kimi-designs:
+	python3 workers/qwen_kimi_glm_design_worker.py --request-seed 2026 --top 12
+
+kimi-designs-real:
+	FTC_RUN_MODE=real python3 workers/qwen_kimi_glm_design_worker.py --request-seed 2026 --top 12 --review
 
 # --- Multi-provider image rendering (Tier 32) ------------------------------
 render-multi-dry:

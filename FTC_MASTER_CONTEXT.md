@@ -124,7 +124,7 @@ Use for campaign generation across hoodies, track pants, shoes, logo tees, long 
 
 ## 9. PARKED MODULES
 
-- **GENESIS game** lives at [`parked/genesis-game/`](./parked/genesis-game/). Bible-rooted walking game scaffold (Python world schema + Swift Eden vertical slice + 13 world SVGs + Roblox shirt-customization scaffold). NOT part of the FTC brand pipeline. Reserved for integration into a future Christian game and/or Roblox experience where users customize shirts. Do not wire Tier-29-onward agents into this module unless explicitly directed.
+- **GENESIS game** lives at [`parked/genesis-roblox-edition/`](./parked/genesis-roblox-edition/). Bible-rooted walking game scaffold (Python world schema + Swift Eden vertical slice + 13 world SVGs + Roblox shirt-customization scaffold). NOT part of the FTC brand pipeline. Reserved for integration into a future Christian game and/or Roblox experience where users customize shirts. Do not wire Tier-29-onward agents into this module unless explicitly directed.
 
 ---
 
@@ -159,8 +159,10 @@ All competitive intelligence lives at [`research/`](./research/) in **markdown, 
 10. Failure modes to avoid
 11. TL;DR — apply to FTC
 
-**Dossiers v1 (committed):** Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP.
-**Master synthesis:** [`research/STREETWEAR_PLAYBOOK.md`](./research/STREETWEAR_PLAYBOOK.md) — the 10 commandments + forbidden-moves list.
+**Dossiers v1 (committed):** Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP, Mr Porter, The Row, Levi's, Hip-Hop Graphic Designers (canon overview), Cactus Plant Flea Market, Brain Dead, Awake NY.
+**Master syntheses:**
+- [`research/STREETWEAR_PLAYBOOK.md`](./research/STREETWEAR_PLAYBOOK.md) — quiet-luxury 10 commandments + forbidden-moves list (the brand's center).
+- [`research/CHRISTIAN_HIP_HOP_DESIGN_PLAYBOOK.md`](./research/CHRISTIAN_HIP_HOP_DESIGN_PLAYBOOK.md) — bold graphic-tee formula spanning 5 intensity tiers (Whisper / Speak / Statement / Sermon / Shout); 15 procedural styles for the Sermon-tier engine; Christian content via fragment, never citation.
 
 Cadence: each dossier curator (Tier 29) refreshes monthly. Playbook synthesizer (FTC-260) updates quarterly.
 

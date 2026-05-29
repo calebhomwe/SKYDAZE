@@ -13,29 +13,18 @@
 ## Files in this directory
 
 - `ShirtCustomizer.lua` — server-side Lua. Catalog of FTC-themed shirts + the "apply to player" function.
-- `ShirtTemplate-blank.png` (optional, generate locally) — the 585×559 UV layout reference.
+- `convert_decals.py` — converts `artifacts/graphics/*.svg` → 585×559 PNGs for Roblox upload.
+- `shirt-decals/` — **30 pre-generated PNG decals** ready to upload to Roblox Studio (already at 585×559).
 - This `README.md`.
 
 ## Convert FTC graphics to Roblox decals
 
-From the repo root:
+Already done — 30 PNGs sit in `shirt-decals/` at correct dimensions. To regenerate after editing the source SVGs:
 
 ```bash
-# Install cairosvg if missing (handles SVG → PNG conversion)
-pip install cairosvg
-
-# Convert each FTC graphic to a 585x559 PNG suitable for Roblox shirts
-python3 - <<'PY'
-from pathlib import Path
-import cairosvg
-src = Path('artifacts/graphics')
-dst = Path('parked/genesis-game/roblox/shirt-decals')
-dst.mkdir(parents=True, exist_ok=True)
-for svg in sorted(src.glob('*.svg')):
-    out = dst / (svg.stem + '.png')
-    cairosvg.svg2png(url=str(svg), write_to=str(out), output_width=585, output_height=559)
-    print('->', out)
-PY
+# From repo root
+pip install cairosvg  # one-time
+python3 parked/genesis-roblox-edition/roblox/convert_decals.py
 ```
 
 Then in Roblox Studio:
