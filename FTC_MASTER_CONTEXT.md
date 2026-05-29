@@ -159,7 +159,7 @@ All competitive intelligence lives at [`research/`](./research/) in **markdown, 
 10. Failure modes to avoid
 11. TL;DR — apply to FTC
 
-**Dossiers v1 (committed):** Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP.
+**Dossiers v1 (committed):** Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP, Mr Porter, The Row, Levi's.
 **Master synthesis:** [`research/STREETWEAR_PLAYBOOK.md`](./research/STREETWEAR_PLAYBOOK.md) — the 10 commandments + forbidden-moves list.
 
 Cadence: each dossier curator (Tier 29) refreshes monthly. Playbook synthesizer (FTC-260) updates quarterly.

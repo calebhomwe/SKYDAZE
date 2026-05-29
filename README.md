@@ -10,7 +10,7 @@
 | :--- | :--- |
 | **Visual gallery** — 30 streetwear graphics + 13 concept world tiles | [`artifacts/gallery.html`](./artifacts/gallery.html) — open in any browser |
 | **Streetwear graphics** — 15 procedural styles, 30 renders | [`artifacts/graphics/`](./artifacts/graphics/) |
-| **Brand research** — Yeezy, Off-White, Nike, etc. (11 dossiers) | [`research/brands/`](./research/brands/) |
+| **Brand research** — Yeezy, Off-White, Nike, etc. (14 dossiers) | [`research/brands/`](./research/brands/) |
 | **iOS app scaffold** — SwiftUI, calls Fal/Novita/OpenRouter | [`mobile/ftc-ios/`](./mobile/ftc-ios/) |
 | **Parked: GENESIS game / Roblox** — for later integration | [`parked/genesis-roblox-edition/`](./parked/genesis-roblox-edition/) |
 
@@ -33,7 +33,7 @@ SwiftUI app with four tabs:
 
 ### Brand research (`research/`)
 - [`research/STREETWEAR_PLAYBOOK.md`](./research/STREETWEAR_PLAYBOOK.md) — 10 commandments synthesized from 8 brand dossiers
-- [`research/brands/`](./research/brands/) — deep markdown dossiers on Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP (11 brands)
+- [`research/brands/`](./research/brands/) — deep markdown dossiers on Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP, Mr Porter, The Row, Levi's (14 brands)
 
 ### Image generation infrastructure (`workers/`)
 - `openrouter_image_worker.py` — Gemini 2.5 Flash Image, Flux 1.1 Pro, DALL·E 3
