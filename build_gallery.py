@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 GRAPHICS_DIR = ROOT / "artifacts" / "graphics"
+BOLD_DIR = ROOT / "artifacts" / "graphics-bold"
 OUT = ROOT / "artifacts" / "gallery.html"
 
 
@@ -29,6 +30,23 @@ def graphic_card(path: Path) -> str:
     """
 
 
+def bold_card(path: Path) -> str:
+    # Format: ftc-bold-NNN-tT-style-slug.svg
+    parts = path.stem.split("-")
+    tier = parts[3] if len(parts) > 3 else "t?"
+    style = "-".join(parts[4:6]) if len(parts) > 5 else "?"
+    title_parts = parts[6:] if len(parts) > 6 else []
+    title = " ".join(p for p in title_parts).title() or style.replace("-", " ").title()
+    svg = inline_svg(path)
+    return f"""
+    <article class="card bold">
+      <div class="canvas">{svg}</div>
+      <h3>{title}</h3>
+      <p class="meta">{tier.upper()} · {style}</p>
+    </article>
+    """
+
+
 def world_card(path: Path) -> str:
     name = path.stem.split("-", 1)[1].replace("-", " ").title()
     world_id = path.stem.split("-")[0]
@@ -44,6 +62,7 @@ def world_card(path: Path) -> str:
 
 def main() -> None:
     graphics = sorted(GRAPHICS_DIR.glob("*.svg"))
+    bold = sorted(BOLD_DIR.glob("*.svg")) if BOLD_DIR.exists() else []
 
     parts = [
         """<!doctype html>
@@ -168,10 +187,21 @@ footer {
 
     parts.append(f"""
 <section>
-  <h2>STREETWEAR GRAPHICS</h2>
-  <p class="lead">{len(graphics)} procedural designs — cornerstone, veil, living-water, ember, threshold, covenant-arc, manna, wilderness, still-waters, vine, ladder, alabaster, broken-grid, mercy-seat, tabernacle. Each carries theological meaning without literal representation.</p>
+  <h2>STREETWEAR GRAPHICS · WHISPER TIER</h2>
+  <p class="lead">{len(graphics)} restraint-tier procedural designs — cornerstone, veil, living-water, ember, threshold, covenant-arc, manna, wilderness, still-waters, vine, ladder, alabaster, broken-grid, mercy-seat, tabernacle. Faith is felt, not announced.</p>
   <div class="grid">
     {"".join(graphic_card(p) for p in graphics)}
+  </div>
+</section>
+""")
+
+    if bold:
+        parts.append(f"""
+<section>
+  <h2>HIP-HOP GRAPHIC TEES · TIER 3–5</h2>
+  <p class="lead">{len(bold)} bold graphic tees — Christian content in the hip-hop graphic vocabulary of Cey Adams, Eric Haze, Sk8thing, CPFM, Verdy, Brain Dead, Heron Preston, Awake NY. 15 styles across Statement / Sermon / Shout tiers. Greek, Hebrew, Latin, Augustine, hymns, historical figures, diaspora places — never direct verse citation, never crosses-as-decoration.</p>
+  <div class="grid">
+    {"".join(bold_card(p) for p in bold)}
   </div>
 </section>
 """)
@@ -186,7 +216,7 @@ footer {
 
     OUT.write_text("\n".join(parts))
     size_kb = OUT.stat().st_size / 1024
-    print(f"Wrote {OUT} ({size_kb:.0f} KB) — {len(graphics)} graphics")
+    print(f"Wrote {OUT} ({size_kb:.0f} KB) — {len(graphics)} whisper graphics + {len(bold)} bold tees")
 
 
 if __name__ == "__main__":

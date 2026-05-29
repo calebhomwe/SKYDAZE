@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    <filter id="grain-883701059" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="883701059"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0"/>
+    </filter>
+    <rect x="0" y="0" width="1200" height="1500" filter="url(#grain-883701059)"/>
+    </defs>
+  <rect x="0" y="0" width="1200" height="1500" fill="#EFE9D8"/>
+  <text x="140" y="240" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.43" transform="rotate(3 140 240)">CHARIS</text>
+<text x="380" y="240" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.70" transform="rotate(-1 380 240)">CHARIS</text>
+<text x="620" y="240" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.72" transform="rotate(2 620 240)">CHARIS</text>
+<text x="860" y="240" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.63" transform="rotate(2 860 240)">CHARIS</text>
+<text x="1100" y="240" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.47" transform="rotate(1 1100 240)">CHARIS</text>
+<text x="80" y="380" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.67" transform="rotate(-3 80 380)">CHARIS</text>
+<text x="320" y="380" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.76" transform="rotate(0 320 380)">CHARIS</text>
+<text x="560" y="380" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.43" transform="rotate(1 560 380)">CHARIS</text>
+<text x="800" y="380" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.62" transform="rotate(-3 800 380)">CHARIS</text>
+<text x="1040" y="380" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.64" transform="rotate(-2 1040 380)">CHARIS</text>
+<text x="140" y="520" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.45" transform="rotate(3 140 520)">CHARIS</text>
+<text x="380" y="520" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.63" transform="rotate(-2 380 520)">CHARIS</text>
+<text x="620" y="520" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.49" transform="rotate(2 620 520)">CHARIS</text>
+<text x="860" y="520" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.35" transform="rotate(-1 860 520)">CHARIS</text>
+<text x="1100" y="520" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.77" transform="rotate(3 1100 520)">CHARIS</text>
+<text x="80" y="660" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.75" transform="rotate(3 80 660)">CHARIS</text>
+<text x="320" y="660" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.60" transform="rotate(1 320 660)">CHARIS</text>
+<text x="560" y="660" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.65" transform="rotate(-2 560 660)">CHARIS</text>
+<text x="800" y="660" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.38" transform="rotate(-1 800 660)">CHARIS</text>
+<text x="1040" y="660" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.78" transform="rotate(1 1040 660)">CHARIS</text>
+<text x="140" y="800" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.77" transform="rotate(1 140 800)">CHARIS</text>
+<text x="380" y="800" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.50" transform="rotate(-1 380 800)">CHARIS</text>
+<text x="620" y="800" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.53" transform="rotate(-3 620 800)">CHARIS</text>
+<text x="860" y="800" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.44" transform="rotate(0 860 800)">CHARIS</text>
+<text x="1100" y="800" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.43" transform="rotate(-2 1100 800)">CHARIS</text>
+<text x="80" y="940" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.35" transform="rotate(-1 80 940)">CHARIS</text>
+<text x="320" y="940" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.77" transform="rotate(-3 320 940)">CHARIS</text>
+<text x="560" y="940" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.45" transform="rotate(2 560 940)">CHARIS</text>
+<text x="800" y="940" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.59" transform="rotate(2 800 940)">CHARIS</text>
+<text x="1040" y="940" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.50" transform="rotate(-2 1040 940)">CHARIS</text>
+<text x="140" y="1080" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.37" transform="rotate(2 140 1080)">CHARIS</text>
+<text x="380" y="1080" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.72" transform="rotate(-3 380 1080)">CHARIS</text>
+<text x="620" y="1080" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.66" transform="rotate(-1 620 1080)">CHARIS</text>
+<text x="860" y="1080" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.55" transform="rotate(3 860 1080)">CHARIS</text>
+<text x="1100" y="1080" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.40" transform="rotate(-2 1100 1080)">CHARIS</text>
+<text x="80" y="1220" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.69" transform="rotate(2 80 1220)">CHARIS</text>
+<text x="320" y="1220" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.55" transform="rotate(-2 320 1220)">CHARIS</text>
+<text x="560" y="1220" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.49" transform="rotate(-1 560 1220)">CHARIS</text>
+<text x="800" y="1220" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.47" transform="rotate(3 800 1220)">CHARIS</text>
+<text x="1040" y="1220" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.41" transform="rotate(-1 1040 1220)">CHARIS</text>
+<text x="140" y="1360" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.70" transform="rotate(1 140 1360)">CHARIS</text>
+<text x="380" y="1360" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.78" transform="rotate(0 380 1360)">CHARIS</text>
+<text x="620" y="1360" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.42" transform="rotate(2 620 1360)">CHARIS</text>
+<text x="860" y="1360" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.59" transform="rotate(-2 860 1360)">CHARIS</text>
+<text x="1100" y="1360" font-family="Helvetica Neue, sans-serif" font-weight="900" font-size="56" letter-spacing="4" fill="#2F2924" opacity="0.46" transform="rotate(3 1100 1360)">CHARIS</text>
+<rect x="320" y="700" width="560" height="200" fill="#EFE9D8"/>
+<rect x="320" y="700" width="560" height="200" fill="none" stroke="#2F2924" stroke-width="3"/>
+<text x="600" y="830" font-family="Trajan Pro, Cinzel, Georgia, serif" font-weight="900" font-size="80" letter-spacing="8" fill="#2F2924" text-anchor="middle">FTC</text>
+</svg>

@@ -28,6 +28,7 @@ dist/
 artifacts/*
 # But re-include lightweight viewable outputs (gallery + SVG graphics + worlds + markdown logs)
 !artifacts/graphics/
+!artifacts/graphics-bold/
 !artifacts/game/
 !artifacts/gallery.html
 !artifacts/work_log/
@@ -37,6 +38,7 @@ artifacts/game/genesis/audio/
 artifacts/game/genesis/characters/*.png
 artifacts/game/genesis/items/*.png
 artifacts/graphics/*.png
+artifacts/graphics-bold/*.png
 
 # --- Mobile / Secrets ---
 mobile/ftc-ios/FTC/Resources/Secrets.plist

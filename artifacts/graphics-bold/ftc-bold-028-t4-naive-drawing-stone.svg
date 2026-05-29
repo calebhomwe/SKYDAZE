@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    <filter id="grain-2978826014" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="2978826014"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0"/>
+    </filter>
+    <rect x="0" y="0" width="1200" height="1500" filter="url(#grain-2978826014)"/>
+    </defs>
+  <rect x="0" y="0" width="1200" height="1500" fill="#292828"/>
+  <polygon points="420,850 510,600 700,580 800,750 730,900 490,880" fill="#D8D2CD" stroke="#EFE9D8" stroke-width="10" stroke-linejoin="round"/>
+<line x1="520" y1="700" x2="660" y2="670" stroke="#EFE9D8" stroke-width="4" opacity="0.6"/>
+<line x1="540" y1="760" x2="680" y2="740" stroke="#EFE9D8" stroke-width="4" opacity="0.6"/>
+<text x="600" y="1180" font-family="Comic Sans MS, Marker Felt, cursive" font-size="48" font-weight="700" fill="#EFE9D8" text-anchor="middle">STONE</text>
+<text x="600" y="1240" font-family="Helvetica Neue, sans-serif" font-size="20" letter-spacing="8" fill="#EFE9D8" text-anchor="middle" opacity="0.6">FTC · MMXXVI</text>
+</svg>

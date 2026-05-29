@@ -159,8 +159,10 @@ All competitive intelligence lives at [`research/`](./research/) in **markdown, 
 10. Failure modes to avoid
 11. TL;DR — apply to FTC
 
-**Dossiers v1 (committed):** Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP, Mr Porter, The Row, Levi's.
-**Master synthesis:** [`research/STREETWEAR_PLAYBOOK.md`](./research/STREETWEAR_PLAYBOOK.md) — the 10 commandments + forbidden-moves list.
+**Dossiers v1 (committed):** Yeezy, Off-White, Nike, Pinterest, Proper, Geedup, BoohooMAN, Fashion Nova, Stüssy, Aimé Leon Dore, Carhartt WIP, Mr Porter, The Row, Levi's, Hip-Hop Graphic Designers (canon overview), Cactus Plant Flea Market, Brain Dead, Awake NY.
+**Master syntheses:**
+- [`research/STREETWEAR_PLAYBOOK.md`](./research/STREETWEAR_PLAYBOOK.md) — quiet-luxury 10 commandments + forbidden-moves list (the brand's center).
+- [`research/CHRISTIAN_HIP_HOP_DESIGN_PLAYBOOK.md`](./research/CHRISTIAN_HIP_HOP_DESIGN_PLAYBOOK.md) — bold graphic-tee formula spanning 5 intensity tiers (Whisper / Speak / Statement / Sermon / Shout); 15 procedural styles for the Sermon-tier engine; Christian content via fragment, never citation.
 
 Cadence: each dossier curator (Tier 29) refreshes monthly. Playbook synthesizer (FTC-260) updates quarterly.
 

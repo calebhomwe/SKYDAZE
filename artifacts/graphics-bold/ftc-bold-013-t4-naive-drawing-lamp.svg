@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    <filter id="grain-3852216796" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="3852216796"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0"/>
+    </filter>
+    <rect x="0" y="0" width="1200" height="1500" filter="url(#grain-3852216796)"/>
+    </defs>
+  <rect x="0" y="0" width="1200" height="1500" fill="#EFE9D8"/>
+  <rect x="500" y="650" width="200" height="180" rx="20" fill="#1C1D20" stroke="#E2DDD7" stroke-width="10"/>
+<rect x="470" y="590" width="260" height="40" rx="8" fill="#E2DDD7"/>
+<path d="M 600 520 L 600 580" stroke="#E2DDD7" stroke-width="8" stroke-linecap="round"/>
+<path d="M 600 440 Q 560 500 600 520 Q 640 500 600 440" fill="#1C1D20" stroke="#E2DDD7" stroke-width="6"/>
+<text x="600" y="1180" font-family="Comic Sans MS, Marker Felt, cursive" font-size="48" font-weight="700" fill="#E2DDD7" text-anchor="middle">LAMP</text>
+<text x="600" y="1240" font-family="Helvetica Neue, sans-serif" font-size="20" letter-spacing="8" fill="#E2DDD7" text-anchor="middle" opacity="0.6">FTC · MMXXVI</text>
+</svg>

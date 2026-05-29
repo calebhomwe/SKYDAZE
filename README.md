@@ -9,8 +9,9 @@
 | Artifact | Open it |
 | :--- | :--- |
 | **Visual gallery** — 30 streetwear graphics + 13 concept world tiles | [`artifacts/gallery.html`](./artifacts/gallery.html) — open in any browser |
-| **Streetwear graphics** — 15 procedural styles, 30 renders | [`artifacts/graphics/`](./artifacts/graphics/) |
-| **Brand research** — Yeezy, Off-White, Nike, etc. (14 dossiers) | [`research/brands/`](./research/brands/) |
+| **Streetwear graphics — Whisper tier** — 15 procedural restraint styles, 30 renders | [`artifacts/graphics/`](./artifacts/graphics/) |
+| **Hip-hop graphic tees — Statement / Sermon / Shout** — 15 styles × 5 intensity tiers, 30 renders | [`artifacts/graphics-bold/`](./artifacts/graphics-bold/) |
+| **Brand research** — 18 dossiers (Yeezy → Awake NY) + 2 playbooks | [`research/`](./research/) |
 | **iOS app scaffold** — SwiftUI, calls Fal/Novita/OpenRouter | [`mobile/ftc-ios/`](./mobile/ftc-ios/) |
 | **Parked: GENESIS game / Roblox** — for later integration | [`parked/genesis-roblox-edition/`](./parked/genesis-roblox-edition/) |
 

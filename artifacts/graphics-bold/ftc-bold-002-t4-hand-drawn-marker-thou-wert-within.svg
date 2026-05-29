@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    <filter id="grain-2605076248" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="2605076248"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0"/>
+    </filter>
+    <rect x="0" y="0" width="1200" height="1500" filter="url(#grain-2605076248)"/>
+    </defs>
+  <rect x="0" y="0" width="1200" height="1500" fill="#EFE9D8"/>
+  <g font-family="Comic Sans MS, Marker Felt, Bradley Hand, cursive" fill="#47423C" font-weight="700">
+<text x="586" y="505.0" font-size="125" text-anchor="middle" transform="rotate(4 586 505.0)">THOU</text>
+<text x="623" y="635.0" font-size="129" text-anchor="middle" transform="rotate(0 623 635.0)">WERT</text>
+<text x="616" y="765.0" font-size="114" text-anchor="middle" transform="rotate(1 616 765.0)">WITHIN</text>
+</g>
+<line x1="351" y1="1058" x2="339" y2="1057" stroke="#47423C" stroke-width="3" opacity="0.7" stroke-linecap="round"/>
+<line x1="525" y1="670" x2="561" y2="661" stroke="#47423C" stroke-width="3" opacity="0.7" stroke-linecap="round"/>
+<line x1="479" y1="569" x2="441" y2="573" stroke="#47423C" stroke-width="3" opacity="0.7" stroke-linecap="round"/>
+<line x1="216" y1="569" x2="253" y2="562" stroke="#47423C" stroke-width="3" opacity="0.7" stroke-linecap="round"/>
+<line x1="640" y1="1078" x2="645" y2="1065" stroke="#47423C" stroke-width="3" opacity="0.7" stroke-linecap="round"/>
+<line x1="851" y1="899" x2="815" y2="886" stroke="#47423C" stroke-width="3" opacity="0.7" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" width="1200" height="1500">
+  <defs>
+    <filter id="grain-4185065662" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" seed="4185065662"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0"/>
+    </filter>
+    <rect x="0" y="0" width="1200" height="1500" filter="url(#grain-4185065662)"/>
+    </defs>
+  <rect x="0" y="0" width="1200" height="1500" fill="#EFE9D8"/>
+  
+    <circle cx="600" cy="780" r="320" fill="none" stroke="#1D1D1D" stroke-width="6"/>
+    <circle cx="600" cy="780" r="280" fill="#CAC7C2" opacity="0.18"/>
+    <circle cx="600" cy="780" r="240" fill="none" stroke="#1D1D1D" stroke-width="2"/>
+    <text x="600" y="820" font-family="Trajan Pro, Cinzel, Georgia, serif"
+          font-size="120" font-weight="700" letter-spacing="2"
+          fill="#1D1D1D" text-anchor="middle">BROOKLYN</text>
+    <defs>
+      <path id="emblem-arc-4185065662" d="M 310,780 A 290,290 0 0,1 890,780"/>
+    </defs>
+    <text font-family="Helvetica Neue, sans-serif" font-size="32" letter-spacing="14" fill="#1D1D1D">
+      <textPath href="#emblem-arc-4185065662" startOffset="50%" text-anchor="middle">
+        FTC · FULL TIME CHRISTIAN · MMXXVI
+      </textPath>
+    </text>
+    
+</svg>
