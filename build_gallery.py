@@ -5,12 +5,12 @@ Inlines all SVG content so the gallery works offline / shareable as one file.
 
 from __future__ import annotations
 
-import base64
+import base64  # noqa: F401  (used by kimi_card when PNG renders exist)
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 GRAPHICS_DIR = ROOT / "artifacts" / "graphics"
-BOLD_DIR = ROOT / "artifacts" / "graphics-bold"
+KIMI_DIR = ROOT / "artifacts" / "graphics-kimi"
 OUT = ROOT / "artifacts" / "gallery.html"
 
 
@@ -30,19 +30,19 @@ def graphic_card(path: Path) -> str:
     """
 
 
-def bold_card(path: Path) -> str:
-    # Format: ftc-bold-NNN-tT-style-slug.svg
-    parts = path.stem.split("-")
-    tier = parts[3] if len(parts) > 3 else "t?"
-    style = "-".join(parts[4:6]) if len(parts) > 5 else "?"
-    title_parts = parts[6:] if len(parts) > 6 else []
-    title = " ".join(p for p in title_parts).title() or style.replace("-", " ").title()
-    svg = inline_svg(path)
+def kimi_card(path: Path) -> str:
+    # Format: ftc-kimi-NNN-K-XX-slug.png (or .svg if any)
+    title = path.stem.replace("ftc-kimi-", "").replace("-", " ").title()
+    if path.suffix == ".png":
+        b64 = base64.b64encode(path.read_bytes()).decode()
+        media = f'<img src="data:image/png;base64,{b64}" alt="{title}"/>'
+    else:
+        media = path.read_text()
     return f"""
-    <article class="card bold">
-      <div class="canvas">{svg}</div>
+    <article class="card kimi">
+      <div class="canvas">{media}</div>
       <h3>{title}</h3>
-      <p class="meta">{tier.upper()} · {style}</p>
+      <p class="meta">Kimi · GLM · GPT Image 2 / Seedream</p>
     </article>
     """
 
@@ -62,7 +62,7 @@ def world_card(path: Path) -> str:
 
 def main() -> None:
     graphics = sorted(GRAPHICS_DIR.glob("*.svg"))
-    bold = sorted(BOLD_DIR.glob("*.svg")) if BOLD_DIR.exists() else []
+    kimi_outputs = sorted(KIMI_DIR.glob("*.png")) + sorted(KIMI_DIR.glob("*.svg")) if KIMI_DIR.exists() else []
 
     parts = [
         """<!doctype html>
@@ -195,13 +195,13 @@ footer {
 </section>
 """)
 
-    if bold:
+    if kimi_outputs:
         parts.append(f"""
 <section>
-  <h2>HIP-HOP GRAPHIC TEES · TIER 3–5</h2>
-  <p class="lead">{len(bold)} bold graphic tees — Christian content in the hip-hop graphic vocabulary of Cey Adams, Eric Haze, Sk8thing, CPFM, Verdy, Brain Dead, Heron Preston, Awake NY. 15 styles across Statement / Sermon / Shout tiers. Greek, Hebrew, Latin, Augustine, hymns, historical figures, diaspora places — never direct verse citation, never crosses-as-decoration.</p>
+  <h2>KIMI · GLM · GPT IMAGE 2 / SEEDREAM</h2>
+  <p class="lead">{len(kimi_outputs)} designs from the real LLM stack — 22 Kimi K2 agents brainstorming briefs in parallel, GLM 4.6 ranking, GLM 4.5-Air safety scan, OpenRouter GPT Image 2 generating (Fal Seedream-4 fallback), Qwen VL3 reviewing brand alignment. Two agents (K-21, K-22) carry BoohooMAN men's editorial composition pacing.</p>
   <div class="grid">
-    {"".join(bold_card(p) for p in bold)}
+    {"".join(kimi_card(p) for p in kimi_outputs)}
   </div>
 </section>
 """)
@@ -216,7 +216,7 @@ footer {
 
     OUT.write_text("\n".join(parts))
     size_kb = OUT.stat().st_size / 1024
-    print(f"Wrote {OUT} ({size_kb:.0f} KB) — {len(graphics)} whisper graphics + {len(bold)} bold tees")
+    print(f"Wrote {OUT} ({size_kb:.0f} KB) — {len(graphics)} whisper graphics + {len(kimi_outputs)} Kimi/GPT Image renders")
 
 
 if __name__ == "__main__":

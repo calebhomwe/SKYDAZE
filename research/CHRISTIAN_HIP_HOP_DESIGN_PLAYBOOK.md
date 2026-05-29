@@ -87,27 +87,51 @@ Off-White wink? No. CPFM playful? Yes — but sincerely. The faith is felt. Neve
 - Maryland: Annapolis docks, Chesapeake watermen, Old Bay
 - Perth dawn swimmers: Indian Ocean Anglican churches, sandstone cathedrals
 
-## The 15 bold graphic styles (procedural specs)
+## The design pipeline (real LLM stack)
 
-These are the styles the bold_graphics_engine.py implements. Each maps to a Tier 3-5 intensity, a content well, and a reference designer.
+Implementation lives at `workers/qwen_kimi_glm_design_worker.py` driving
+`ftc/kimi_design_pod.py`. The pipeline is:
 
-| # | Style | Tier | Content well | Reference |
-| ---: | :--- | :---: | :--- | :--- |
-| 1 | Stacked-Text | 3 | Hymn fragment | Eric Haze |
-| 2 | Big-Word-Block | 3 | Greek single word | Cey Adams |
-| 3 | Hand-Drawn-Marker | 4 | Augustine fragment | CPFM |
-| 4 | Wheatpaste | 4 | Historical figure | Heron Preston |
-| 5 | Album-Cover-Emblem | 3 | Diaspora cultural anchor | Sk8thing |
-| 6 | Layered-Reference | 4 | Theology + place | Brain Dead |
-| 7 | Spray-Tag | 4 | Hebrew shalom/chesed | Eric Haze / Futura |
-| 8 | Photo-Halftone | 4 | Hymn lyric over halftone | Brain Dead |
-| 9 | Type-Burst | 3 | Latin phrase | Heron Preston |
-| 10 | Manuscript-Marginalia | 5 | Augustine + illuminated | Brain Dead |
-| 11 | Tour-Merch-Bootleg | 4 | Hymn-as-tour-poster | Awake NY |
-| 12 | Three-Line-Stack | 3 | Trinitarian phrase | Cey Adams |
-| 13 | Halftone-Portrait | 5 | Historical figure | Pyer Moss |
-| 14 | Naive-Drawing | 4 | Single biblical motif | CPFM / Verdy |
-| 15 | All-Over-Pattern | 5 | Repeating Greek text | Heron Preston |
+1. **22 Kimi K2 agents** brainstorm in parallel — each agent owns one design angle
+   (hymn fragmentarian, Augustine curator, Greek typographer, etc., plus K-21 and
+   K-22 carrying BoohooMAN men's editorial pacing). Each emits a natural-language
+   design brief suitable for direct submission to an image-generation model.
+2. **GLM 4.6** (`z-ai/glm-4.6`) ranks the 22 briefs against luxury_score,
+   theology_depth, brand_alignment and returns the top N.
+3. **GLM 4.5-Air** (`z-ai/glm-4.5-air`) runs the forbidden-term safety scan
+   (skulls, neon, crosses-as-decoration, verse citations, fast-fashion language).
+4. **Image generation** — primary: OpenRouter GPT Image 2 (`openai/gpt-image-1`).
+   Fallback: Fal.ai Seedream-4 (`fal-ai/bytedance/seedware/v4/text-to-image`).
+   Output: 832×1024 PNGs (4:5 garment ratio).
+5. **Qwen VL3** (`qwen/qwen3-vl-235b-a22b-instruct`) reviews each rendered PNG
+   and scores brand alignment, writing the score to the manifest.
+
+Each agent's preferred content well + reference designer:
+
+| Agent | Angle | Reference |
+| :--- | :--- | :--- |
+| K-01 | Hymn fragmentarian | Eric Haze |
+| K-02 | Augustine curator | CPFM |
+| K-03 | Greek typographer | Cey Adams |
+| K-04 | Hebrew typographer | Eric Haze |
+| K-05 | Latin formalist | Sk8thing |
+| K-06 | Diaspora place marker | Awake NY |
+| K-07 | Historical figure | Pyer Moss |
+| K-08 | Trinitarian stacker | Cey Adams |
+| K-09 | CPFM naive hand | CPFM |
+| K-10 | Cey Adams bold | Cey Adams |
+| K-11 | Eric Haze graffiti weight | Eric Haze |
+| K-12 | Sk8thing emblem | Sk8thing |
+| K-13 | Brain Dead halftone | Brain Dead |
+| K-14 | Heron Preston industrial | Heron Preston |
+| K-15 | Awake NY tour poster | Awake NY |
+| K-16 | Pyer Moss historical-essay | Pyer Moss |
+| K-17 | Verdy single motif | Verdy |
+| K-18 | Illuminated manuscript | Brain Dead |
+| K-19 | Shout-tier all-over print | Heron Preston |
+| K-20 | Quiet statement | Cey Adams |
+| **K-21** | **BoohooMAN men's headline** | **BoohooMAN (pacing/composition only)** |
+| **K-22** | **BoohooMAN men's photo-overlay** | **BoohooMAN (pacing/composition only)** |
 
 ## Drop architecture
 
@@ -174,9 +198,8 @@ Fix: commit to design grade. Commission real designers. Pay craft prices.
 ## Operationalizing this playbook
 
 ### Year 1
-- Build the bold graphics engine (`ftc/bold_graphics_engine.py`).
-- Generate 30 Sermon-tier graphic SVGs across the 15 styles.
-- Convert to PNG for Roblox decals.
+- Run the real-LLM design pipeline (`workers/qwen_kimi_glm_design_worker.py`) for each drop.
+- 22 Kimi K2 agents → GLM 4.6 rank → GLM 4.5-Air safety → GPT Image 2 / Seedream-4 → Qwen VL3 review.
 - Ship 1-2 Sermon-tier pieces per drop alongside the Whisper-tier center.
 
 ### Year 2
